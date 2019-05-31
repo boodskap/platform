@@ -20,6 +20,25 @@
 		<boodskap.version>${project.version}</boodskap.version>
 	</properties>
 
+	<repositories>
+		<repository>
+			<id>libs-release</id>
+			<name>Boodskap Libraries</name>
+			<url>https://maven.boodskap.io/artifactory/libs-release/</url>
+		</repository>
+		<repository>
+			<id>libs-snapshot</id>
+			<name>Boodskap Snapshot Libraries</name>
+			<url>https://maven.boodskap.io/artifactory/libs-snapshot/</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+	</repositories>
+	
 	<dependencies>
 	</dependencies>
 
@@ -36,5 +55,5 @@
 		<module>spi-storage-elasticsearch</module>
 		<module>spi-storage-pojo</module>
 	</modules>
-	
+
 </project>
