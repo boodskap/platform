@@ -1,4 +1,4 @@
-<project name="iot-platform-dist" default="build">
+<project name="iot-platform-dist" default="clean-build">
 
 	<property environment="env" />
 	<property name="VERSION">3.0.0-aplha1</property>
@@ -24,6 +24,7 @@
 		<gzip destfile="${basedir}/releases//boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
 		<delete dir="${basedir}/temp"/>
 		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
+		<copy file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" tofile="${basedir}/releases/boodskap-iot-platform.tar.gz" />
 	</target>
 	
 	<target name="clean-install">
