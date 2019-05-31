@@ -2,9 +2,8 @@ FROM ubuntu:18.04
 MAINTAINER Boodskap <platform@boodskap.io>
 
 ARG HOME_DIR=/usr/local/boodskap
-ARG SOLUTION_DIR=/opt/boodskap/solution
-ARG DASHBOARD_DIR=/opt/boodskap/dashboard
-ARG CONSOLE_DIR=/opt/boodskap/console
+ARG DASHBOARD_DIR=/usr/share/boodskap/dashboard
+ARG CONSOLE_DIR=/usr/share/boodskap/console
 
 WORKDIR /
 
@@ -20,7 +19,6 @@ RUN update-alternatives --config java
 RUN apt-get install -y --fix-missing ant maven
 
 ENV BOODSKAP_HOME ${HOME_DIR}
-ENV SOLUTION_HOME ${SOLUTION_DIR}
 ENV DASHBOARD_HOME ${DASHBOARD_DIR}
 ENV CONSOLE_HOME ${CONSOLE_DIR}
 ENV DATA_PATH ${BOODSKAP_HOME}/data
@@ -44,14 +42,8 @@ ENV PROTOCOL_SPI_LIBDIRS "udp,mqtt,ftp"
 ENV SERVICE_SPI_LIBDIRS ""
 
 RUN mkdir -p ${BOODSKAP_HOME}
-RUN mkdir -p ${SOLUTION_HOME}
 RUN mkdir -p ${CONSOLE_HOME}
 RUN mkdir -p ${DASHBOARD_HOME}
-
-WORKDIR ${SOLUTION_HOME}
-#Copy solution files
-COPY files/solution ${SOLUTION_HOME}/
-RUN npm install
 
 WORKDIR ${CONSOLE_HOME}
 #Copy admin console files
