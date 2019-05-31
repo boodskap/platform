@@ -28,14 +28,14 @@
 	</target>
 	
 	<target name="clean-install">
-		<exec dir="${basedir}" executable="${env.HOME}/tools/apache-maven-${MAVEN_VERSION}/bin/mvn">
+		<exec dir="${basedir}" executable="mvn">
 			<arg value="clean" />
 			<arg value="install" />
 		</exec>
 	</target>
 
 	<target name="install">
-		<exec dir="${basedir}" executable="${env.HOME}/tools/apache-maven-${MAVEN_VERSION}/bin/mvn">
+		<exec dir="${basedir}" executable="mvn">
 			<arg value="install" />
 		</exec>
 	</target>
