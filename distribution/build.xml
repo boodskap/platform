@@ -1,0 +1,126 @@
+<project name="iot-platform-dist" default="build">
+
+	<property environment="env" />
+	<property name="VERSION">3.0.0-aplha1</property>
+	<property name="MAVEN_VERSION">3.5.4</property>
+
+	<target name="build" depends="install,copy,assemble">
+	</target>
+	
+	<target name="clean-build" depends="clean-install,copy,assemble">
+	</target>
+	
+	<target name="assemble">
+		<copy todir="${basedir}/temp/libs">
+			<fileset dir="${basedir}/target/libs" />
+		</copy>
+		<copy todir="${basedir}/temp/spi-libs">
+			<fileset dir="${basedir}/target/spi-libs" />
+		</copy>
+		<copy todir="${basedir}/temp">
+			<fileset dir="${basedir}/config" />
+		</copy>
+		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${basedir}/temp"/>
+		<gzip destfile="${basedir}/releases//boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
+		<delete dir="${basedir}/temp"/>
+		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
+	</target>
+	
+	<target name="clean-install">
+		<exec dir="${basedir}" executable="${env.HOME}/tools/apache-maven-${MAVEN_VERSION}/bin/mvn">
+			<arg value="clean" />
+			<arg value="install" />
+		</exec>
+	</target>
+
+	<target name="install">
+		<exec dir="${basedir}" executable="${env.HOME}/tools/apache-maven-${MAVEN_VERSION}/bin/mvn">
+			<arg value="install" />
+		</exec>
+	</target>
+
+	<target name="copy">
+		
+		<delete dir="${basedir}/target/spi-libs" />
+
+		<copy todir="${basedir}/target/libs">
+			<fileset dir="${basedir}/server/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/cache/local">
+			<fileset dir="${basedir}/spi-cache-local/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/grid/local">
+			<fileset dir="${basedir}/spi-grid-local/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/cache/ignite">
+			<fileset dir="${basedir}/spi-cache-ignite/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/grid/ignite">
+			<fileset dir="${basedir}/spi-grid-ignite/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/storage/cassandra">
+			<fileset dir="${basedir}/spi-storage-cassandra/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/storage/elasticsearch">
+			<fileset dir="${basedir}/spi-storage-elasticsearch/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/storage/hsqldb">
+			<fileset dir="${basedir}/driver-hsqldb/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/storage/mysql">
+			<fileset dir="${basedir}/driver-mysql/target/libs" includes="**/*" />
+		</copy>
+
+		<copy todir="${basedir}/target/spi-libs/protocols/udp">
+			<fileset dir="${basedir}/protocol-service-udp/target/libs" includes="**/*" />
+		</copy>
+
+		<delete verbose="false">
+			<fileset dir="${basedir}/target/spi-libs/cache/local" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/grid/local" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/cache/ignite" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/grid/ignite" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/storage/cassandra" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/storage/elasticsearch" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/storage/hsqldb" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/storage/mysql" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/protocols/udp" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+		</delete>
+
+	</target>
+
+</project>
