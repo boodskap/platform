@@ -7,18 +7,37 @@ _term() {
 
 trap _term SIGTERM
 
-cd $CONSOLE_HOME
-npm install
+if [ -d "/opt/boodskap/solution" ] 
+then
+    cd /opt/boodskap/solution
+    npm install
+    echo "Starting custom solution"
+    pm2 start /opt/boodskap/solution/server.js
+else
+    echo "No solution directory configured"
+fi
 
-cd $DASHBOARD_HOME
-npm install
+if [ -d "/opt/boodskap/console" ] 
+then
+    cd /opt/boodskap/console
+    npm install
+    echo "Starting custom admin console"
+    pm2 start /opt/boodskap/console/bdskp-admin-console-node.js
+else
+    echo "Starting default admin console"
+    pm2 start $CONSOLE_HOME/bdskp-admin-console-node.js
+fi
 
-cd $SOLUTION_HOME
-npm install
-
-pm2 start $CONSOLE_HOME/bdskp-admin-console-node.js
-pm2 start $DASHBOARD_HOME/bdskp-dashboard-node.js
-#pm2 start $SOLUTION_HOME/solution.js
+if [ -d "/opt/boodskap/dashboard" ] 
+then
+    cd /opt/boodskap/dashboard
+    npm install
+    echo "Starting custom dashboard"
+    pm2 start /opt/boodskap/dashboard/bdskp-dashboard-node.js
+else
+    echo "Starting default dashboard"
+    pm2 start $DASHBOARD_HOME/bdskp-dashboard-node.js
+fi
 
 service nginx start
 
