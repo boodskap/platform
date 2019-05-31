@@ -17,7 +17,7 @@ cd $SOLUTION_HOME
 npm install
 
 pm2 start $CONSOLE_HOME/bdskp-admin-console-node.js
-#pm2 start $DASHBOARD_HOME/dashboard.js
+pm2 start $DASHBOARD_HOME/bdskp-dashboard-node.js
 #pm2 start $SOLUTION_HOME/solution.js
 
 service nginx start
