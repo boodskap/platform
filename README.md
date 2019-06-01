@@ -35,3 +35,39 @@ A Platform / Infrastructure exclusively developed for IoT, that enables you to c
       *  **$DASHBOARD_FOLDER** is your git cloned directory path
       *  Dashboard URL **http://boodskap.xyz/dashboard**
   
+* Sample Shell Script
+```bash
+#!/bin/bash
+
+NAME=boodskap
+VERSION=latest
+
+DATA_MOUNT=/path/to/data
+CONSOLE_MOUNT=/path/to/admin-console
+DASHBOARD_MOUNT=/path/to/dashboard
+
+PORTS="80 443 1883"
+UDP_PORTS="5555"
+
+for PORT in ${PORTS}
+do
+   OPORTS="$OPORTS -p $PORT:$PORT"
+done
+
+for PORT in ${UDP_PORTS}
+do
+   OPORTS="$OPORTS -p $PORT:${PORT}/udp"
+done
+
+echo "DATA: ${DATA_MOUNT}"
+echo "ADMIN-CONSOLE: ${CONSOLE_MOUNT}"
+echo "DASHBOARD: ${DASHBOARD_MOUNT}"
+
+VOLUMES="-v ${DATA_MOUNT}:/usr/local/boodskap/data"
+VOLUMES="$VOLUMES -v ${DASHBOARD_MOUNT}:/opt/boodskap/dashboard"
+VOLUMES="$VOLUMES -v ${CONSOLE_MOUNT}:/opt/boodskap/console"
+
+EXEC="docker run --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
+echo $EXEC
+$EXEC
+```
