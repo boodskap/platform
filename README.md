@@ -43,7 +43,7 @@ VERSION=latest
 NAME=boodskap
 
 # ** CHNAGE THIS to your preffered location **
-#DATA_MOUNT=$HOME/docker/volumes/boodskap/data
+DATA_MOUNT=$HOME/docker/volumes/boodskap/data
 
 # ** OPTIONAL: Chnage this to match your environment **
 #CONSOLE_MOUNT=/path/to/admin-console
