@@ -17,29 +17,19 @@ else
     echo "No solution directory configured"
 fi
 
-if [ -d "/opt/boodskap/console" ] 
+if [ -d "$CONSOLE_HOME" ] 
 then
-    cd /opt/boodskap/console
-    npm install
-    echo "Starting custom admin console"
-    pm2 start /opt/boodskap/console/bdskp-admin-console-node.js
-else
-    echo "Starting default admin console"
     cd $CONSOLE_HOME
     npm install
+    echo "Starting admin console"
     pm2 start $CONSOLE_HOME/bdskp-admin-console-node.js
 fi
 
-if [ -d "/opt/boodskap/dashboard" ] 
+if [ -d "$DASHBOARD_HOME" ] 
 then
-    cd /opt/boodskap/dashboard
-    npm install
-    echo "Starting custom dashboard"
-    pm2 start /opt/boodskap/dashboard/bdskp-dashboard-node.js
-else
-    echo "Starting default dashboard"
     cd $DASHBOARD_HOME
     npm install
+    echo "Starting dashboard"
     pm2 start $DASHBOARD_HOME/bdskp-dashboard-node.js
 fi
 
