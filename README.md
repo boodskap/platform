@@ -43,7 +43,7 @@ VERSION=latest
 NAME=boodskap
 
 # ** CHNAGE THIS to your preffered location **
-#DATA_MOUNT=$HOME/docker/volumes/boodskap/data
+DATA_MOUNT=$HOME/docker/volumes/boodskap/data
 
 # ** OPTIONAL: Chnage this to match your environment **
 #CONSOLE_MOUNT=/path/to/admin-console
@@ -79,6 +79,7 @@ if [[ -z "$CONSOLE_MOUNT" ]]; then
 else
    echo "**** Using admin console: $CONSOLE_MOUNT"
    VOLUMES="$VOLUMES -v ${CONSOLE_MOUNT}:/opt/boodskap/console"
+   ENV="$ENV -e CONSOLE_HOME=/opt/boodskap/console"
 fi
 
 if [[ -z "$DASHBOARD_MOUNT" ]]; then
@@ -86,6 +87,7 @@ if [[ -z "$DASHBOARD_MOUNT" ]]; then
 else
    echo "**** Using dashboard: $DASHBOARD_MOUNT"
    VOLUMES="$VOLUMES -v ${DASHBOARD_MOUNT}:/opt/boodskap/dashboard"
+   ENV="$ENV -e DASHBOARD_HOME=/opt/boodskap/dashboard"
 fi
 
 if [[ -z "$SOLUTION_MOUNT" ]]; then
@@ -100,11 +102,8 @@ if [[ -z "$PLATFORM_MOUNT" ]]; then
 else
    echo "**** Using platform: $PLATFORM_MOUNT"
    VOLUMES="$VOLUMES -v ${PLATFORM_MOUNT}:/opt/boodskap/platform"
-   ENV="-e BOODSKAP_HOME=/opt/boodskap/platform"
+   ENV="$ENV -e BOODSKAP_HOME=/opt/boodskap/platform"
 fi
-
-VOLUMES="$VOLUMES -v ${DASHBOARD_MOUNT}:/opt/boodskap/dashboard"
-VOLUMES="$VOLUMES -v ${CONSOLE_MOUNT}:/opt/boodskap/console"
 
 EXEC="docker run --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
 echo $EXEC
@@ -114,5 +113,5 @@ echo "#### To Start: docker start boodskap"
 
 echo "#### Open URL: http://boodskap.xyz  ####"
 
-$EXEC
+#$EXEC
 ```
