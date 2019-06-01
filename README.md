@@ -103,10 +103,8 @@ else
    ENV="-e BOODSKAP_HOME=/opt/boodskap/platform"
 fi
 
-VOLUMES="$VOLUMES -v ${DASHBOARD_MOUNT}:/opt/boodskap/dashboard"
-VOLUMES="$VOLUMES -v ${CONSOLE_MOUNT}:/opt/boodskap/console"
-
 EXEC="docker run --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
+echo "Run the below command once"
 echo $EXEC
 
 echo "#### To Stop : docker stop boodskap"
@@ -114,5 +112,5 @@ echo "#### To Start: docker start boodskap"
 
 echo "#### Open URL: http://boodskap.xyz  ####"
 
-$EXEC
+#$EXEC
 ```
