@@ -25,6 +25,8 @@ then
     pm2 start /opt/boodskap/console/bdskp-admin-console-node.js
 else
     echo "Starting default admin console"
+    cd $CONSOLE_HOME
+    npm install
     pm2 start $CONSOLE_HOME/bdskp-admin-console-node.js
 fi
 
@@ -36,6 +38,8 @@ then
     pm2 start /opt/boodskap/dashboard/bdskp-dashboard-node.js
 else
     echo "Starting default dashboard"
+    cd $DASHBOARD_HOME
+    npm install
     pm2 start $DASHBOARD_HOME/bdskp-dashboard-node.js
 fi
 
