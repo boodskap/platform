@@ -34,17 +34,28 @@ A Platform / Infrastructure exclusively developed for IoT, that enables you to c
       *  Add the above argument to **docker run** command
       *  **$DASHBOARD_FOLDER** is your git cloned directory path
       *  Dashboard URL **http://boodskap.xyz/dashboard**
-  
+
 * Sample Shell Script
+
 ```bash
 #!/bin/bash
-
-NAME=boodskap
 VERSION=latest
+NAME=boodskap
 
-DATA_MOUNT=/path/to/data
-CONSOLE_MOUNT=/path/to/admin-console
-DASHBOARD_MOUNT=/path/to/dashboard
+# ** CHNAGE THIS to your preffered location **
+#DATA_MOUNT=$HOME/docker/volumes/boodskap/data
+
+# ** OPTIONAL: Chnage this to match your environment **
+#CONSOLE_MOUNT=/path/to/admin-console
+
+# ** OPTIONAL: Chnage this to match your environment **
+#DASHBOARD_MOUNT=/path/to/dashboard
+
+# ** OPTIONAL: Chnage this to match your environment **
+#SOLUTION_MOUNT=/path/to/solution
+
+# ** OPTIONAL: Chnage this to match your environment **
+#PLATFORM_MOUNT=/path/to/platform
 
 PORTS="80 443 1883"
 UDP_PORTS="5555"
@@ -59,15 +70,49 @@ do
    OPORTS="$OPORTS -p $PORT:${PORT}/udp"
 done
 
-echo "DATA: ${DATA_MOUNT}"
-echo "ADMIN-CONSOLE: ${CONSOLE_MOUNT}"
-echo "DASHBOARD: ${DASHBOARD_MOUNT}"
+echo "**** Data Dir: $DATA_MOUNT"
 
 VOLUMES="-v ${DATA_MOUNT}:/usr/local/boodskap/data"
+
+if [[ -z "$CONSOLE_MOUNT" ]]; then
+   echo "Using default admin console"
+else
+   echo "**** Using admin console: $CONSOLE_MOUNT"
+   VOLUMES="$VOLUMES -v ${CONSOLE_MOUNT}:/opt/boodskap/console"
+fi
+
+if [[ -z "$DASHBOARD_MOUNT" ]]; then
+   echo "Using default dashboard"
+else
+   echo "**** Using dashboard: $DASHBOARD_MOUNT"
+   VOLUMES="$VOLUMES -v ${DASHBOARD_MOUNT}:/opt/boodskap/dashboard"
+fi
+
+if [[ -z "$SOLUTION_MOUNT" ]]; then
+   echo "Using default example solution"
+else
+   echo "**** Using solution: $SOLUTION_MOUNT"
+   VOLUMES="$VOLUMES -v ${SOLUTION_MOUNT}:/opt/boodskap/solution"
+fi
+
+if [[ -z "$PLATFORM_MOUNT" ]]; then
+   echo "Using default platform"
+else
+   echo "**** Using platform: $PLATFORM_MOUNT"
+   VOLUMES="$VOLUMES -v ${PLATFORM_MOUNT}:/opt/boodskap/platform"
+   ENV="-e BOODSKAP_HOME=/opt/boodskap/platform"
+fi
+
 VOLUMES="$VOLUMES -v ${DASHBOARD_MOUNT}:/opt/boodskap/dashboard"
 VOLUMES="$VOLUMES -v ${CONSOLE_MOUNT}:/opt/boodskap/console"
 
 EXEC="docker run --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
 echo $EXEC
+
+echo "#### To Stop : docker stop boodskap"
+echo "#### To Start: docker start boodskap"
+
+echo "#### Open URL: http://boodskap.xyz  ####"
+
 $EXEC
 ```
