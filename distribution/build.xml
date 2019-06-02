@@ -1,8 +1,7 @@
 <project name="iot-platform-dist" default="clean-build">
 
-	<property environment="env" />
 	<property name="VERSION">3.0.0-aplha1</property>
-	<property name="MAVEN_VERSION">3.5.4</property>
+	<property name="MAVEN_PATH">/usr/local/bin/mvn</property>
 
 	<target name="build" depends="install,copy,assemble">
 	</target>
@@ -10,19 +9,27 @@
 	<target name="clean-build" depends="clean-install,copy,assemble">
 	</target>
 	
+	<target name="local-build" depends="local-install,copy,assemble">
+	</target>
+	
+	<target name="local-clean-build" depends="local-clean-install,copy,assemble">
+	</target>
+	
 	<target name="assemble">
-		<copy todir="${basedir}/temp/libs">
+		<copy todir="${basedir}/target/release/libs">
 			<fileset dir="${basedir}/target/libs" />
 		</copy>
-		<copy todir="${basedir}/temp/spi-libs">
+		<copy todir="${basedir}/target/release/spi-libs">
 			<fileset dir="${basedir}/target/spi-libs" />
 		</copy>
-		<copy todir="${basedir}/temp">
+		<copy todir="${basedir}/target/release">
 			<fileset dir="${basedir}/config" />
 		</copy>
-		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${basedir}/temp"/>
-		<gzip destfile="${basedir}/releases//boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
-		<delete dir="${basedir}/temp"/>
+		<chmod perm="700">
+			<fileset dir="${basedir}/target/release/bin" includes="*.sh" />
+		</chmod>
+		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${basedir}/target/release"/>
+		<gzip destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
 		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
 		<copy file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" tofile="${basedir}/releases/boodskap-iot-platform.tar.gz" />
 	</target>
@@ -36,6 +43,23 @@
 
 	<target name="install">
 		<exec dir="${basedir}" executable="mvn">
+			<arg value="install" />
+		</exec>
+	</target>
+
+	<target name="local-clean-install">
+		<exec dir="${basedir}" executable="${MAVEN_PATH}">
+			<arg value="-f" />
+			<arg value="pom-local.xml" />
+			<arg value="clean" />
+			<arg value="install" />
+		</exec>
+	</target>
+
+	<target name="local-install">
+		<exec dir="${basedir}" executable="${MAVEN_PATH}">
+			<arg value="-f" />
+			<arg value="pom-local.xml" />
 			<arg value="install" />
 		</exec>
 	</target>
