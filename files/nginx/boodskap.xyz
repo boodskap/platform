@@ -7,7 +7,8 @@ server {
     client_max_body_size 256M;
 
     location / {
-
+        
+        #Change to solution_cluster
         proxy_pass http://console_cluster;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -19,16 +20,6 @@ server {
 
     location /api {
 
-        if ($request_method = 'OPTIONS') {
-            add_header 'Access-Control-Allow-Origin' '*';
-            add_header 'Access-Control-Allow-Methods' '*';
-            add_header 'Access-Control-Allow-Headers' '*';
-            add_header 'Access-Control-Max-Age' 1728000;
-            add_header 'Content-Type' 'text/plain; charset=utf-8';
-            add_header 'Content-Length' 0;
-            return 204;
-        }
-
         proxy_pass http://api_cluster;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
@@ -38,9 +29,20 @@ server {
         proxy_cache backcache;
     }
 
-    location /dashboard {
+    location /dashboard/ {
 
-        proxy_pass http://dashboard_cluster;
+        proxy_pass http://dashboard_cluster/;
+        proxy_set_header Host $host;
+        proxy_set_header X-Real-IP $remote_addr;
+        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
+        proxy_set_header X-NginX-Proxy true;
+        proxy_ssl_session_reuse off;
+        proxy_cache backcache;
+    }
+
+    location /console/ {
+
+        proxy_pass http://console_cluster/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
