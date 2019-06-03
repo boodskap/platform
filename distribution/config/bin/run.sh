@@ -7,12 +7,22 @@ _term() {
 
 trap _term SIGTERM
 
+if [ -d "${BOODSKAP_HOME}/platform" ] 
+then
+    cd ${BOODSKAP_HOME}/platform
+    echo "Building Boodskap IoT Platform"
+    echo "Please wait, it may take a long time..."
+    rm -rf ${M2_DIR}/repository/io/boodskap
+    mvn -q clean install
+    ant container-copy
+fi
+
 if [ -d "/opt/boodskap/solution" ] 
 then
     cd /opt/boodskap/solution
     npm install
     echo "Starting custom solution"
-    pm2 start /opt/boodskap/solution/server.js
+    ${START_SCRIPT}
 else
     echo "No solution directory configured"
 fi
