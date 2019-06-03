@@ -1,5 +1,6 @@
 <project name="iot-platform-dist" default="clean-build">
-
+	
+	<property environment="ENV" />
 	<property name="VERSION">3.0.0-aplha1</property>
 	<property name="MAVEN_PATH">/usr/local/bin/mvn</property>
 
@@ -13,6 +14,12 @@
 	</target>
 	
 	<target name="local-clean-build" depends="local-clean-install,copy,assemble">
+	</target>
+	
+	<target name="container-build" depends="install,copy,assemble">
+		<copy todir="${ENV.BOODSKAP_HOME}">
+			<fileset dir="${basedir}/target/release" />
+		</copy>
 	</target>
 	
 	<target name="assemble">
