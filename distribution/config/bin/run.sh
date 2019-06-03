@@ -7,6 +7,18 @@ _term() {
 
 trap _term SIGTERM
 
+echo "MOUNT_HOME=${MOUNT_HOME}"
+echo "BOODSKAP_HOME=${BOODSKAP_HOME}"
+echo "DASHBOARD_HOME=${}"
+echo "CONSOLE_HOME=${DASHBOARD_HOME}"
+echo "DATA_PATH=${DATA_PATH}"
+echo "CONFIG_FOLDER=${CONFIG_FOLDER}"
+echo "START_SCRIPT=${START_SCRIPT}"
+echo "M2_HOME=${M2_HOME}"
+echo "MAVEN_OPTS=${MAVEN_OPTS}"
+
+exit
+
 if [ -d "${MOUNT_HOME}/boodskap" ] 
     cd ${MOUNT_HOME}
     git clone https://github.com/boodskap/platform.git
