@@ -2,89 +2,6 @@
 	
 	<property environment="ENV" />
 	<property name="VERSION">3.0.0-aplha1</property>
-	<property name="MAVEN_PATH">/usr/local/bin/mvn</property>
-
-	<target name="build" depends="install,copy,assemble">
-	</target>
-	
-	<target name="clean-build" depends="clean-install,copy,assemble">
-	</target>
-	
-	<target name="local-build" depends="local-install,copy,assemble">
-	</target>
-	
-	<target name="local-clean-build" depends="local-clean-install,copy,assemble">
-	</target>
-	
-	<target name="container-copy" depends="local-clean-install,copy,container-assemble">
-		<copy todir="${ENV.BOODSKAP_HOME}">
-			<fileset dir="${basedir}/target/release" />
-		</copy>
-	</target>
-	
-	<target name="container-assemble">
-		<copy todir="${basedir}/target/release/libs">
-			<fileset dir="${basedir}/target/libs" />
-		</copy>
-		<copy todir="${basedir}/target/release/spi-libs">
-			<fileset dir="${basedir}/target/spi-libs" />
-		</copy>
-		<copy todir="${basedir}/target/release">
-			<fileset dir="${basedir}/config" />
-		</copy>
-		<chmod perm="700">
-			<fileset dir="${basedir}/target/release/bin" includes="*.sh" />
-		</chmod>
-	</target>
-	
-	<target name="assemble" depends="container-assemble">
-		<copy todir="${basedir}/target/release/libs">
-			<fileset dir="${basedir}/target/libs" />
-		</copy>
-		<copy todir="${basedir}/target/release/spi-libs">
-			<fileset dir="${basedir}/target/spi-libs" />
-		</copy>
-		<copy todir="${basedir}/target/release">
-			<fileset dir="${basedir}/config" />
-		</copy>
-		<chmod perm="700">
-			<fileset dir="${basedir}/target/release/bin" includes="*.sh" />
-		</chmod>
-		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${basedir}/target/release"/>
-		<gzip destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
-		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
-		<copy file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" tofile="${basedir}/releases/boodskap-iot-platform.tar.gz" />
-	</target>
-	
-	<target name="clean-install">
-		<exec dir="${basedir}" executable="mvn">
-			<arg value="clean" />
-			<arg value="install" />
-		</exec>
-	</target>
-
-	<target name="install">
-		<exec dir="${basedir}" executable="mvn">
-			<arg value="install" />
-		</exec>
-	</target>
-
-	<target name="local-clean-install">
-		<exec dir="${basedir}" executable="${MAVEN_PATH}">
-			<arg value="-f" />
-			<arg value="pom-local.xml" />
-			<arg value="clean" />
-			<arg value="install" />
-		</exec>
-	</target>
-
-	<target name="local-install">
-		<exec dir="${basedir}" executable="${MAVEN_PATH}">
-			<arg value="-f" />
-			<arg value="pom-local.xml" />
-			<arg value="install" />
-		</exec>
-	</target>
 
 	<target name="copy">
 		
@@ -170,4 +87,69 @@
 
 	</target>
 
+	<target name="container-assemble">
+		<copy todir="${basedir}/target/release/libs">
+			<fileset dir="${basedir}/target/libs" />
+		</copy>
+		<copy todir="${basedir}/target/release/spi-libs">
+			<fileset dir="${basedir}/target/spi-libs" />
+		</copy>
+		<copy todir="${basedir}/target/release">
+			<fileset dir="${basedir}/config" />
+		</copy>
+		<chmod perm="700">
+			<fileset dir="${basedir}/target/release/bin" includes="*.sh" />
+		</chmod>
+	</target>
+	
+	<target name="assemble" depends="container-assemble">
+		<copy todir="${basedir}/target/release/libs">
+			<fileset dir="${basedir}/target/libs" />
+		</copy>
+		<copy todir="${basedir}/target/release/spi-libs">
+			<fileset dir="${basedir}/target/spi-libs" />
+		</copy>
+		<copy todir="${basedir}/target/release">
+			<fileset dir="${basedir}/config" />
+		</copy>
+		<chmod perm="700">
+			<fileset dir="${basedir}/target/release/bin" includes="*.sh" />
+		</chmod>
+		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${basedir}/target/release"/>
+		<gzip destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
+		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
+		<copy file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" tofile="${basedir}/releases/boodskap-iot-platform.tar.gz" />
+	</target>
+	
+	<target name="install">
+		<exec dir="${basedir}" executable="mvn">
+			<arg value="clean" />
+			<arg value="install" />
+		</exec>
+	</target>
+
+	<target name="local-install">
+		<exec dir="${basedir}" executable="mvn">
+			<arg value="-f" />
+			<arg value="pom-local.xml" />
+			<arg value="clean" />
+			<arg value="install" />
+		</exec>
+	</target>
+
+	<target name="build" depends="assemble">
+	</target>
+	
+	<target name="clean-build" depends="install,assemble">
+	</target>
+	
+	<target name="local-build" depends="local-install,copy,assemble">
+	</target>
+	
+	<target name="container-copy" depends="local-build,container-assemble">
+		<copy todir="${ENV.BOODSKAP_HOME}">
+			<fileset dir="${basedir}/target/release" />
+		</copy>
+	</target>
+	
 </project>
