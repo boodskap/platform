@@ -7,50 +7,51 @@ _term() {
 
 trap _term SIGTERM
 
+export BOODSKAP_HOME=${MOUNT_HOME}/platform
+export CONSOLE_HOME=${MOUNT_HOME}/admin-console
+export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
+export M2_HOME=${MOUNT_HOME}/.m2
+export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
+
+if [ "$DEVELOPMENT" = "true" ]
+	echo "**** Development mode ****"
+	export DATA_PATH=${BOODSKAP_HOME}/data
+	export CONFIG_FOLDER=${BOODSKAP_HOME}/config
+then
+	echo "**** Production mode ****"
+fi
+
 echo "MOUNT_HOME=${MOUNT_HOME}"
 echo "BOODSKAP_HOME=${BOODSKAP_HOME}"
-echo "DASHBOARD_HOME=${}"
+echo "DASHBOARD_HOME=${DASHBOARD_HOME}"
 echo "CONSOLE_HOME=${DASHBOARD_HOME}"
-echo "DATA_PATH=${DATA_PATH}"
-echo "CONFIG_FOLDER=${CONFIG_FOLDER}"
 echo "START_SCRIPT=${START_SCRIPT}"
 echo "M2_HOME=${M2_HOME}"
 echo "MAVEN_OPTS=${MAVEN_OPTS}"
+echo "DATA_PATH=${DATA_PATH}"
+echo "CONFIG_FOLDER=${CONFIG_FOLDER}"
 
-exit
+echo "Building Boodskap IoT Platform"
+echo "Please wait, it may take a long time..."
+sleep 2
 
-if [ -d "${MOUNT_HOME}/boodskap" ] 
-    cd ${MOUNT_HOME}
-    git clone https://github.com/boodskap/platform.git
-then
-	echo "Platform folder exists"
-fi
+cd ${BOODSKAP_HOME}/distribution
+rm -rf ${M2_HOME}/repository/io/boodskap
+ant container-copy
 
-if [ -d "${MOUNT_HOME}/admin-console" ] 
-    cd ${MOUNT_HOME}
-    git clone https://github.com/boodskap/admin-console.git
-then
-	echo "Admin console folder exists"
-fi
+cd ${CONSOLE_HOME}/admin-console
+echo "Installing admin-console dependencies.. "
+echo "Please wait, it may take some time..."
+npm -s install
+echo "Starting admin-console"
+pm2 start ${CONSOLE_HOME}/bdskp-admin-console-node.js
 
-
-if [ -d "${MOUNT_HOME}/dashboard" ] 
-    cd ${MOUNT_HOME}
-    git clone https://github.com/boodskap/dashboard.git
-then
-	echo "Dashboard folder exists"
-fi
-
-
-if [ -d "${BOODSKAP_HOME}/platform/distribution" ] 
-then
-    cd ${BOODSKAP_HOME}/platform/distribution
-    echo "Building Boodskap IoT Platform"
-    echo "Please wait, it may take a long time..."
-    sleep 2
-    rm -rf ${M2_DIR}/repository/io/boodskap
-    ant container-copy
-fi
+cd ${DASHBOARD_HOME}/dashboard
+echo "Installingdashboard dependencies.. "
+echo "Please wait, it may take some time..."
+npm -s install
+echo "Starting dashboard"
+pm2 start ${DASHBOARD_HOME}/bdskp-dashboard-node.js
 
 if [ -d "/opt/boodskap/solution" ] 
 then
@@ -62,26 +63,6 @@ then
     ${START_SCRIPT}
 else
     echo "No solution directory configured"
-fi
-
-if [ -d "$CONSOLE_HOME" ] 
-then
-    cd $CONSOLE_HOME
-    echo "Installing admin-console dependencies.. "
-    echo "Please wait, it may take some time..."
-    npm -s install
-    echo "Starting admin console"
-    pm2 start $CONSOLE_HOME/bdskp-admin-console-node.js
-fi
-
-if [ -d "$DASHBOARD_HOME" ] 
-then
-    cd $DASHBOARD_HOME
-    echo "Installing dashboard dependencies.. "
-    echo "Please wait, it may take some time..."
-    npm -s install
-    echo "Starting dashboard"
-    pm2 start $DASHBOARD_HOME/bdskp-dashboard-node.js
 fi
 
 service nginx start
