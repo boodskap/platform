@@ -20,7 +20,9 @@ fi
 if [ -d "/opt/boodskap/solution" ] 
 then
     cd /opt/boodskap/solution
-    npm install
+    echo "Installing solution dependencies.. "
+    echo "Please wait, it may take some time..."
+    npm -s install
     echo "Starting custom solution"
     ${START_SCRIPT}
 else
@@ -30,7 +32,9 @@ fi
 if [ -d "$CONSOLE_HOME" ] 
 then
     cd $CONSOLE_HOME
-    npm install
+    echo "Installing admin-console dependencies.. "
+    echo "Please wait, it may take some time..."
+    npm -s install
     echo "Starting admin console"
     pm2 start $CONSOLE_HOME/bdskp-admin-console-node.js
 fi
@@ -38,7 +42,9 @@ fi
 if [ -d "$DASHBOARD_HOME" ] 
 then
     cd $DASHBOARD_HOME
-    npm install
+    echo "Installing dashboard dependencies.. "
+    echo "Please wait, it may take some time..."
+    npm -s install
     echo "Starting dashboard"
     pm2 start $DASHBOARD_HOME/bdskp-dashboard-node.js
 fi
