@@ -4,6 +4,8 @@ MAINTAINER Boodskap <platform@boodskap.io>
 ARG HOME_DIR=/usr/local/boodskap
 ARG DASHBOARD_DIR=/usr/share/boodskap/dashboard
 ARG CONSOLE_DIR=/usr/share/boodskap/console
+ARG M2_DIR=${HOME_DIR}/data/.m2
+ARG SOLUTION_START_SCRIPT="pm2 start app.js"
 
 WORKDIR /
 
@@ -25,6 +27,9 @@ ENV DATA_PATH ${BOODSKAP_HOME}/data
 ENV CONFIG_FOLDER ${DATA_PATH}/config
 ENV CONFIG_FILE ${CONFIG_FOLDER}/boodskap.conf
 ENV NGINX_HOME /etc/nginx
+ENV M2_HOME ${M2_DIR}
+ENV MAVEN_OPTS "-Dmaven.repo.local=${M2_HOME}"
+ENV START_SCRIPT ${SOLUTION_START_SCRIPT}
 
 ENV CACHE_FACTORY io.boodskap.iot.spi.cache.local.LocalCacheFactory
 ENV GRID_FACTORY io.boodskap.iot.spi.grid.local.LocalGridFactory
@@ -50,30 +55,23 @@ WORKDIR ${CONSOLE_HOME}
 RUN git clone https://github.com/boodskap/admin-console.git
 RUN mv admin-console/* .
 RUN rm -rf admin-console
-RUN npm install
 
 WORKDIR ${DASHBOARD_HOME}
 #Copy dashboard files
 RUN git clone https://github.com/boodskap/dashboard.git
 RUN mv dashboard/* .
 RUN rm -rf dashboard
-RUN npm install
 
 # Clone and Build Platform
-WORKDIR /
 WORKDIR ${BOODSKAP_HOME}
 RUN git clone https://github.com/boodskap/platform.git
-WORKDIR ${BOODSKAP_HOME}/platform/distribution
-RUN ant
-WORKDIR ${BOODSKAP_HOME}
-RUN tar -xzf ${BOODSKAP_HOME}/platform/distribution/releases/boodskap-iot-platform.tar.gz
-RUN chmod +x ${BOODSKAP_HOME}/bin/start.sh
-RUN chmod +x ${BOODSKAP_HOME}/bin/run.sh
 
 WORKDIR ${NGINX_HOME}/sites-enabled
 RUN rm default
 #Copy nginx files
 COPY files/nginx ${NGINX_HOME}/sites-enabled/
+
+WORKDIR ${BOODSKAP_HOME}
 
 EXPOSE 80 443 1883 5555/udp
 
