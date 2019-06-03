@@ -63,6 +63,7 @@ RUN mv dashboard/* .
 RUN rm -rf dashboard
 
 # Clone and Build Platform
+WORKDIR /opt
 WORKDIR ${BOODSKAP_HOME}
 RUN git clone https://github.com/boodskap/platform.git
 
