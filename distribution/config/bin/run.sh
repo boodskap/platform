@@ -7,6 +7,26 @@ _term() {
 
 trap _term SIGTERM
 
+if [ -d "${MOUNT_HOME}/boodskap" ] 
+    cd ${MOUNT_HOME}
+    git clone https://github.com/boodskap/platform.git
+then
+fi
+
+if [ -d "${MOUNT_HOME}/admin-console" ] 
+    cd ${MOUNT_HOME}
+    git clone https://github.com/boodskap/admin-console.git
+then
+fi
+
+
+if [ -d "${MOUNT_HOME}/dashboard" ] 
+    cd ${MOUNT_HOME}
+    git clone https://github.com/boodskap/dashboard.git
+then
+fi
+
+
 if [ -d "${BOODSKAP_HOME}/platform/distribution" ] 
 then
     cd ${BOODSKAP_HOME}/platform/distribution
