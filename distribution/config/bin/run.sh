@@ -11,12 +11,14 @@ if [ -d "${MOUNT_HOME}/boodskap" ]
     cd ${MOUNT_HOME}
     git clone https://github.com/boodskap/platform.git
 then
+	echo "Platform folder exists"
 fi
 
 if [ -d "${MOUNT_HOME}/admin-console" ] 
     cd ${MOUNT_HOME}
     git clone https://github.com/boodskap/admin-console.git
 then
+	echo "Admin console folder exists"
 fi
 
 
@@ -24,6 +26,7 @@ if [ -d "${MOUNT_HOME}/dashboard" ]
     cd ${MOUNT_HOME}
     git clone https://github.com/boodskap/dashboard.git
 then
+	echo "Dashboard folder exists"
 fi
 
 
