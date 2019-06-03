@@ -13,11 +13,11 @@ export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
 export M2_HOME=${MOUNT_HOME}/.m2
 export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 
-if [ "$DEVELOPMENT" = "true" ]
+if [ $DEVELOPMENT == true ]; then
 	echo "**** Development mode ****"
 	export DATA_PATH=${BOODSKAP_HOME}/data
 	export CONFIG_FOLDER=${BOODSKAP_HOME}/config
-then
+else
 	echo "**** Production mode ****"
 fi
 
