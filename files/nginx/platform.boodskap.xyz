@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name boodskap.xyz;
+    server_name platform.boodskap.xyz;
     #ssl    on;
     #ssl_certificate    /etc/ssl/private/boodskap/wildcard/boodskap.xyz.crt;
     #ssl_certificate_key    /etc/ssl/private/boodskap/wildcard/boodskap.xyz.key;
@@ -8,7 +8,7 @@ server {
 
     location / {
         
-        proxy_pass http://solution_cluster;
+        proxy_pass http://console_cluster;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -27,6 +27,7 @@ server {
         proxy_ssl_session_reuse off;
         proxy_cache backcache;
     }
+
 
     location /mservice/ {
 

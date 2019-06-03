@@ -1,6 +1,6 @@
 server {
     listen 80;
-    server_name boodskap.xyz;
+    server_name dashboard.boodskap.xyz;
     #ssl    on;
     #ssl_certificate    /etc/ssl/private/boodskap/wildcard/boodskap.xyz.crt;
     #ssl_certificate_key    /etc/ssl/private/boodskap/wildcard/boodskap.xyz.key;
@@ -8,7 +8,7 @@ server {
 
     location / {
         
-        proxy_pass http://solution_cluster;
+        proxy_pass http://dashboard_cluster;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
@@ -20,17 +20,6 @@ server {
     location /api {
 
         proxy_pass http://api_cluster;
-        proxy_set_header Host $host;
-        proxy_set_header X-Real-IP $remote_addr;
-        proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
-        proxy_set_header X-NginX-Proxy true;
-        proxy_ssl_session_reuse off;
-        proxy_cache backcache;
-    }
-
-    location /mservice/ {
-
-        proxy_pass http://micro_api_cluster/;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;

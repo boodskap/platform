@@ -21,6 +21,10 @@ upstream api_cluster {
     server 127.0.0.1:18080;
 }
 
+upstream micro_api_cluster {
+    server 127.0.0.1:19090;
+}
+
 upstream mqttws_cluster {
     server 127.0.0.1:8083;
 }
