@@ -7,9 +7,9 @@ _term() {
 
 trap _term SIGTERM
 
-if [ -d "${BOODSKAP_HOME}/platform" ] 
+if [ -d "${BOODSKAP_HOME}/platform/distribution" ] 
 then
-    cd ${BOODSKAP_HOME}/platform
+    cd ${BOODSKAP_HOME}/platform/distribution
     echo "Building Boodskap IoT Platform"
     echo "Please wait, it may take a long time..."
     rm -rf ${M2_DIR}/repository/io/boodskap
