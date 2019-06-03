@@ -16,7 +16,7 @@
 	<target name="local-clean-build" depends="local-clean-install,copy,assemble">
 	</target>
 	
-	<target name="container-build" depends="install,copy,assemble">
+	<target name="container-copy">
 		<copy todir="${ENV.BOODSKAP_HOME}">
 			<fileset dir="${basedir}/target/release" />
 		</copy>
@@ -43,6 +43,7 @@
 	
 	<target name="clean-install">
 		<exec dir="${basedir}" executable="mvn">
+			<arg value="-q" />
 			<arg value="clean" />
 			<arg value="install" />
 		</exec>
@@ -50,6 +51,7 @@
 
 	<target name="install">
 		<exec dir="${basedir}" executable="mvn">
+			<arg value="-q" />
 			<arg value="install" />
 		</exec>
 	</target>
