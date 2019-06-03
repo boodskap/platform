@@ -72,6 +72,7 @@ RUN rm default
 COPY files/nginx ${NGINX_HOME}/sites-enabled/
 
 WORKDIR ${BOODSKAP_HOME}
+RUN cp -Ra platform/distribution/config/bin .
 
 EXPOSE 80 443 1883 5555/udp
 
