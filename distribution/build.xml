@@ -16,7 +16,7 @@
 	<target name="local-clean-build" depends="local-clean-install,copy,assemble">
 	</target>
 	
-	<target name="container-copy">
+	<target name="container-copy" depends="assemble">
 		<copy todir="${ENV.BOODSKAP_HOME}">
 			<fileset dir="${basedir}/target/release" />
 		</copy>
