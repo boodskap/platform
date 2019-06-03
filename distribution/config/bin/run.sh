@@ -12,8 +12,9 @@ then
     cd ${BOODSKAP_HOME}/platform/distribution
     echo "Building Boodskap IoT Platform"
     echo "Please wait, it may take a long time..."
+    sleep 2
     rm -rf ${M2_DIR}/repository/io/boodskap
-    mvn -q clean install
+    mvn clean install
     ant container-copy
 fi
 
