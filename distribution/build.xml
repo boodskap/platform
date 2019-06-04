@@ -98,7 +98,7 @@
 			<fileset dir="${basedir}/config" />
 		</copy>
 		<chmod perm="700">
-			<fileset dir="${basedir}/target/release/bin" includes="*.sh" />
+			<fileset dir="${basedir}/target/release/bin" />
 		</chmod>
 	</target>
 	
