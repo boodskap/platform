@@ -124,7 +124,6 @@
 	<target name="install">
 		<exec dir="${basedir}" executable="mvn">
 			<arg value="${ENV.MAVEN_OPTS}" />
-			<arg value="clean" />
 			<arg value="install" />
 		</exec>
 	</target>
@@ -134,7 +133,6 @@
 			<arg value="${ENV.MAVEN_OPTS}" />
 			<arg value="-f" />
 			<arg value="pom-local.xml" />
-			<arg value="clean" />
 			<arg value="install" />
 		</exec>
 	</target>
