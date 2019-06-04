@@ -42,14 +42,14 @@ if [ $DEVELOPMENT == false ]; then
 	ant container-copy
 fi
 
-cd ${CONSOLE_HOME}/admin-console
+cd ${CONSOLE_HOME}
 echo "Installing admin-console dependencies.. "
 echo "Please wait, it may take some time..."
 npm -s install
 echo "Starting admin-console"
 pm2 start ${CONSOLE_HOME}/bdskp-admin-console-node.js
 
-cd ${DASHBOARD_HOME}/dashboard
+cd ${DASHBOARD_HOME}
 echo "Installingdashboard dependencies.. "
 echo "Please wait, it may take some time..."
 npm -s install
