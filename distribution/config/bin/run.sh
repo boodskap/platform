@@ -33,13 +33,14 @@ echo "MAVEN_OPTS=${MAVEN_OPTS}"
 echo "DATA_PATH=${DATA_PATH}"
 echo "CONFIG_FOLDER=${CONFIG_FOLDER}"
 
-echo "Building Boodskap IoT Platform"
-echo "Please wait, it may take a long time..."
-sleep 2
-
-cd ${BOODSKAP_HOME}/distribution
-rm -rf ${M2_HOME}/repository/io/boodskap
-ant container-copy
+if [ $DEVELOPMENT == false ]; then
+	echo "Building Boodskap IoT Platform"
+	echo "Please wait, it may take a long time..."
+	sleep 2
+	cd ${BOODSKAP_HOME}/distribution
+	rm -rf ${M2_HOME}/repository/io/boodskap
+	ant container-copy
+fi
 
 cd ${CONSOLE_HOME}/admin-console
 echo "Installing admin-console dependencies.. "
@@ -135,6 +136,6 @@ done
 
 CPATH=$CPATH:$ROOT_FOLDER/libs/*
 
-EXEC=$JAVA $VMARGS -cp "$CPATH" io.boodskap.iot.Server
-ECHO $EXEC
+EXEC="$JAVA $VMARGS -cp $CPATH io.boodskap.iot.Server"
+echo $EXEC
 $EXEC
