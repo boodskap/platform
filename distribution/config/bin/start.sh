@@ -63,5 +63,9 @@ done
 
 CPATH=$CPATH:$ROOT_FOLDER/libs/*
 
-#echo $JAVA $VMARGS -cp "$CPATH" io.boodskap.iot.Server
-$JAVA $VMARGS -cp "$CPATH" io.boodskap.iot.Server &
+$JAVA -version
+
+EXEC="$JAVA $VMARGS -cp $CPATH io.boodskap.iot.Server"
+echo $EXEC
+$EXEC &
+
