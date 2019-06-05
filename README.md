@@ -11,8 +11,15 @@
 * The default login credentials are
   * User Name: **admin**
   * Password: **admin**
+  
+* API endpoint
+  * Master API http://boodskap.xyz/api
+  * Micro Service API http://boodskap.xyz/mservice
 
 * Sample shell script to create named containers
+
+### NOTE
+> You can have multiple containers with different names, but; be sure to run only one at any point in time to avoid port conflicts. If you want to run multiple containers in parallel, change the MPORTS and MUDP_PORTS to suit your needs
 
 ```bash
 #!/bin/bash
@@ -23,6 +30,13 @@ NAME=platform
 # Custom Solution Development Settings
 #----------------------------------------
 
+#
+# You can use the container instance to develop your custom solution locally
+# Your UI can be viewed in http://boodskap.xyz URL
+# Root folder of your source code (generally git root folder)
+#
+SOLUTION_PATH=
+
 # Generally node.js based application is preferred
 # The default main entry file is ** app.js **
 # Your could use other start methods too
@@ -31,9 +45,6 @@ NAME=platform
 # *** Don't use npm start ***
 #
 START_SCRIPT="pm2 start app.js"
-
-#
-SOLUTION_PATH=
 
 #----------- XXX ------------------------
 
@@ -66,18 +77,45 @@ else
     VOLUMES="-v ${SOLUTION_PATH}:/opt/boodskap/solution"
 fi
 
+#
+# These ports will be binding locally too
+# Make sure, these ports are free and bindable in your local machine
+#
 PORTS="80 443 1883"
 UDP_PORTS="5555"
 
-for PORT in ${PORTS}
-do
-   OPORTS="$OPORTS -p $PORT:$PORT"
-done
+#
+# For running multiple platform containers, disable PORTS and UDP_PORTS and enable the below two
+# Format: Local_Port:Remote_Port
+#
+#MPORTS="8080:80 8443:443 1883:2883"
+#MUDP_PORTS="6666:5555"
 
-for PORT in ${UDP_PORTS}
-do
-   OPORTS="$OPORTS -p $PORT:${PORT}/udp"
-done
+if [[ -z "$MPORTS" ]]; then
+
+    for PORT in ${PORTS}
+    do
+       OPORTS="$OPORTS -p $PORT:$PORT"
+    done
+
+    for PORT in ${UDP_PORTS}
+    do
+       OPORTS="$OPORTS -p $PORT:${PORT}/udp"
+    done
+
+else
+
+    for PORT in ${MPORTS}
+    do
+       OPORTS="$OPORTS -p $PORT:$PORT"
+    done
+
+    for PORT in ${MUDP_PORTS}
+    do
+       OPORTS="$OPORTS -p $PORT:${PORT}/udp"
+    done
+
+fi
 
 EXEC="docker run --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
 
