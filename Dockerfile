@@ -61,6 +61,6 @@ RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 WORKDIR ${MOUNT_HOME}
 
-EXPOSE 80 443 1883 5555/udp
+EXPOSE 80 443 1883 5555/udp 18080 4201 4202
 
 ENTRYPOINT ${MOUNT_HOME}/platform/bin/run.sh
