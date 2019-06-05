@@ -1,6 +1,7 @@
 # Boodskap IoT Platform
 
-![Platform Illustration](https://raw.githubusercontent.com/boodskap/platform/master/files/boodskap-model.png "The Launch Pad for your IoT needs.")
+<img src="https://raw.githubusercontent.com/boodskap/platform/master/files/boodskap-model.png" alt="The Launch Pad for your IoT needs." width="100%"/>
+
 
 # Installing as Docker Container
 * **docker** pull boodskapiot/platform:latest
