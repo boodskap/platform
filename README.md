@@ -2,6 +2,7 @@
 
 <img src="https://raw.githubusercontent.com/boodskap/platform/master/files/boodskap-model.png" alt="The Launch Pad for your IoT needs." width="100%"/>
 
+<span style="color:red">**Not a production version, Production release 3.1.0 will be released by mid July 2019**</span>
 
 # Installing as Docker Container
 * **docker** pull boodskapiot/platform:latest
@@ -106,14 +107,14 @@ if [[ -z "$MPORTS" ]]; then
 
 else
 
-    for PORT in ${MPORTS}
+    for MPORT in ${MPORTS}
     do
-       OPORTS="$OPORTS -p $PORT:$PORT"
+       OPORTS="$OPORTS -p $MPORT"
     done
 
-    for PORT in ${MUDP_PORTS}
+    for MPORT in ${MUDP_PORTS}
     do
-       OPORTS="$OPORTS -p $PORT:${PORT}/udp"
+       OPORTS="$OPORTS -p ${MPORT}/udp"
     done
 
 fi
