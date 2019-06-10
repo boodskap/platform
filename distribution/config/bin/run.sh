@@ -40,6 +40,7 @@ if [ $DEVELOPMENT == false ]; then
 	cd ${BOODSKAP_HOME}/distribution
 	rm -rf ${M2_HOME}/repository/io/boodskap
 	ant container-copy
+	VMARGS="-Xdebug -runjdwp:transport=dt_socket, server=y, suspend=n, address=9999"
 fi
 
 cd ${CONSOLE_HOME}
@@ -74,7 +75,6 @@ cd $BOODSKAP_HOME
 
 ROOT_FOLDER=$BOODSKAP_HOME
 JAVA=$JAVA_HOME/bin/java
-VMARGS=""
 
 
 if [ -z "$ROOT_FOLDER" ]
