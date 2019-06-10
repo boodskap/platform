@@ -40,8 +40,13 @@ if [ $DEVELOPMENT == false ]; then
 	cd ${BOODSKAP_HOME}/distribution
 	rm -rf ${M2_HOME}/repository/io/boodskap
 	ant container-copy
+fi
+
+if [ $JDEBUG == true ]; then
+	echo "Starting platform in Java remote debug mode at port 9999"
 	VMARGS="-Xdebug -runjdwp:transport=dt_socket, server=y, suspend=n, address=9999"
 fi
+
 
 cd ${CONSOLE_HOME}
 echo "Installing admin-console dependencies.. "
