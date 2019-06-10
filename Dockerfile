@@ -11,6 +11,7 @@ ENV START_SCRIPT ${SOLUTION_START_SCRIPT}
 ENV M2_HOME ${MOUNT_HOME}/.m2
 ENV MAVEN_OPTS "-Dmaven.repo.local=${M2_HOME}"
 ENV DEVELOPMENT false
+ENV JDEBUG false
 
 ENV CACHE_SPI_LIBDIR local
 ENV GRID_SPI_LIBDIR local
@@ -61,6 +62,14 @@ RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
 
 WORKDIR ${MOUNT_HOME}
 
-EXPOSE 80 443 1883 5555/udp 18080 4201 4202
+#
+# default webserver listens on port 80 http://boodskap.xyz
+#
+# 1883 -> MQTT
+# 4201 -> Admin Console Web Application
+# 4202 -> Dashboard Web Application
+# 9999 -> Java remote debug port (environment variable JDEBUG should be set to true)
+#
+EXPOSE 80 443 1883 5555/udp 18080 4201 4202 9999
 
 ENTRYPOINT ${MOUNT_HOME}/platform/bin/run.sh
