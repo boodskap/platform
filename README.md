@@ -50,6 +50,12 @@ START_SCRIPT="pm2 start app.js"
 
 #----------- XXX ------------------------
 
+#
+# For most use cases leave this flag to false
+# 
+# If you are extending/customizing the boodskap platform, set this flag to true
+# All three projects will be cloned and kept under your $HOME/docker/volumes/${NAME}
+#
 DEVELOPMENT=false
 
 if [ $DEVELOPMENT == true ]; then
