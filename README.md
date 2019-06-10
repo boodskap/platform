@@ -125,6 +125,14 @@ echo "#### To Stop : docker stop ${NAME}"
 echo "#### To Start: docker start ${NAME}"
 echo "#### Open URL: http://boodskap.xyz  ####"
 
+#Stop if the container is running
+docker stop $NAME
+
+#Remove the container if already exists
+docker container rm $NAME
+
 echo $EXEC
+
+#Start the container
 $EXEC
 ```
