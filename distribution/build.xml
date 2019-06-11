@@ -135,7 +135,7 @@
 	</target>
 	
 	<target name="container-copy" depends="local-build">
-		<copy todir="${ENV.BOODSKAP_HOME}">
+		<copy todir="${basedir}/../">
 			<fileset dir="${basedir}/target/release" />
 		</copy>
 	</target>
