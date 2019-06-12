@@ -35,22 +35,31 @@ RUN rm default
 COPY files/nginx /etc/nginx/sites-enabled/
 
 RUN mkdir -p ${MOUNT_HOME}
-WORKDIR ${MOUNT_HOME}
 
 #Copy admin console files
 COPY gfiles/gitconsole /
+WORKDIR ${MOUNT_HOME}
 RUN git clone https://github.com/boodskap/admin-console.git
 WORKDIR ${MOUNT_HOME}/admin-console
 RUN npm -s install
 
 #Copy dashboard files
 COPY gfiles/gitdashboard /
+WORKDIR ${MOUNT_HOME}
 RUN git clone https://github.com/boodskap/dashboard.git
 WORKDIR ${MOUNT_HOME}/dashboard
 RUN npm -s install
 
+#Copy examples files
+COPY gfiles/gitexamples /
+WORKDIR ${MOUNT_HOME}
+RUN git clone https://github.com/boodskap/examples.git
+WORKDIR ${MOUNT_HOME}/examples
+RUN npm -s install
+
 # Clone and Build Platform
 COPY gfiles/gitplatform /
+WORKDIR ${MOUNT_HOME}
 RUN git clone https://github.com/boodskap/platform.git
 WORKDIR ${MOUNT_HOME}/platform
 RUN cp -Ra distribution/config/bin . && chmod +x bin/*.sh
