@@ -10,6 +10,7 @@ trap _term SIGTERM
 export BOODSKAP_HOME=${MOUNT_HOME}/platform
 export CONSOLE_HOME=${MOUNT_HOME}/admin-console
 export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
+export EXAMPLES_HOME=${MOUNT_HOME}/examples
 
 if [ $DEVELOPMENT == true ]; then
 	echo "**** Development mode ****"
@@ -27,51 +28,48 @@ echo "MOUNT_HOME=${MOUNT_HOME}"
 echo "BOODSKAP_HOME=${BOODSKAP_HOME}"
 echo "DASHBOARD_HOME=${DASHBOARD_HOME}"
 echo "CONSOLE_HOME=${DASHBOARD_HOME}"
+echo "EXAMPLES_HOME=${EXAMPLES_HOME}"
 echo "START_SCRIPT=${START_SCRIPT}"
 echo "M2_HOME=${M2_HOME}"
 echo "MAVEN_OPTS=${MAVEN_OPTS}"
 echo "DATA_PATH=${DATA_PATH}"
 echo "CONFIG_FOLDER=${CONFIG_FOLDER}"
 
-if [ $DEVELOPMENT == false ]; then
-	echo "Building Boodskap IoT Platform"
-	echo "Please wait, it may take a long time..."
-	sleep 2
-	cd ${BOODSKAP_HOME}/distribution
-	rm -rf ${M2_HOME}/repository/io/boodskap
-	ant container-copy
+if [ $DEVELOPMENT == true ]; then
+	echo "**** Development mode ****"
+	cd ${CONSOLE_HOME}
+	npm install
+	cd ${DASHBOARD_HOME}
+	npm install
 fi
 
 if [ $JDEBUG == true ]; then
 	echo "Starting platform in Java remote debug mode at port 9999"
-	VMARGS="-Xdebug -runjdwp:transport=dt_socket, server=y, suspend=n, address=9999"
+	VMARGS="-Xdebug -Xnoagent -Xrunjdwp:transport=dt_socket, server=y, suspend=n, address=9999"
 fi
 
 
 cd ${CONSOLE_HOME}
-echo "Installing admin-console dependencies.. "
-echo "Please wait, it may take some time..."
-npm -s install
 echo "Starting admin-console"
 pm2 start ${CONSOLE_HOME}/bdskp-admin-console-node.js
 
 cd ${DASHBOARD_HOME}
-echo "Installingdashboard dependencies.. "
-echo "Please wait, it may take some time..."
-npm -s install
 echo "Starting dashboard"
 pm2 start ${DASHBOARD_HOME}/bdskp-dashboard-node.js
 
 if [ -d "/opt/boodskap/solution" ] 
 then
     cd /opt/boodskap/solution
-    echo "Installing solution dependencies.. "
+    echo "Installing custom solution dependencies.. "
     echo "Please wait, it may take some time..."
     npm -s install
     echo "Starting custom solution"
     ${START_SCRIPT}
 else
-    echo "No solution directory configured"
+    echo "No custom solution directory configured, starting examples"
+    cd ${EXAMPLES_HOME}
+    npm -s install
+    pm2 start ${EXAMPLES_HOME}/app.js
 fi
 
 service nginx start
