@@ -10,15 +10,12 @@ trap _term SIGTERM
 
 if [ $DEVELOPMENT == true ]; then
 	echo "**** Development mode ****"
-	export DATA_PATH=${BOODSKAP_HOME}/data
-	export M2_HOME=${MOUNT_HOME}/.m2
-	export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 else
 	echo "**** Production mode ****"
-	export M2_HOME=${DATA_PATH}/.m2
-	export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 fi
 
+export M2_HOME=${DATA_PATH}/.m2
+export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 export BOODSKAP_HOME=${MOUNT_HOME}/platform
 export DATA_PATH="${MOUNT_HOME}/platform/data"
 export CONSOLE_HOME=${MOUNT_HOME}/admin-console
