@@ -7,15 +7,10 @@ _term() {
 
 trap _term SIGTERM
 
-export BOODSKAP_HOME=${MOUNT_HOME}/platform
-export CONSOLE_HOME=${MOUNT_HOME}/admin-console
-export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
-export EXAMPLES_HOME=${MOUNT_HOME}/examples
 
 if [ $DEVELOPMENT == true ]; then
 	echo "**** Development mode ****"
 	export DATA_PATH=${BOODSKAP_HOME}/data
-	export CONFIG_FOLDER=${BOODSKAP_HOME}/config
 	export M2_HOME=${MOUNT_HOME}/.m2
 	export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 else
@@ -24,23 +19,28 @@ else
 	export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 fi
 
+export BOODSKAP_HOME=${MOUNT_HOME}/platform
+export DATA_PATH="${MOUNT_HOME}/platform/data"
+export CONSOLE_HOME=${MOUNT_HOME}/admin-console
+export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
+export EXAMPLES_HOME=${MOUNT_HOME}/examples
+
 echo "MOUNT_HOME=${MOUNT_HOME}"
 echo "BOODSKAP_HOME=${BOODSKAP_HOME}"
+echo "DATA_PATH=${DATA_PATH}"
+echo "CONSOLE_HOME=${CONSOLE_HOME}"
 echo "DASHBOARD_HOME=${DASHBOARD_HOME}"
-echo "CONSOLE_HOME=${DASHBOARD_HOME}"
 echo "EXAMPLES_HOME=${EXAMPLES_HOME}"
 echo "START_SCRIPT=${START_SCRIPT}"
 echo "M2_HOME=${M2_HOME}"
 echo "MAVEN_OPTS=${MAVEN_OPTS}"
-echo "DATA_PATH=${DATA_PATH}"
-echo "CONFIG_FOLDER=${CONFIG_FOLDER}"
 
 if [ $DEVELOPMENT == true ]; then
 	echo "**** Development mode ****"
 	cd ${CONSOLE_HOME}
-	npm install
+	npm -s install
 	cd ${DASHBOARD_HOME}
-	npm install
+	npm -s install
 fi
 
 if [ $JDEBUG == true ]; then
