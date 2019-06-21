@@ -50,7 +50,18 @@ START_SCRIPT="pm2 start app.js"
 
 #----------- XXX ------------------------
 
+#
+# For most use cases leave this flag to false
+# 
+# If you are extending/customizing the boodskap platform, set this flag to true
+# All three projects will be cloned and kept under your $HOME/docker/volumes/${NAME}
+#
 DEVELOPMENT=false
+
+#
+# For debugging platform server using Java remote debugging on port 9999
+#
+#
 JDEBUG=true
 
 ENV="-e JDEBUG=${JDEBUG}"
