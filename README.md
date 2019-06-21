@@ -50,37 +50,34 @@ START_SCRIPT="pm2 start app.js"
 
 #----------- XXX ------------------------
 
-#
-# For most use cases leave this flag to false
-# 
-# If you are extending/customizing the boodskap platform, set this flag to true
-# All three projects will be cloned and kept under your $HOME/docker/volumes/${NAME}
-#
 DEVELOPMENT=false
+JDEBUG=true
+
+ENV="-e JDEBUG=${JDEBUG}"
 
 if [ $DEVELOPMENT == true ]; then
     echo "**** DEVELOPMENT CONFIG ****"
     MOUNT_HOME=$HOME/docker/volumes/${NAME}
     VOLUMES="-v ${MOUNT_HOME}:/usr/local/boodskap"
-    ENV="-e MOUNT_HOME=/usr/local/boodskap"
+    ENV="$ENV -e MOUNT_HOME=/usr/local/boodskap"
     mkdir -p ${MOUNT_HOME}
     cd ${MOUNT_HOME}
     git clone https://github.com/boodskap/admin-console.git
     git clone https://github.com/boodskap/dashboard.git
     git clone https://github.com/boodskap/platform.git
-
+    git clone https://github.com/boodskap/examples.git
 else
     echo "**** PRODUCTION CONFIG  ****"
     DATA_PATH=$HOME/docker/volumes/${NAME}/data
     mkdir -p ${DATA_PATH}
     VOLUMES="-v ${DATA_PATH}:/var/lib/boodskap"
-    ENV="-e DATA_PATH=/var/lib/boodskap"
+    ENV="$ENV -e DATA_PATH=/var/lib/boodskap"
 fi
 
 ENV="$ENV -e DEVELOPMENT=${DEVELOPMENT}"
 
 if [[ -z "$SOLUTION_PATH" ]]; then
-    echo "No solution configured"
+    echo "No solution configured, using default examples"
 else
     VOLUMES="-v ${SOLUTION_PATH}:/opt/boodskap/solution"
 fi
@@ -89,7 +86,7 @@ fi
 # These ports will be binding locally too
 # Make sure, these ports are free and bindable in your local machine
 #
-PORTS="80 443 1883"
+PORTS="80 443 1883 9999"
 UDP_PORTS="5555"
 
 #
