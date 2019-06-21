@@ -17,7 +17,6 @@ fi
 export M2_HOME=${DATA_PATH}/.m2
 export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
 export BOODSKAP_HOME=${MOUNT_HOME}/platform
-export DATA_PATH="${MOUNT_HOME}/platform/data"
 export CONSOLE_HOME=${MOUNT_HOME}/admin-console
 export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
 export EXAMPLES_HOME=${MOUNT_HOME}/examples
