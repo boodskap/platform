@@ -9,7 +9,10 @@
 * **docker** run --name boodskap -v $HOME/boodskap/data:/usr/local/boodskap/data boodskapiot/platform:latest
 * Once you see the following message or similar to this
   * All initialization done, platform services are running.
-* Open a browser location to **http://boodskap.xyz**
+* Open a browser location to 
+  * Your solution can be accessed here **http://boodskap.xyz**
+  * Admin Console can be accessed here **http://platform.boodskap.xyz**
+  * Dashboard can be accessed here **http://dashboard.boodskap.xyz**
 * The default login credentials are
   * User Name: **admin**
   * Password: **admin**
