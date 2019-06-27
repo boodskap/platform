@@ -94,12 +94,9 @@
 		<copy todir="${basedir}/target/release/spi-libs">
 			<fileset dir="${basedir}/target/spi-libs" />
 		</copy>
-		<copy todir="${basedir}/target/release">
+		<copy todir="${basedir}/target/release/config">
 			<fileset dir="${basedir}/config" />
 		</copy>
-		<chmod perm="700">
-			<fileset dir="${basedir}/target/release/bin" />
-		</chmod>
 	</target>
 	
 	<target name="assemble" depends="container-assemble">
