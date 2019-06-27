@@ -64,19 +64,14 @@ RUN git clone https://github.com/boodskap/platform.git
 WORKDIR ${MOUNT_HOME}/platform
 RUN cp -Ra distribution/config/bin . && chmod +x bin/*.sh
 WORKDIR ${MOUNT_HOME}/platform/distribution
-RUN ant container-copy
-RUN mvn clean
-WORKDIR ${MOUNT_HOME}/platform
-RUN rm -rf ${MOUNT_HOME}/platform/distribution
+RUN mvn dependency:go-offline -B
+RUN mvn package
+RUN ant
 
 # delete all the apt list files since they're big and get stale quickly
 RUN rm -rf /var/lib/apt/lists/*
 # this forces "apt-get update" in dependent images, which is also good
 # (see also https://bugs.launchpad.net/cloud-images/+bug/1699913)
-
-# Cleanup maven downloaded dependencies
-RUN rm -rf /root/.m2
-RUN rm -rf ${MOUNT_HOME}/.m2
 
 # make systemd-detect-virt return "docker"
 # See: https://github.com/systemd/systemd/blob/aa0c34279ee40bce2f9681b496922dedbadfca19/src/basic/virt.c#L434
