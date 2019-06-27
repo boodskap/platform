@@ -41,9 +41,6 @@ if [ $DEVELOPMENT == true ]; then
 	npm -s install
 	cd ${DASHBOARD_HOME}
 	npm -s install
-	cd ${MOUNT_HOME}/platform/distribution
-	mvn install
-	ant local-build
 fi
 
 if [ $JDEBUG == true ]; then
