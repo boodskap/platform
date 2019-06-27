@@ -21,6 +21,10 @@ export CONSOLE_HOME=${MOUNT_HOME}/admin-console
 export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
 export EXAMPLES_HOME=${MOUNT_HOME}/examples
 
+if [ $DEVELOPMENT == true ]; then
+	export BOODSKAP_HOME=${MOUNT_HOME}/platform/distribution/target/release
+fi
+
 echo "MOUNT_HOME=${MOUNT_HOME}"
 echo "BOODSKAP_HOME=${BOODSKAP_HOME}"
 echo "DATA_PATH=${DATA_PATH}"
@@ -37,6 +41,8 @@ if [ $DEVELOPMENT == true ]; then
 	npm -s install
 	cd ${DASHBOARD_HOME}
 	npm -s install
+	mvn install
+	ant local-build
 fi
 
 if [ $JDEBUG == true ]; then
