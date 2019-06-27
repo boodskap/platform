@@ -49,13 +49,14 @@ SOLUTION_PATH=
 #
 # *** Don't use npm start ***
 #
-START_SCRIPT="pm2 start app.js"
+
+START_SCRIPT="pm2 start server.js"
 
 #----------- XXX ------------------------
 
 #
 # For most use cases leave this flag to false
-# 
+#
 # If you are extending/customizing the boodskap platform, set this flag to true
 # All three projects will be cloned and kept under your $HOME/docker/volumes/${NAME}
 #
@@ -65,12 +66,11 @@ DEVELOPMENT=false
 # For debugging platform server using Java remote debugging on port 9999
 #
 #
-JDEBUG=true
+JDEBUG=false
 
 ENV="-e JDEBUG=${JDEBUG}"
 
 if [ $DEVELOPMENT == true ]; then
-    echo "**** DEVELOPMENT CONFIG ****"
     MOUNT_HOME=$HOME/docker/volumes/${NAME}
     VOLUMES="-v ${MOUNT_HOME}:/usr/local/boodskap"
     ENV="$ENV -e MOUNT_HOME=/usr/local/boodskap"
@@ -81,11 +81,10 @@ if [ $DEVELOPMENT == true ]; then
     git clone https://github.com/boodskap/platform.git
     git clone https://github.com/boodskap/examples.git
 else
-    echo "**** PRODUCTION CONFIG  ****"
     DATA_PATH=$HOME/docker/volumes/${NAME}/data
     mkdir -p ${DATA_PATH}
-    VOLUMES="-v ${DATA_PATH}:/var/lib/boodskap"
-    ENV="$ENV -e DATA_PATH=/var/lib/boodskap"
+    VOLUMES="-v ${DATA_PATH}:/data/boodskap"
+    ENV="$ENV -e DATA_PATH=/data/boodskap"
 fi
 
 ENV="$ENV -e DEVELOPMENT=${DEVELOPMENT}"
@@ -93,7 +92,7 @@ ENV="$ENV -e DEVELOPMENT=${DEVELOPMENT}"
 if [[ -z "$SOLUTION_PATH" ]]; then
     echo "No solution configured, using default examples"
 else
-    VOLUMES="-v ${SOLUTION_PATH}:/opt/boodskap/solution"
+    VOLUMES="${VOLUMES} -v ${SOLUTION_PATH}:/opt/boodskap/solution"
 fi
 
 #
@@ -136,20 +135,35 @@ else
 
 fi
 
-EXEC="docker run --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
+if [[ -z "$SOLUTION_PATH" ]]; then
+    EXEC="docker create --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
+else
+    EXEC="docker create --name $NAME $ENV -e START_SCRIPT=\"${START_SCRIPT}\" $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
+fi
 
-echo "#### To Stop : docker stop ${NAME}"
-echo "#### To Start: docker start ${NAME}"
-echo "#### Open URL: http://boodskap.xyz  ####"
-
-#Stop if the container is running
-docker stop $NAME
-
-#Remove the container if already exists
-docker container rm $NAME
+echo
+echo
+echo "** Execute the below command to create ${NAME} container **"
+echo
 
 echo $EXEC
+echo
 
-#Start the container
-$EXEC
+
+echo "#### To start ${NAME} ####"
+printf "\tdocker start ${NAME} && docker logs -f ${NAME}\n"
+
+echo "#### To stop ${NAME} ####"
+printf "\tdocker stop ${NAME}\n"
+
+echo "#### To delete ${NAME} container ####"
+printf "\t docker container rm ${NAME}\n"
+
+echo
+echo "#### Solution URL: http://boodskap.xyz  ####"
+echo "#### Admin URL: http://platform.boodskap.zyz ####"
+echo "#### Dashboard URL: http://dashboard.boodskap.xyz ####"
+echo
+echo "#### ${NAME} data can be found in ${DATA_PATH} ####"
+echo
 ```
