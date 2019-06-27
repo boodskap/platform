@@ -62,7 +62,7 @@ COPY gfiles/gitplatform /
 WORKDIR ${MOUNT_HOME}
 RUN git clone https://github.com/boodskap/platform.git
 WORKDIR ${MOUNT_HOME}/platform
-RUN cp -Ra distribution/config/bin . && chmod +x bin/*.sh
+RUN chmod +x bin/*.sh
 WORKDIR ${MOUNT_HOME}/platform/distribution
 RUN mvn dependency:go-offline -B
 RUN mvn package
