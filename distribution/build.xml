@@ -1,4 +1,4 @@
-<project name="iot-platform-dist" default="clean-build">
+<project name="iot-platform-dist" default="build">
 	
 	<property environment="ENV" />
 	<property name="VERSION">3.0.0-aplha1</property>
@@ -109,35 +109,7 @@
 		<copy file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" tofile="${basedir}/releases/boodskap-iot-platform.tar.gz" />
 	</target>
 	
-	<target name="install">
-		<exec dir="${basedir}" executable="mvn">
-			<arg value="${ENV.MAVEN_OPTS}" />
-			<arg value="install" />
-		</exec>
-	</target>
-
-	<target name="local-install">
-		<exec dir="${basedir}" executable="mvn">
-			<arg value="${ENV.MAVEN_OPTS}" />
-			<arg value="-f" />
-			<arg value="pom-local.xml" />
-			<arg value="install" />
-		</exec>
-	</target>
-
-	<target name="build" depends="assemble">
-	</target>
-	
-	<target name="clean-build" depends="install,assemble">
-	</target>
-	
-	<target name="local-build" depends="local-install,copy,container-assemble">
-	</target>
-	
-	<target name="container-copy" depends="local-build">
-		<copy todir="${basedir}/../">
-			<fileset dir="${basedir}/target/release" />
-		</copy>
+	<target name="build" depends="copy, assemble">
 	</target>
 	
 </project>
