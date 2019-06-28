@@ -87,7 +87,7 @@
 
 	</target>
 
-	<target name="container-assemble">
+	<target name="assemble" depends="copy">
 		<copy todir="${basedir}/target/release/libs">
 			<fileset dir="${basedir}/target/libs" />
 		</copy>
@@ -99,14 +99,14 @@
 		</copy>
 	</target>
 	
-	<target name="assemble" depends="container-assemble">
+	<target name="release" depends="assemble">
 		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${basedir}/target/release"/>
 		<gzip destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
 		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
 		<copy file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" tofile="${basedir}/releases/boodskap-iot-platform.tar.gz" />
 	</target>
 	
-	<target name="build" depends="copy, assemble">
+	<target name="build" depends="assemble">
 	</target>
 	
 </project>

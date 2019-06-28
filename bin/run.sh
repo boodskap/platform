@@ -16,14 +16,6 @@ fi
 
 export M2_HOME=${DATA_PATH}/.m2
 export MAVEN_OPTS="-Dmaven.repo.local=${M2_HOME}"
-export BOODSKAP_HOME=${MOUNT_HOME}/platform
-export CONSOLE_HOME=${MOUNT_HOME}/admin-console
-export DASHBOARD_HOME=${MOUNT_HOME}/dashboard
-export EXAMPLES_HOME=${MOUNT_HOME}/examples
-
-if [ $DEVELOPMENT == true ]; then
-	export BOODSKAP_HOME=${MOUNT_HOME}/platform/distribution/target/release
-fi
 
 echo "MOUNT_HOME=${MOUNT_HOME}"
 echo "BOODSKAP_HOME=${BOODSKAP_HOME}"
@@ -38,8 +30,10 @@ echo "MAVEN_OPTS=${MAVEN_OPTS}"
 if [ $DEVELOPMENT == true ]; then
 	echo "**** Development mode ****"
 	cd ${CONSOLE_HOME}
+	echo "Installing admin-console deps, please wait..."
 	npm -s install
 	cd ${DASHBOARD_HOME}
+	echo "Installing dashboard deps, please wait..."
 	npm -s install
 fi
 
@@ -60,15 +54,13 @@ pm2 start ${DASHBOARD_HOME}/bdskp-dashboard-node.js
 if [ -d "/opt/boodskap/solution" ] 
 then
     cd /opt/boodskap/solution
-    echo "Installing custom solution dependencies.. "
-    echo "Please wait, it may take some time..."
+    echo "Installing custom solution dependencies, please wait..."
     npm -s install
     echo "Starting custom solution"
     ${START_SCRIPT}
 else
     echo "No custom solution directory configured, starting examples"
     cd ${EXAMPLES_HOME}
-    npm -s install
     pm2 start ${EXAMPLES_HOME}/app.js
 fi
 
