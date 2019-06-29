@@ -82,5 +82,5 @@ RUN chmod +x ./platform/bin/run.sh
 #
 EXPOSE 80 443 1883 5555/udp 18080 4201 4202 9999
 
-CMD ["env"]
-#ENTRYPOINT ${BOODSKAP_HOME}/bin/run.sh
+#CMD ["env"]
+ENTRYPOINT ${BOODSKAP_HOME}/bin/run.sh
