@@ -1,19 +1,51 @@
-FROM ubuntu:18.04
-MAINTAINER Boodskap <platform@boodskap.io>
+FROM maven:3.5-jdk-8 as maven
 
-ARG MOUNT_DIR=/usr/local/software
+RUN mkdir /platform
+WORKDIR /platform
+
+COPY ./distribution/pom.xml ./pom.xml
+COPY ./distribution/spi-grid-local/pom.xml ./spi-grid-local/pom.xml
+COPY ./distribution/spi-cache-local/pom.xml ./spi-cache-local/pom.xml
+COPY ./distribution/driver-mysql/pom.xml ./driver-mysql/pom.xml
+COPY ./distribution/server/pom.xml ./server/pom.xml
+COPY ./distribution/protocol-service-udp/pom.xml ./protocol-service-udp/pom.xml
+COPY ./distribution/spi-cache-ignite/pom.xml ./spi-cache-ignite/pom.xml
+COPY ./distribution/spi-storage-pojo/pom.xml ./spi-storage-pojo/pom.xml
+COPY ./distribution/spi-storage-elasticsearch/pom.xml ./spi-storage-elasticsearch/pom.xml
+COPY ./distribution/driver-hsqldb/pom.xml ./driver-hsqldb/pom.xml
+COPY ./distribution/spi-storage-cassandra/pom.xml ./spi-storage-cassandra/pom.xml
+COPY ./distribution/spi-grid-ignite/pom.xml ./spi-grid-ignite/pom.xml
+
+RUN mvn dependency:go-offline -B
+
+COPY ./distribution ./
+
+RUN mvn package
+
+FROM boodskapiot/ubuntu:18.04 as ant
+
+COPY --from=maven /platform /platform
+
+WORKDIR /platform
+
+RUN ant
+
+FROM boodskapiot/admin-console as console
+FROM boodskapiot/dashboard as dashboard
+#FROM boodskapiot/examples as examples
+FROM boodskapiot/ubuntu:18.04
+
+ARG INSTALL_DIR=/usr/local/software
 ARG SOLUTION_START_SCRIPT="pm2 start app.js"
 
-ENV MOUNT_HOME ${MOUNT_DIR}
-ENV BOODSKAP_HOME ${MOUNT_HOME}/platform
-ENV CONSOLE_HOME ${MOUNT_HOME}/admin-console
-ENV DASHBOARD_HOME ${MOUNT_HOME}/dashboard
-ENV EXAMPLE_HOME ${MOUNT_HOME}/examples
+ENV BOODSKAP_HOME ${INSTALL_DIR}/platform
+ENV CONSOLE_HOME ${INSTALL_DIR}/admin-console
+ENV DASHBOARD_HOME ${INSTALL_DIR}/dashboard
+ENV EXAMPLE_HOME ${INSTALL_DIR}/examples
 
 ENV DATA_PATH ${BOODSKAP_HOME}/data
-ENV CONFIG_FOLDER ${BOODSKAP_HOME}/config
 ENV START_SCRIPT ${SOLUTION_START_SCRIPT}
-ENV M2_HOME ${MOUNT_HOME}/.m2
+ENV M2_HOME ${INSTALL_DIR}/.m2
 ENV MAVEN_OPTS "-Dmaven.repo.local=${M2_HOME}"
 ENV DEVELOPMENT false
 ENV JDEBUG false
@@ -24,65 +56,21 @@ ENV STORAGE_SPI_LIBDIR hsqldb
 ENV PROTOCOL_SPI_LIBDIRS "udp,mqtt,ftp"
 ENV SERVICE_SPI_LIBDIRS ""
 
-WORKDIR /
-RUN apt-get -y update && apt-get install -y nginx sudo nodejs npm git software-properties-common 
-RUN npm install pm2 -g
-RUN add-apt-repository -y ppa:openjdk-r/ppa
-RUN apt-get update -y
-RUN apt-get install -y openjdk-8-jdk
-RUN update-alternatives --config java
-RUN apt-get install -y --fix-missing ant maven
-RUN apt-get clean && apt-get autoclean && apt-get autoremove 
-
 WORKDIR /etc/nginx/sites-enabled
 RUN rm default
 #Copy nginx files
 COPY files/nginx /etc/nginx/sites-enabled/
 
-RUN mkdir -p ${MOUNT_HOME}
+RUN mkdir -p ${INSTALL_DIR}
 
-#Copy admin console files
-COPY gfiles/gitconsole /
-WORKDIR ${MOUNT_HOME}
-RUN git clone https://github.com/boodskap/admin-console.git
-WORKDIR ${MOUNT_HOME}/admin-console
-RUN npm -s install
+WORKDIR ${INSTALL_DIR}
 
-#Copy dashboard files
-COPY gfiles/gitdashboard /
-WORKDIR ${MOUNT_HOME}
-RUN git clone https://github.com/boodskap/dashboard.git
-WORKDIR ${MOUNT_HOME}/dashboard
-RUN npm -s install
+COPY --from=console /admin-console ./admin-console
+COPY --from=dashboard /dashboard ./dashboard
+#COPY --from=examples /examples ./examples
+COPY --from=ant /platform/target/release ./platform
 
-#Copy examples files
-COPY gfiles/gitexamples /
-WORKDIR ${MOUNT_HOME}
-RUN git clone https://github.com/boodskap/examples.git
-WORKDIR ${MOUNT_HOME}/examples
-RUN npm -s install
-
-# Clone and Build Platform
-COPY gfiles/gitplatform /
-WORKDIR ${MOUNT_HOME}
-RUN git clone https://github.com/boodskap/platform.git
-WORKDIR ${MOUNT_HOME}/platform
-RUN chmod +x bin/*.sh
-WORKDIR ${MOUNT_HOME}/platform/distribution
-RUN mvn dependency:go-offline -B
-RUN mvn package
-RUN ant
-
-# delete all the apt list files since they're big and get stale quickly
-RUN rm -rf /var/lib/apt/lists/*
-# this forces "apt-get update" in dependent images, which is also good
-# (see also https://bugs.launchpad.net/cloud-images/+bug/1699913)
-
-# make systemd-detect-virt return "docker"
-# See: https://github.com/systemd/systemd/blob/aa0c34279ee40bce2f9681b496922dedbadfca19/src/basic/virt.c#L434
-RUN mkdir -p /run/systemd && echo 'docker' > /run/systemd/container
-
-WORKDIR ${MOUNT_HOME}
+RUN chmod +x ./platform/bin/run.sh
 
 #
 # default webserver listens on port 80 http://boodskap.xyz
@@ -94,4 +82,5 @@ WORKDIR ${MOUNT_HOME}
 #
 EXPOSE 80 443 1883 5555/udp 18080 4201 4202 9999
 
-ENTRYPOINT ${BOODSKAP_HOME}/bin/run.sh
+CMD ["env"]
+#ENTRYPOINT ${BOODSKAP_HOME}/bin/run.sh
