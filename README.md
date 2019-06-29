@@ -21,7 +21,7 @@
   * Master API http://boodskap.xyz/api
   * Micro Service API http://boodskap.xyz/mservice
 
-[View Sample shell script to create named containers](../master/create-container.sh)
+[View sample shell script to create named containers](https://raw.githubusercontent.com/boodskap/platform/master/create-container.sh)
 
 ### NOTE
 > You can have multiple containers with different names, but; be sure to run only one at any point in time to avoid port conflicts. If you want to run multiple containers in parallel, change the MPORTS and MUDP_PORTS to suit your needs
