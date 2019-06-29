@@ -97,6 +97,9 @@
 		<copy todir="${basedir}/target/release/config">
 			<fileset dir="${basedir}/config" />
 		</copy>
+		<copy todir="${basedir}/target/release/bin">
+			<fileset dir="${basedir}/bin" />
+		</copy>
 	</target>
 	
 	<target name="release" depends="assemble">
