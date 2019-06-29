@@ -29,7 +29,7 @@ START_SCRIPT="pm2 start server.js"
 # For most use cases leave this flag to false
 #
 # If you are extending/customizing the boodskap platform, set this flag to true
-# All three projects will be cloned and kept under your $HOME/docker/volumes/${NAME}
+# Configure the DEVELOPMENT section with apropriate BOODSKAP_HOME, CONSOLE_HOME and DASHBOARD_HOME paths
 #
 DEVELOPMENT=false
 
