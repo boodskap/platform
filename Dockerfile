@@ -22,7 +22,7 @@ COPY ./distribution ./
 
 RUN mvn package
 
-FROM boodskapiot/ubuntu:18.04 as ant
+FROM boodskapiot/ubuntu:18.04 as buildos
 
 COPY --from=maven /platform /platform
 
@@ -30,9 +30,21 @@ WORKDIR /platform
 
 RUN ant
 
-FROM boodskapiot/admin-console as console
-FROM boodskapiot/dashboard as dashboard
-#FROM boodskapiot/examples as examples
+WORKDIR /
+
+RUN git clone https://github.com/boodskap/admin-console.git
+RUN git clone https://github.com/boodskap/dashboard.git
+RUN git clone https://github.com/boodskap/examples.git
+
+WORKDIR /admin-console
+RUN npm -s install
+
+WORKDIR /dashboard
+RUN npm -s install
+
+WORKDIR /examples
+RUN npm -s install
+
 FROM boodskapiot/ubuntu:18.04
 
 ARG INSTALL_DIR=/usr/local/software
@@ -41,7 +53,7 @@ ARG SOLUTION_START_SCRIPT="pm2 start app.js"
 ENV BOODSKAP_HOME ${INSTALL_DIR}/platform
 ENV CONSOLE_HOME ${INSTALL_DIR}/admin-console
 ENV DASHBOARD_HOME ${INSTALL_DIR}/dashboard
-ENV EXAMPLE_HOME ${INSTALL_DIR}/examples
+ENV EXAMPLES_HOME ${INSTALL_DIR}/examples
 
 ENV DATA_PATH ${BOODSKAP_HOME}/data
 ENV START_SCRIPT ${SOLUTION_START_SCRIPT}
@@ -65,10 +77,10 @@ RUN mkdir -p ${INSTALL_DIR}
 
 WORKDIR ${INSTALL_DIR}
 
-COPY --from=console /admin-console ./admin-console
-COPY --from=dashboard /dashboard ./dashboard
-#COPY --from=examples /examples ./examples
-COPY --from=ant /platform/target/release ./platform
+COPY --from=buildos /platform/target/release ./platform
+COPY --from=buildos /admin-console ./admin-console
+COPY --from=buildos /dashboard ./dashboard
+COPY --from=buildos /examples ./examples
 
 RUN chmod +x ./platform/bin/run.sh
 
