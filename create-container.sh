@@ -39,26 +39,46 @@ DEVELOPMENT=false
 #
 JDEBUG=false
 
-ENV="-e JDEBUG=${JDEBUG}"
+ENV="-e DEVELOPMENT=${DEVELOPMENT} -e JDEBUG=${JDEBUG}"
+
+DATA_MOUNT=/data/boodskap
+PLATFORM_MOUNT=/opt/platform
+CONSOLE_MOUNT=/opt/admin-console
+DASHBOARD_MOUNT=/opt/dashboard
+
+DATA_PATH=$HOME/docker/volumes/${NAME}/data
+
+mkdir -p ${DATA_PATH}
+VOLUMES="-v ${DATA_PATH}:${DATA_MOUNT}"
+ENV="$ENV -e DATA_PATH=${DATA_MOUNT}"
 
 if [ $DEVELOPMENT == true ]; then
-    MOUNT_HOME=$HOME/docker/volumes/${NAME}
-    VOLUMES="-v ${MOUNT_HOME}:/usr/local/boodskap"
-    ENV="$ENV -e MOUNT_HOME=/usr/local/boodskap"
-    mkdir -p ${MOUNT_HOME}
-    cd ${MOUNT_HOME}
-    git clone https://github.com/boodskap/admin-console.git
-    git clone https://github.com/boodskap/dashboard.git
-    git clone https://github.com/boodskap/platform.git
-    git clone https://github.com/boodskap/examples.git
-else
-    DATA_PATH=$HOME/docker/volumes/${NAME}/data
-    mkdir -p ${DATA_PATH}
-    VOLUMES="-v ${DATA_PATH}:/data/boodskap"
-    ENV="$ENV -e DATA_PATH=/data/boodskap"
+
+    #
+    # Boodskap Platform ( git clone https://github.com/boodskap/platform.git )
+    # Enable ENV, VOLUMES and BOODSKAP_HOME pointing to <git_path>/distribution/target/release
+    #
+    #BOODSKAP_HOME=${HOME}/git/platform/distribution/target/release
+    #ENV="$ENV -e BOODSKAP_HOME=${PLATFORM_MOUNT}"
+    #VOLUMES="$VOLUMES -v ${BOODSKAP_HOME}:${PLATFORM_MOUNT}"
+
+    #
+    # Boodskap Admin Console ( git clone https://github.com/boodskap/admin-console.git )
+    # Enable ENV, VOLUMES and CONSOLE_HOME pointing to <git_path>
+    #
+    #CONSOLE_HOME=${HOME}/git/admin-console
+    #ENV="$ENV -e CONSOLE_HOME=${CONSOLE_MOUNT}"
+    #VOLUMES="$VOLUMES -v ${CONSOLE_HOME}:${CONSOLE_MOUNT}"
+
+    #
+    # Boodskap Dashboard ( git clone https://github.com/boodskap/dashboard.git )
+    # Enabled ENV, VOLUMES and DASHBOARD_HOME pointing to <git_path>
+    #
+    #DASHBOARD_HOME=${HOME}/git/dashboard
+    #ENV="$ENV -e DASHBOARD_HOME=${DASHBOARD_MOUNT}"
+    #VOLUMES="$VOLUMES -v ${DASHBOARD_HOME}:${DASHBOARD_MOUNT}"
 fi
 
-ENV="$ENV -e DEVELOPMENT=${DEVELOPMENT}"
 
 if [[ -z "$SOLUTION_PATH" ]]; then
     echo "No solution configured, using default examples"
@@ -113,22 +133,20 @@ else
 fi
 
 echo
-echo
-echo "** Execute the below command to create ${NAME} container **"
-echo
-
-echo $EXEC
-echo
-
+echo "#### To create ${NAME} container ####"
+printf "\t${EXEC}\n\n"
 
 echo "#### To start ${NAME} ####"
-printf "\tdocker start ${NAME} && docker logs -f ${NAME}\n"
+START_EXEC="docker start ${NAME} && docker logs -f ${NAME}"
+printf "\t${START_EXEC}\n\n"
 
 echo "#### To stop ${NAME} ####"
-printf "\tdocker stop ${NAME}\n"
+STOP_EXEC="docker stop ${NAME}"
+printf "\t${STOP_EXEC}\n\n"
 
 echo "#### To delete ${NAME} container ####"
-printf "\t docker container rm ${NAME}\n"
+REM_EXEC="docker container rm ${NAME}"
+printf "\t${REM_EXEC}\n\n"
 
 echo
 echo "#### Solution URL: http://boodskap.xyz  ####"
@@ -136,4 +154,23 @@ echo "#### Admin URL: http://platform.boodskap.zyz ####"
 echo "#### Dashboard URL: http://dashboard.boodskap.xyz ####"
 echo
 echo "#### ${NAME} data can be found in ${DATA_PATH} ####"
+echo
+
+#create script files
+ROOT_DIR=$HOME/docker/bin/${NAME}
+mkdir -p ${ROOT_DIR}
+
+echo "#!/bin/bash" > ${ROOT_DIR}/create.sh
+echo "#!/bin/bash" > ${ROOT_DIR}/start.sh
+echo "#!/bin/bash" > ${ROOT_DIR}/stop.sh
+echo "#!/bin/bash" > ${ROOT_DIR}/remove.sh
+
+echo ${EXEC} >> ${ROOT_DIR}/create.sh
+echo ${START_EXEC} >> ${ROOT_DIR}/start.sh
+echo ${STOP_EXEC} >> ${ROOT_DIR}/stop.sh
+echo ${REM_EXEC} >> ${ROOT_DIR}/remove.sh
+
+chmod +x ${ROOT_DIR}/*.sh
+
+echo "#### start/stop scripts are in ${ROOT_DIR} ####"
 echo
