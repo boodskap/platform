@@ -53,6 +53,9 @@ VOLUMES="-v ${DATA_PATH}:${DATA_MOUNT}"
 ENV="$ENV -e DATA_PATH=${DATA_MOUNT}"
 
 if [ $DEVELOPMENT == true ]; then
+    
+    #Empty echo to avoid bash error
+    echo ""
 
     #
     # Boodskap Platform ( git clone https://github.com/boodskap/platform.git )
