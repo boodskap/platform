@@ -1,4 +1,5 @@
 #!/bin/bash
-mvn dependency:go-offline -B
-mvn package
+CURDIR=`pwd`
+mvn clean package
 ant
+chmod +x ${CURDIR}/target/release/bin/*.sh
