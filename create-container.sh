@@ -1,6 +1,6 @@
 #!/bin/bash
 VERSION=latest
-NAME=platform
+NAME=platform-dev
 
 #---------------------------------------
 # Custom Solution Development Settings
@@ -29,15 +29,15 @@ START_SCRIPT="pm2 start server.js"
 # For most use cases leave this flag to false
 #
 # If you are extending/customizing the boodskap platform, set this flag to true
-# Configure the DEVELOPMENT section with apropriate BOODSKAP_HOME, CONSOLE_HOME and DASHBOARD_HOME paths
+# All three projects will be cloned and kept under your $HOME/docker/volumes/${NAME}
 #
-DEVELOPMENT=false
+DEVELOPMENT=true
 
 #
 # For debugging platform server using Java remote debugging on port 9999
 #
 #
-JDEBUG=false
+JDEBUG=true
 
 ENV="-e DEVELOPMENT=${DEVELOPMENT} -e JDEBUG=${JDEBUG}"
 
@@ -56,7 +56,7 @@ if [ $DEVELOPMENT == true ]; then
     
     #Empty echo to avoid bash error
     echo ""
-
+    
     #
     # Boodskap Platform ( git clone https://github.com/boodskap/platform.git )
     # Enable ENV, VOLUMES and BOODSKAP_HOME pointing to <git_path>/distribution/target/release
@@ -93,14 +93,14 @@ fi
 # These ports will be binding locally too
 # Make sure, these ports are free and bindable in your local machine
 #
-PORTS="80 443 1883 9999"
+PORTS="80 443 1883 18080 4201 4202 10000 9999"
 UDP_PORTS="5555"
 
 #
 # For running multiple platform containers, disable PORTS and UDP_PORTS and enable the below two
 # Format: Local_Port:Remote_Port
 #
-#MPORTS="8080:80 8443:443 1883:2883"
+#MPORTS="8080:80 8443:443 2883:1883 28080:18080 24201:4201 24202:4202 20000:10000 29999:9999" 
 #MUDP_PORTS="6666:5555"
 
 if [[ -z "$MPORTS" ]]; then
@@ -141,7 +141,9 @@ printf "\t${EXEC}\n\n"
 
 echo "#### To start ${NAME} ####"
 START_EXEC="docker start ${NAME} && docker logs -f ${NAME}"
-printf "\t${START_EXEC}\n\n"
+RESTART_EXEC="docker restart ${NAME} && docker logs -f ${NAME}"
+printf "\t${START_EXEC}\n"
+printf "\t${RESTART_EXEC}\n\n"
 
 echo "#### To stop ${NAME} ####"
 STOP_EXEC="docker stop ${NAME}"
@@ -165,11 +167,13 @@ mkdir -p ${ROOT_DIR}
 
 echo "#!/bin/bash" > ${ROOT_DIR}/create.sh
 echo "#!/bin/bash" > ${ROOT_DIR}/start.sh
+echo "#!/bin/bash" > ${ROOT_DIR}/restart.sh
 echo "#!/bin/bash" > ${ROOT_DIR}/stop.sh
 echo "#!/bin/bash" > ${ROOT_DIR}/remove.sh
 
 echo ${EXEC} >> ${ROOT_DIR}/create.sh
 echo ${START_EXEC} >> ${ROOT_DIR}/start.sh
+echo ${RESTART_EXEC} >> ${ROOT_DIR}/restart.sh
 echo ${STOP_EXEC} >> ${ROOT_DIR}/stop.sh
 echo ${REM_EXEC} >> ${ROOT_DIR}/remove.sh
 
