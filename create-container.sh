@@ -172,6 +172,7 @@ echo "#!/bin/bash" > ${ROOT_DIR}/stop.sh
 echo "#!/bin/bash" > ${ROOT_DIR}/remove.sh
 
 echo ${EXEC} >> ${ROOT_DIR}/create.sh
+echo "docker pull boodskapiot/platform:latest" >> ${ROOT_DIR}/create.sh
 echo ${START_EXEC} >> ${ROOT_DIR}/start.sh
 echo ${RESTART_EXEC} >> ${ROOT_DIR}/restart.sh
 echo ${STOP_EXEC} >> ${ROOT_DIR}/stop.sh
