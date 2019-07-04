@@ -26,6 +26,8 @@ echo "EXAMPLES_HOME=${EXAMPLES_HOME}"
 echo "START_SCRIPT=${START_SCRIPT}"
 echo "M2_HOME=${M2_HOME}"
 echo "MAVEN_OPTS=${MAVEN_OPTS}"
+echo "SOLUTION_DIR=${SOLUTION_DIR}"
+echo "EXT_LIBS_DIR=${EXT_LIBS_DIR}"
 
 if [ $DEVELOPMENT == true ]; then
 	echo "**** Development mode ****"
@@ -51,9 +53,9 @@ cd ${DASHBOARD_HOME}
 echo "Starting dashboard"
 pm2 start ${DASHBOARD_HOME}/bdskp-dashboard-node.js
 
-if [ -d "/opt/boodskap/solution" ] 
+if [ -d "$SOLUTION_DIR" ] 
 then
-    cd /opt/boodskap/solution
+    cd $SOLUTION_DIR
     echo "Installing custom solution dependencies, please wait..."
     npm -s install
     echo "Starting custom solution"
@@ -118,6 +120,7 @@ CPATH=$ROOT_FOLDER/config
 CPATH=$CPATH:$ROOT_FOLDER/spi-libs/cache/$CACHE_SPI_LIBDIR/*
 CPATH=$CPATH:$ROOT_FOLDER/spi-libs/grid/$GRID_SPI_LIBDIR/*
 CPATH=$CPATH:$ROOT_FOLDER/spi-libs/storage/$STORAGE_SPI_LIBDIR/*
+CPATH=$CPATH:$EXT_LIBS_DIR/*
 
 for CP in ${PROTOCOL_SPI_LIBDIRS//,/ }
 do
