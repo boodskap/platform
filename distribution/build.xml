@@ -47,6 +47,10 @@
 			<fileset dir="${basedir}/protocol-service-udp/target/libs" includes="**/*" />
 		</copy>
 
+		<copy todir="${basedir}/target/spi-libs/services/nodejs">
+			<fileset dir="${basedir}/service-nodejs-bridge/target/libs" includes="**/*" />
+		</copy>
+
 		<delete verbose="false">
 			<fileset dir="${basedir}/target/spi-libs/cache/local" includes="**/*">
 				<present targetdir="${basedir}/target/libs" />
@@ -81,6 +85,10 @@
 			</fileset>
 
 			<fileset dir="${basedir}/target/spi-libs/protocols/udp" includes="**/*">
+				<present targetdir="${basedir}/target/libs" />
+			</fileset>
+
+			<fileset dir="${basedir}/target/spi-libs/services/nodejs" includes="**/*">
 				<present targetdir="${basedir}/target/libs" />
 			</fileset>
 		</delete>
