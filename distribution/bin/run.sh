@@ -110,10 +110,10 @@ then
 fi
 
 
-#Comma separated services []
+#Comma separated services [nodejs]
 if [ -z "$SERVICE_SPI_LIBDIRS" ]
 then
-      SERVICE_SPI_LIBDIRS=""
+      SERVICE_SPI_LIBDIRS="nodejs"
 fi
 
 CPATH=$ROOT_FOLDER/config
