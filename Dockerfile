@@ -68,7 +68,7 @@ ENV CACHE_SPI_LIBDIR local
 ENV GRID_SPI_LIBDIR local
 ENV STORAGE_SPI_LIBDIR hsqldb
 ENV PROTOCOL_SPI_LIBDIRS "udp,mqtt,ftp"
-ENV SERVICE_SPI_LIBDIRS ""
+ENV SERVICE_SPI_LIBDIRS "nodejs"
 
 WORKDIR /etc/nginx/sites-enabled
 RUN rm default
