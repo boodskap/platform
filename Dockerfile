@@ -15,6 +15,7 @@ COPY ./distribution/spi-storage-elasticsearch/pom.xml ./spi-storage-elasticsearc
 COPY ./distribution/driver-hsqldb/pom.xml ./driver-hsqldb/pom.xml
 COPY ./distribution/spi-storage-cassandra/pom.xml ./spi-storage-cassandra/pom.xml
 COPY ./distribution/spi-grid-ignite/pom.xml ./spi-grid-ignite/pom.xml
+COPY ./distribution/service-nodejs-bridge/pom.xml ./service-nodejs-bridge/pom.xml
 
 RUN mvn dependency:go-offline -B
 
