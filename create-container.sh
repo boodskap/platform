@@ -1,6 +1,7 @@
 #!/bin/bash
+REPOSITORY=platform
 VERSION=latest
-NAME=platform-dev
+NAME=dev
 
 #---------------------------------------
 # Custom Solution Development Settings
@@ -130,9 +131,9 @@ else
 fi
 
 if [[ -z "$SOLUTION_PATH" ]]; then
-    EXEC="docker create --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
+    EXEC="docker create --name $NAME $ENV $VOLUMES $OPORTS boodskapiot/${REPOSITORY}:${VERSION}"
 else
-    EXEC="docker create --name $NAME $ENV -e START_SCRIPT=\"${START_SCRIPT}\" $VOLUMES $OPORTS boodskapiot/platform:$VERSION"
+    EXEC="docker create --name $NAME $ENV -e START_SCRIPT=\"${START_SCRIPT}\" $VOLUMES $OPORTS boodskapiot/${REPOSITORY}:${VERSION}"
 fi
 
 echo
@@ -171,7 +172,7 @@ echo "#!/bin/bash" > ${ROOT_DIR}/restart.sh
 echo "#!/bin/bash" > ${ROOT_DIR}/stop.sh
 echo "#!/bin/bash" > ${ROOT_DIR}/remove.sh
 
-echo "docker pull boodskapiot/platform:${VERSION}" >> ${ROOT_DIR}/create.sh
+echo "docker pull boodskapiot/${REPOSITORY}:${VERSION}" >> ${ROOT_DIR}/create.sh
 echo ${EXEC} >> ${ROOT_DIR}/create.sh
 echo ${START_EXEC} >> ${ROOT_DIR}/start.sh
 echo ${RESTART_EXEC} >> ${ROOT_DIR}/restart.sh
