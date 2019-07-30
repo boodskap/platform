@@ -1,5 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/xsd/maven-4.0.0.xsd">
 	<modelVersion>4.0.0</modelVersion>
 
 	<groupId>io.boodskap.platform</groupId>
@@ -30,6 +32,16 @@
 			<url>https://oss.sonatype.org/content/repositories/releases/</url>
 		</repository>
 		<repository>
+			<id>oss.sonatype.org-snapshot</id>
+			<url>http://oss.sonatype.org/content/repositories/snapshots</url>
+			<releases>
+				<enabled>false</enabled>
+			</releases>
+			<snapshots>
+				<enabled>true</enabled>
+			</snapshots>
+		</repository>
+		<repository>
 			<id>libs-release</id>
 			<name>Boodskap Libraries</name>
 			<url>https://maven.boodskap.io/artifactory/libs-release/</url>
@@ -46,7 +58,7 @@
 			</snapshots>
 		</repository>
 	</repositories>
-	
+
 	<modules>
 		<module>server</module>
 		<module>driver-hsqldb</module>
@@ -59,8 +71,8 @@
 		<module>spi-storage-cassandra</module>
 		<module>spi-storage-elasticsearch</module>
 		<module>spi-storage-pojo</module>
-    	<module>service-nodejs-bridge</module>
-  </modules>
+		<module>service-nodejs-bridge</module>
+	</modules>
 
 	<build>
 		<plugins>
