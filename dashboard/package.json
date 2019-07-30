@@ -1,0 +1,40 @@
+{
+  "name": "dashboard",
+  "version": "0.0.1",
+  "license": "GNU GPLv3",
+  "scripts": {
+    "start": "node bdskp-dashboard-node.js"
+  },
+  "author": {
+    "name": "Boodskap Inc",
+    "email": "info@boodskap.com",
+    "url": "https://boodskap.io"
+  },
+  "homepage": "https://github.com/boodskap",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/boodskap/admin-console"
+  },
+  "engines": {
+    "node": ">=6.0.0"
+  },
+  "dependencies": {
+    "async": "^2.6.1",
+    "body-parser": "^1.18.3",
+    "compression": "^1.7.2",
+    "cookie-parser": "^1.4.3",
+    "cookie-session": "^2.0.0-beta.3",
+    "ejs": "^2.5.7",
+    "express": "^4.16.2",
+    "express-layout": "^0.1.0",
+    "express-minify": "^1.0.0",
+    "node-minify": "^3.1.0",
+    "path": "^0.12.7",
+    "properties-reader": "0.0.16",
+    "replace-in-file": "^3.4.2",
+    "swagger-ui-express": "^3.0.9",
+    "uglify-es": "^3.3.10",
+    "yamljs": "^0.3.0"
+  },
+  "devDependencies": {}
+}

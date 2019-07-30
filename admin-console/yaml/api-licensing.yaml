@@ -1,0 +1,208 @@
+swagger: "2.0"
+host: platform.boodskap.xyz
+basePath: /api/ext
+schemes: 
+  - http
+  - https
+produces: 
+  - "application/json"
+info: 
+  version: "1.0.0"
+  title: "Boodskap Licensing API"
+  description: "Boodskap IoT Platform Licensing API"
+  termsOfService: "https://boodskap.io/terms-conditions"
+  contact: 
+    name: "Boodskap Team"
+  license: 
+    name: "MIT"
+paths:
+  '/lic/key/download/{dkey}/{cid}':
+    get:
+      tags:
+        - Download Public Key File
+      summary: Download Public Key File
+      operationId: downloadPublicKey
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: dkey
+          in: path
+          description: Admin Domain Key
+          required: true
+          type: string
+        - name: cid
+          in: path
+          description: Cluster ID
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Public Key File Content
+          schema:
+            $ref: "#/definitions/FileContent"
+        '417':
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/lic/download/{dkey}/{cid}':
+    get:
+      tags:
+        - Download License File
+      summary: Download License File
+      operationId: downloadLicenseFile
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: dkey
+          in: path
+          description: Admin Domain Key
+          required: true
+          type: string
+        - name: cid
+          in: path
+          description: Cluster ID
+          required: true
+          type: string
+      responses:
+        '200':
+          description: Encrypted License Binary File Content
+          schema:
+            $ref: "#/definitions/FileContent"
+        '417':
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/lic/validate/{dkey}/{cid}/{lkey}':
+    get:
+      tags:
+        - Validate License
+      summary: Validate License
+      operationId: validateLicense
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: dkey
+          in: path
+          description: Admin Domain Key
+          required: true
+          type: string
+        - name: cid
+          in: path
+          description: Cluster ID
+          required: true
+          type: string
+        - name: lkey
+          in: path
+          description: License Key
+          required: true
+          type: string
+      responses:
+        '200':
+          description: "Success"
+          schema: 
+            $ref: "#/definitions/Success"
+        '417':
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/cluster/claim/{cid}':
+    get:
+      tags:
+        - Claim Cluster
+      summary: Claim Cluster
+      operationId: claimCluster
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: cid
+          in: path
+          description: Cluster ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth Token
+          required: true
+          type: string
+      responses:
+        '200':
+          description: "Success"
+          schema: 
+            $ref: "#/definitions/Success"
+        '417':
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/cluster/machine/validate/{cid}/{mid}':
+    post:
+      tags:
+        - Validate Cluster Machine
+      summary: Validate Cluster Machine
+      operationId: validateClusterMachine
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: cid
+          in: path
+          description: Cluster ID
+          required: true
+          type: string
+        - name: mid
+          in: path
+          description: Machine ID
+          required: true
+          type: string
+        - name: props
+          in: body
+          description: Machine System Properties
+          required: true
+          schema:
+            type: object
+      responses:
+        '200':
+          description: "Success"
+          schema: 
+            $ref: "#/definitions/Success"
+        '417':
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+definitions: 
+  FileContent: 
+    type: "object"
+    required:
+      - type
+      - content
+    properties: 
+      format: 
+        type: "string"
+      content: 
+        type: "string"
+  Success: 
+    type: "object"
+    required:
+      - code
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"
+  ApiError: 
+    type: "object"
+    required: 
+      - "code"
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"

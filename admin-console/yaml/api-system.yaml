@@ -1,0 +1,504 @@
+swagger: "2.0"
+host: platform.boodskap.xyz
+basePath: /api
+schemes: 
+  - http
+  - https
+produces: 
+  - "application/json"
+info: 
+  version: "3.0.0-alpha1"
+  title: "Boodskap API"
+  description: "Boodskap IoT Platform API"
+  termsOfService: "https://boodskap.io/terms-conditions"
+  contact: 
+    name: "Boodskap Team"
+  license: 
+    name: "MIT"
+paths:
+  '/system/shutdown':
+    get:
+      tags:
+        - Shutdown the System
+      summary: Sutdown the System
+      operationId: shutdown
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/login':
+    post:
+      tags:
+        - Login to the System
+      summary: Login to the System
+      operationId: login
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: dto
+          in: body
+          description: Login JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/UserDomain"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/logout':
+    get:
+      tags:
+        - Logout from the System
+      summary: Logout from the System
+      operationId: logout
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/property/upsert':
+    post:
+      tags:
+        - Store System Property
+      summary: Create / Update System Property
+      operationId: storeSystemProperty
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+        - name: dto
+          in: body
+          description: SystemProperty JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/SystemProperty'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/property/get/{name}':
+    get:
+      tags:
+        - Get System Property
+      summary: Retreive System Property
+      operationId: getSystemProperty
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/SystemProperty'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/property/delete/{name}':
+    delete:
+      tags:
+        - Delete System Property
+      summary: Delete Stored System Property
+      operationId: deleteSystemProperty
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/property/deleteall':
+    delete:
+      tags:
+        - Delete All System Properties
+      summary: Delete All Stored System Properties
+      operationId: deleteAllSystemProperties
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/property/list':
+    get:
+      tags:
+        - List System Properties
+      summary: List System Properties
+      operationId: listSystemProperties
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: Page index, starts from 0
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          description: Maximum number of objects to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: next
+          in: query
+          description: If next is true, **eid** is required
+          required: false
+          type: boolean
+        - name: eid
+          in: query
+          description: Last System Property Name of the previous list operation, **required** if **next** is true
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SystemProperty'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/property/search':
+    post:
+      tags:
+        - Search System Properties
+      summary: Search System Properties
+      operationId: searchSystemProperties
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: pageSize
+          in: query
+          description: Maximum number of objects to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: query
+          in: body
+          description: Search string
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/SystemProperty'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/system/activate/{adkey}/{lkey}':
+    get:
+      tags:
+        - Activate System
+      summary: Activate System
+      operationId: activate
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: adkey
+          in: path
+          description: Account Domain Key
+          required: true
+          type: string
+        - name: lkey
+          in: path
+          description: License Key
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+definitions:
+  ApiError: 
+    type: "object"
+    required: 
+      - "code"
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"
+  Domain:
+    allOf:
+    - $ref: '#/definitions/Entity'
+    - $ref: '#/definitions/DomainObject'
+    - type: object
+      discriminator: domainType
+  DomainObject:
+    type: object
+    discriminator: domainObjectType
+    properties:
+      domainKey:
+        type: string
+  Entity:
+    type: object
+    discriminator: entityType
+    properties:
+      email:
+        type: string
+      country:
+        type: string
+      state:
+        type: string
+      city:
+        type: string
+      address:
+        type: string
+      zipcode:
+        type: string
+      locale:
+        type: string
+      timeZone:
+        type: string
+      primaryPhone:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      registeredStamp:
+        type: integer
+        format: int64
+      updatedStamp:
+        type: integer
+        format: int64
+  LinkedDomain:
+    properties:
+      domainKey:
+        type: string
+      linkedDomainKey:
+        type: string
+      linkedApiKey:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      disabled:
+        type: boolean
+      createdStamp:
+        type: integer
+        format: int64
+      updatedStamp:
+        type: integer
+        format: int64
+  Login:
+    required:
+      - userId
+      - password
+    type: object
+    properties:
+      userId:
+        type: string
+      password:
+        type: string
+  Storable:
+    type: object
+    discriminator: storableType
+    properties:
+      dataFormat:
+        type: string
+        description: Required if **dataType** is **blob**
+        enum:
+          - AS_IS
+          - JSON
+          - HEX
+          - BASE64
+      description:
+        type: string
+  Success: 
+    type: "object"
+    required:
+      - code
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"
+  SystemProperty:
+    allOf:
+    - $ref: '#/definitions/Storable'
+    - type: object
+      discriminator: systemPropertyType
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        createdStamp:
+          type: integer
+          format: int64
+        updatedStamp:
+          type: integer
+          format: int64
+  User:
+    allOf:
+    - $ref: '#/definitions/Entity'
+    - $ref: '#/definitions/DomainObject'
+    - type: object
+      discriminator: userType
+      properties:
+        userId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+        workHourStart:
+          type: integer
+        workHourEnd:
+          type: integer
+        workDays:
+          type: array
+          items:
+            type: integer
+        roles:
+          type: array
+          items:
+            type: string
+        groups:
+          type: array
+          items:
+            type: string
+        organizations:
+          type: array
+          items:
+            type: string
+  UserDomain:
+    properties:
+      token:
+        type: string
+      domainKey:
+        type: string
+      apiKey:
+        type: string
+      user:
+        $ref: "#/definitions/User"
+      domain:
+        $ref: "#/definitions/Domain"
+      access:
+        type: array
+        items:
+          type: string
+      linkedDomains:
+        type: array
+        items:
+          $ref: "#/definitions/LinkedDomain"

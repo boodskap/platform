@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <!-- Required meta tags -->
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+
+    <link href="/images/favicon.ico" rel="icon">
+    <title>Admin Console | Boodskap IoT Platform</title>
+
+    <!-- Meta -->
+    <meta name="description" content="">
+    <meta name="author" content="Boodskap Inc">
+
+    <!-- vendor css -->
+    <link href="/lib/font-awesome/css/font-awesome.css" rel="stylesheet">
+    <link href="/lib/Ionicons/css/ionicons.css" rel="stylesheet">
+    <link href="/lib/rickshaw/css/rickshaw.min.css" rel="stylesheet">
+
+    <!-- bdskp CSS -->
+    <link rel="stylesheet" href="/css/bdskp.css">
+
+
+    <script src="/lib/jquery/js/jquery.js"></script>
+    <!--<script src="/js/jquery-3.2.1.min.js"></script>-->
+    <script src="/lib/popper.js/js/popper.js"></script>
+    <script src="/lib/bootstrap/js/bootstrap.js"></script>
+    <script src="/lib/jquery.cookie/js/js.cookie.js"></script>
+
+    <script src="/js/bdskp.js"></script>
+    <script src="/js/ResizeSensor.js"></script>
+
+
+
+</head>
+<body class="dashboard-3">
+<input type="hidden" id="BOODSKAP_PROP" value="<%= JSON.stringify(boodskap) %>" />
+
+<script src="/platform-config.js"></script>
+<script src="/controllers/const-variables.js"></script>
+<script src="/controllers/layout.js"></script>
+<script src="/controllers/api-calls.js"></script>
+
+<%include header.html %>
+<%include topmenu.html %>
+
+
+<div class="bdskp-mainpanel platformBody">
+    <%- body %>
+
+</div>
+
+<%include footer.html %>
+
+</body>
+</html>

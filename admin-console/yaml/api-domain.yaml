@@ -1,0 +1,733 @@
+swagger: "2.0"
+host: platform.boodskap.xyz
+basePath: /api
+schemes: 
+  - http
+  - https
+produces: 
+  - "application/json"
+info: 
+  version: "3.0.0-alpha1"
+  title: "Boodskap API"
+  description: "Boodskap IoT Platform API"
+  termsOfService: "https://boodskap.io/terms-conditions"
+  contact: 
+    name: "Boodskap Team"
+  license: 
+    name: "MIT"
+paths:
+  '/domain/{dkey}/login':
+    post:
+      tags:
+        - Login to a Domain
+      summary: Login to a Domain
+      operationId: loginDomain
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: dkey
+          in: path
+          required: true
+          type: string
+        - name: dto
+          in: body
+          description: Login JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Login'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/UserDomain"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/register':
+    post:
+      tags:
+        - Register/Import New Domain
+      summary: Create / Update Domain
+      operationId: registerDomain
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: false
+          type: string
+        - name: dto
+          in: body
+          description: Domain JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Domain'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/IDResult"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/upsert':
+    post:
+      tags:
+        - Upsert Domain
+      summary: Create / Update Domain
+      operationId: upsertDomain
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dto
+          in: body
+          description: Domain JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Domain'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/IDResult"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/get':
+    get:
+      tags:
+        - Get Domain
+      summary: Retrieve Domain
+      operationId: getDomain
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Domain'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/count':
+    get:
+      tags:
+        - Count All Domains
+      summary: Count All Domains
+      operationId: countAllDomains
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Count"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/list':
+    get:
+      tags:
+        - List Domains
+      summary: List Domains
+      operationId: listDomains
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: page
+          in: query
+          description: Page index, starts from 0
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          description: Maximum number of objects to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: next
+          in: query
+          description: If next is true, **eid** is required
+          required: false
+          type: boolean
+        - name: eid
+          in: query
+          description: Last Domain Key of the previous list operation, **required** if **next** is true
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Domain'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/search':
+    post:
+      tags:
+        - Search Domain
+      summary: Search Domain
+      operationId: searchDomains
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: pageSize
+          in: query
+          description: Maximum number of entities to be listed, max 250
+          required: false
+          type: integer
+          format: int32
+        - name: query
+          in: body
+          description: Search string
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Domain'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/delete':
+    delete:
+      tags:
+        - Delete Domain
+      summary: Delete Domain
+      operationId: deleteDomain
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/deleteall':
+    delete:
+      tags:
+        - Delete all Domains
+      summary: Delete all Domains
+      operationId: deleteAllDomains
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/property/upsert':
+    post:
+      tags:
+        - Create / Update Domain Property
+      summary: Create / Update Domain Property
+      operationId: upsertDomainProperty
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+        - name: dto
+          in: body
+          description: Property JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Property'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/property/get/{name}':
+    get:
+      tags:
+        - Get Domain Property
+      summary: Retreive Domain Property
+      operationId: getDomainProperty
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Property'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/property/delete/{name}':
+    delete:
+      tags:
+        - Delete Domain Property
+      summary: Delete Stored Domain Property
+      operationId: deleteDomainProperty
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/property/deleteall':
+    delete:
+      tags:
+        - Delete All Domain Properties
+      summary: Delete All Stored Domain Properties
+      operationId: deleteAllDomainProperties
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/property/list':
+    get:
+      tags:
+        - List Domain Properties
+      summary: List Domain Properties
+      operationId: listDomainProperties
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in domain
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: Page index, starts from 0
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          description: Maximum number of objects to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: next
+          in: query
+          description: If next is true, **eid** is required
+          required: false
+          type: boolean
+        - name: eid
+          in: query
+          description: Last Property Name of the previous list operation, **required** if **next** is true
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Property'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/domain/property/search':
+    get:
+      tags:
+        - Search Domain Property
+      summary: Search Domain Property
+      operationId: searchDomainProperties
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: pageSize
+          in: query
+          description: Maximum number of entities to be listed, max 250
+          required: false
+          type: integer
+          format: int32
+        - name: query
+          in: body
+          description: Search string
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Property'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+definitions:
+  ApiError: 
+    type: "object"
+    required: 
+      - "code"
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"
+  Count:
+    type: object
+    required:
+      - total
+    properties:
+      total:
+        type: integer
+        format: int64
+  Domain:
+    allOf:
+    - $ref: '#/definitions/Entity'
+    - $ref: '#/definitions/DomainObject'
+    - type: object
+      discriminator: domainType
+  DomainObject:
+    type: object
+    discriminator: domainObjectType
+    properties:
+      domainKey:
+        type: string
+  Entity:
+    type: object
+    discriminator: entityType
+    properties:
+      email:
+        type: string
+      country:
+        type: string
+      state:
+        type: string
+      city:
+        type: string
+      address:
+        type: string
+      zipcode:
+        type: string
+      locale:
+        type: string
+      timeZone:
+        type: string
+      primaryPhone:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      registeredStamp:
+        type: integer
+        format: int64
+      updatedStamp:
+        type: integer
+        format: int64
+  IDResult:
+    type: object
+    required:
+      - id
+    properties:
+      id:
+        type: string
+  LinkedDomain:
+    properties:
+      domainKey:
+        type: string
+      linkedDomainKey:
+        type: string
+      linkedApiKey:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      disabled:
+        type: boolean
+      createdStamp:
+        type: integer
+        format: int64
+      updatedStamp:
+        type: integer
+        format: int64
+  Login:
+    required:
+      - userId
+      - password
+    type: object
+    properties:
+      userId:
+        type: string
+      password:
+        type: string
+  Property:
+    allOf:
+    - $ref: '#/definitions/SystemProperty'
+    - $ref: '#/definitions/DomainObject'
+    - type: object
+      discriminator: propertyType
+  Storable:
+    type: object
+    discriminator: storableType
+    properties:
+      dataFormat:
+        type: string
+        description: Required if **dataType** is **blob**
+        enum:
+          - AS_IS
+          - JSON
+          - HEX
+          - BASE64
+      description:
+        type: string
+  Success: 
+    type: "object"
+    required:
+      - code
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"
+  SystemProperty:
+    allOf:
+    - $ref: '#/definitions/Storable'
+    - type: object
+      discriminator: systemPropertyType
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        createdStamp:
+          type: integer
+          format: int64
+        updatedStamp:
+          type: integer
+          format: int64
+  User:
+    allOf:
+    - $ref: '#/definitions/Entity'
+    - $ref: '#/definitions/DomainObject'
+    - type: object
+      discriminator: userType
+      properties:
+        userId:
+          type: string
+        firstName:
+          type: string
+        lastName:
+          type: string
+        password:
+          type: string
+        workHourStart:
+          type: integer
+        workHourEnd:
+          type: integer
+        workDays:
+          type: array
+          items:
+            type: integer
+        roles:
+          type: array
+          items:
+            type: string
+        groups:
+          type: array
+          items:
+            type: string
+        organizations:
+          type: array
+          items:
+            type: string
+  UserDomain:
+    properties:
+      token:
+        type: string
+      domainKey:
+        type: string
+      apiKey:
+        type: string
+      user:
+        $ref: "#/definitions/User"
+      domain:
+        $ref: "#/definitions/Domain"
+      access:
+        type: array
+        items:
+          type: string
+      linkedDomains:
+        type: array
+        items:
+          $ref: "#/definitions/LinkedDomain"
