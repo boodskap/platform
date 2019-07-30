@@ -33,9 +33,9 @@ RUN ant
 
 WORKDIR /
 
-RUN git clone https://github.com/boodskap/admin-console.git
-RUN git clone https://github.com/boodskap/dashboard.git
-RUN git clone https://github.com/boodskap/examples.git
+COPY admin-console /admin-console/
+COPY dashboard /dashboard/
+COPY examples /examples/
 
 WORKDIR /admin-console
 RUN npm -s install
