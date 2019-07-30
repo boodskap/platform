@@ -8,7 +8,7 @@ server {
 
     location / {
         
-        proxy_pass http://solution_cluster;
+        proxy_pass http://TARGET_CLUSTER;
         proxy_set_header Host $host;
         proxy_set_header X-Real-IP $remote_addr;
         proxy_set_header X-Forwarded-For $proxy_add_x_forwarded_for;
