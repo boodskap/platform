@@ -21,7 +21,7 @@ RUN mvn dependency:go-offline -B
 
 COPY ./distribution ./
 
-RUN mvn package
+RUN mvn clean package
 
 FROM boodskapiot/ubuntu:18.04 as buildos
 
