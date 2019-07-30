@@ -38,7 +38,7 @@ DEVELOPMENT=true
 # For debugging platform server using Java remote debugging on port 9999
 #
 #
-JDEBUG=true
+JDEBUG=false
 
 ENV="-e DEVELOPMENT=${DEVELOPMENT} -e JDEBUG=${JDEBUG}"
 
