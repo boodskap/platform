@@ -1,0 +1,20 @@
+.initialContent{
+    min-height: 350px !important;
+}
+
+.licenseText{
+    line-height: 2.5rem;
+    text-align: center;
+}
+
+.cpyBtn{
+    cursor: pointer;
+}
+
+.header-mobile__logo img{
+    width: 40px;
+}
+
+.aside__brand-logo img{
+    width: 60px;
+}

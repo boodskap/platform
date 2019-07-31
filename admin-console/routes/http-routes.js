@@ -34,7 +34,7 @@ Routes.prototype.init = function () {
             res.redirect('/home');
 
         } else {
-            res.render('login.html', {layout: false,boodskap:self.app.boodskap});
+            res.render('login.html', {layout: false, boodskap:self.app.boodskap});
         }
     });
 
@@ -50,17 +50,22 @@ Routes.prototype.init = function () {
         if (userObj) {
             res.redirect('/home');
         } else {
-            res.render('login.html', {layout: false,boodskap:self.app.boodskap});
+            res.render('login.html', {layout: false, boodskap:self.app.boodskap});
         }
     });
 
     self.app.get('/home', sessionCheck, function (req, res) {
-        res.render('home.html', {layout: '',boodskap:self.app.boodskap});
+        res.render('home.html', {layout: '', boodskap:self.app.boodskap});
     });
+
+
+
+
+
     self.app.get('/documentation', function (req, res) {
         var userObj = req.cookies['session_obj'];
         if (userObj) {
-            res.render('documentation.html', {layout: '',boodskap:self.app.boodskap});
+            res.render('documentation.html', {layout: '', boodskap:self.app.boodskap});
         } else {
             res.render('documentation-without-session.html', {layout: false});
         }

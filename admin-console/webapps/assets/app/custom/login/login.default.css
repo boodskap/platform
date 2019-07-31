@@ -1,0 +1,163 @@
+/*
+$media-breakpoints: (
+    // Small screen / phone
+    sm: 576px,
+    
+    // Medium screen / tablet
+    md: 768px,
+    
+    // Large screen / desktop
+    lg: 1024px,
+    
+    // Extra large screen / wide desktop
+    xl: 1200px,
+
+    // Extra large screen / wide desktop
+    xxl: 1600px
+)!default;
+*/
+
+
+.login {
+  background-size: cover;
+  background-repeat: no-repeat; }
+  .login .login__wrapper {
+    padding: 6% 2rem 1rem 2rem;
+    margin: 0 auto 2rem auto;
+    overflow: hidden; }
+    .login .login__wrapper .login__container {
+      width: 430px;
+      margin: 0 auto; }
+      .login .login__wrapper .login__container .login__logo {
+        text-align: center;
+        margin: 0 auto 4rem auto; }
+      .login .login__wrapper .login__container .login__head {
+        margin-top: 1rem;
+        margin-bottom: 3rem; }
+        .login .login__wrapper .login__container .login__head .login__title {
+          text-align: center;
+          font-size: 1.5rem;
+          font-weight: 500;
+          color: #6c7293; }
+        .login .login__wrapper .login__container .login__head .login__desc {
+          margin-top: 1.5rem;
+          text-align: center;
+          font-size: 1.1rem;
+          font-weight: 400;
+          color: #a7abc3; }
+      .login .login__wrapper .login__container .form {
+        margin: 0 auto; }
+        .login .login__wrapper .login__container .form .input-group {
+          padding: 0;
+          margin: 0 auto; }
+        .login .login__wrapper .login__container .form .form-control {
+          height: 46px;
+          border: none;
+          padding-left: 1.5rem;
+          padding-right: 1.5rem;
+          margin-top: 1.5rem;
+          background: rgba(235, 237, 242, 0.4); }
+          .login .login__wrapper .login__container .form .form-control::-moz-placeholder {
+            color: #a7abc3;
+            opacity: 1; }
+          .login .login__wrapper .login__container .form .form-control:-ms-input-placeholder {
+            color: #a7abc3; }
+          .login .login__wrapper .login__container .form .form-control::-webkit-input-placeholder {
+            color: #a7abc3; }
+        .login .login__wrapper .login__container .form .form-control.is-valid + .valid-feedback,
+        .login .login__wrapper .login__container .form .form-control.is-invalid + .invalid-feedback {
+          font-weight: 500;
+          font-size: 0.9rem;
+          padding-left: 1.6rem; }
+        .login .login__wrapper .login__container .form .login__extra {
+          margin-top: 30px;
+          margin-bottom: 15px;
+          color: #a7abc3;
+          font-size: 1rem; }
+          .login .login__wrapper .login__container .form .login__extra .checkbox {
+            font-size: 1rem; }
+          .login .login__wrapper .login__container .form .login__extra .login__link {
+            font-size: 1rem;
+            color: #a7abc3;
+            -webkit-transition: color 0.3s ease;
+            transition: color 0.3s ease; }
+            .login .login__wrapper .login__container .form .login__extra .login__link:hover {
+              color: #5d78ff;
+              -webkit-transition: color 0.3s ease;
+              transition: color 0.3s ease; }
+        .login .login__wrapper .login__container .form .login__actions {
+          text-align: center;
+          margin-top: 7%; }
+          .login .login__wrapper .login__container .form .login__actions .login__btn-secondary,
+          .login .login__wrapper .login__container .form .login__actions .login__btn-primary {
+            height: 50px;
+            padding-left: 2.5rem;
+            padding-right: 2.5rem; }
+      .login .login__wrapper .login__container .login__account {
+        text-align: center;
+        margin-top: 2rem; }
+        .login .login__wrapper .login__container .login__account .login__account-msg {
+          font-size: 1rem;
+          font-weight: 400;
+          color: #a7abc3; }
+        .login .login__wrapper .login__container .login__account .login__account-link {
+          font-size: 1rem;
+          font-weight: 500;
+          color: #6c7293;
+          -webkit-transition: color 0.3s ease;
+          transition: color 0.3s ease; }
+          .login .login__wrapper .login__container .login__account .login__account-link:hover {
+            color: #5d78ff;
+            -webkit-transition: color 0.3s ease;
+            transition: color 0.3s ease; }
+
+.login.login--signin .login__signup {
+  display: none; }
+
+.login.login--signin .login__signin {
+  display: block; }
+
+.login.login--signin .login__forgot {
+  display: none; }
+
+.login.login--signup .login__signup {
+  display: block; }
+
+.login.login--signup .login__signin {
+  display: none; }
+
+.login.login--signup .login__forgot {
+  display: none; }
+
+.login.login--signup .login__account {
+  display: none; }
+
+.login.login--forgot .login__signup {
+  display: none; }
+
+.login.login--forgot .login__signin {
+  display: none; }
+
+.login.login--forgot .login__forgot {
+  display: block; }
+
+@media (max-width: 1024px) {
+  .login .login__wrapper {
+    padding-top: 5rem;
+    width: 100%; }
+    .login .login__wrapper .login__container {
+      margin: 0 auto; }
+      .login .login__wrapper .login__container .login__account {
+        margin-top: 1rem; } }
+
+@media (max-width: 768px) {
+  .login .login__wrapper {
+    width: 100%; }
+    .login .login__wrapper .login__container {
+      width: 100%;
+      margin: 0 auto; }
+      .login .login__wrapper .login__container .form {
+        width: 100%;
+        margin: 0 auto; }
+      .login .login__wrapper .login__container .login__account {
+        margin-top: 1rem; } }

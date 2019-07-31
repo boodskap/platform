@@ -1,0 +1,175 @@
+//
+// Bootstrap Datetimepicker
+//
+
+
+
+
+// Base
+.datepicker {
+    width: 265px;
+    padding: 10px;
+
+    @include not-rounded {
+        border-radius: 0;
+    }
+    
+    &.datepicker-orient-top {
+        margin-top: 8px;
+    }
+    
+    table {
+        width: 100%;
+    }
+    
+    td,
+    th {
+        font-weight: regular;
+        width: 35px;
+        height: 35px;
+    
+        @include rounded {
+            border-radius: 3px;
+        }
+    
+        @include not-rounded {
+            border-radius: 0;
+        }
+    }
+    
+    thead {
+        th {
+            color: base-color(label, 2);
+
+            &.prev,
+            &.datepicker-switch,
+            &.next {
+                font-weight: 500;
+                color: base-color(label, 2);
+            
+                i {
+                    font-size: 1.2rem;
+                    color: base-color(label, 2);
+            
+                    &:before {
+                        line-height: 0;
+                        vertical-align: middle;
+                    }
+                }
+            
+                &:hover {
+                    background: base-color(grey, 1) !important;
+                }
+            }
+
+            &.dow {
+                color: base-color(label, 3);
+                font-weight: 500;
+            }
+        }
+    }
+    
+    tbody {
+        tr > td {
+            &.day {
+                color: base-color(label, 3);
+                
+                &:hover {
+                    background: base-color(grey, 2);
+                    color: base-color(label, 3);
+                }
+                
+                &.old {
+                    color: base-color(label, 2);
+                }
+                
+                &.new {
+                    color: base-color(label, 3);
+                }
+                
+                &.selected,
+                &.selected:hover,
+                &.active,
+                &.active:hover {
+                    background: state-color(primary, base);
+                    color: state-color(primary, inverse);
+                }
+
+                &.today {
+                    position: relative;
+                    background: rgba(state-color(brand, base), 0.7) !important;
+                    color: state-color(brand, inverse) !important;
+                
+                    &:before {
+                        content: '';
+                        display: inline-block;
+                        border: solid transparent;
+                        border-width: 0 0 7px 7px;
+                        border-bottom-color: #ffffff;
+                        border-top-color: base-color(grey, 2);
+                        position: absolute;
+                        bottom: 4px;
+                        right: 4px;
+                    }
+                }
+
+                &.range {
+                    background: base-color(grey, 1);
+                }
+            }
+            
+            span.year,
+            span.hour,
+            span.minute,
+            span.month {
+                color: base-color(label, 3);
+
+                &:hover {
+                    background: base-color(grey, 1);
+                }
+                
+                &.focused,
+                &.focused:hover,
+                &.active:hover,
+                &.active.focused:hover,
+                &.active {
+                    background: state-color(primary, base);
+                    color: state-color(brand, inverse);
+                }
+            }
+        }
+    }
+
+    tfoot {
+        tr > th {
+            &.today,
+            &.clear {
+                @include rounded {
+                    border-radius: 3px;
+                }
+                font-weight: 500;
+
+                &:hover {
+                    background: base-color(grey, 2);
+                }
+            }
+        }
+    }
+
+    &.datepicker-inline {
+        border: 1px solid base-color(grey, 2);
+    }
+}
+
+.input-daterange {
+    .input-group-addon {
+        min-width: 44px;
+    }
+
+    input {
+        @include not-rounded {
+            border-radius: 0 !important;
+        }
+        text-align: left;
+    }
+}

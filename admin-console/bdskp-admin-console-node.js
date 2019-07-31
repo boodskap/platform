@@ -29,29 +29,14 @@ app.use(compression())
 app.set('views', path.join(__dirname, 'views'));
 
 
-var options = {
-    maxAge: '1d',
-    setHeaders: function (res, path, stat) {
-        res.set('vary', 'Accept-Encoding');
-        res.set('x-timestamp', Date.now());
-    }
-};
 
-var controllerOptions = {
+ var controllerOptions = {
     maxAge: 0,
     setHeaders: function (res, path, stat) {
         res.set('vary', 'Accept-Encoding');
         res.set('x-timestamp', Date.now());
     }
 };
-
-app.use('/css', express.static(__dirname + '/webapps/css', options));
-app.use('/images', express.static(__dirname + '/webapps/images', options));
-app.use('/fonts', express.static(__dirname + '/webapps/fonts', options));
-app.use('/lib', express.static(__dirname + '/webapps/lib', options));
-app.use('/js', express.static(__dirname + '/webapps/js', options));
-
-app.use('/controllers', express.static(__dirname + '/webapps/controllers', controllerOptions));
 
 
 app.use(express.static(__dirname + '/webapps', controllerOptions));

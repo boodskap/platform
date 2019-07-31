@@ -1,138 +1,128 @@
-<div class="bdskp-header">
-    <div class="container">
-        <div class="bdskp-header-left">
-            <h2 class="bdskp-logo"><a href="/home">Boodskap</a></h2>
+<div id="header" class="header grid grid--ver  header--fixed ">
 
-        </div><!-- bdskp-header-left -->
-        <div class="bdskp-header-right">
-            <div class="dropdown dropdown-a">
-                <a href="" class="header-notification" data-toggle="dropdown">
-                    <i class="icon ion-ios-bolt-outline"></i>
-                </a>
-                <div class="dropdown-menu">
-                    <div class="dropdown-menu-header">
-                        <h6 class="dropdown-menu-title">Activity Logs</h6>
-                        <div>
-                            <a href="">Filter List</a>
-                            <a href="">Settings</a>
-                        </div>
-                    </div><!-- dropdown-menu-header -->
-                    <div class="dropdown-activity-list">
-                        <div class="activity-label">Today, December 13, 2017</div>
-                        <div class="activity-item">
-                            <div class="row no-gutters">
-                                <div class="col-2 tx-right">10:15am</div>
-                                <div class="col-2 tx-center"><span class="square-10 bg-success"></span></div>
-                                <div class="col-8">Purchased christmas sale cloud storage</div>
-                            </div><!-- row -->
-                        </div><!-- activity-item -->
-                        <div class="activity-item">
-                            <div class="row no-gutters">
-                                <div class="col-2 tx-right">9:48am</div>
-                                <div class="col-2 tx-center"><span class="square-10 bg-danger"></span></div>
-                                <div class="col-8">Login failure</div>
-                            </div><!-- row -->
-                        </div><!-- activity-item -->
-                        <div class="activity-item">
-                            <div class="row no-gutters">
-                                <div class="col-2 tx-right">7:29am</div>
-                                <div class="col-2 tx-center"><span class="square-10 bg-warning"></span></div>
-                                <div class="col-8">(D:) Storage almost full</div>
-                            </div><!-- row -->
-                        </div><!-- activity-item -->
-                        <div class="activity-item">
-                            <div class="row no-gutters">
-                                <div class="col-2 tx-right">3:21am</div>
-                                <div class="col-2 tx-center"><span class="square-10 bg-success"></span></div>
-                                <div class="col-8">1 item sold <strong>Christmas bundle</strong></div>
-                            </div><!-- row -->
-                        </div><!-- activity-item -->
-                        <div class="activity-label">Yesterday, December 12, 2017</div>
-                        <div class="activity-item">
-                            <div class="row no-gutters">
-                                <div class="col-2 tx-right">6:57am</div>
-                                <div class="col-2 tx-center"><span class="square-10 bg-success"></span></div>
-                                <div class="col-8">Earn new badge <strong>Elite Author</strong></div>
-                            </div><!-- row -->
-                        </div><!-- activity-item -->
-                    </div><!-- dropdown-activity-list -->
-                    <div class="dropdown-list-footer">
-                        <a href="page-activity.html"><i class="fa fa-angle-down"></i> Show All Activities</a>
+    <button class="header-menu-wrapper-close" id="header_menu_mobile_close_btn"><i class="la la-close"></i></button>
+    <div class="header-menu-wrapper grid__item grid__item--fluid" id="header_menu_wrapper">
+        <div id="header_menu" class="header-menu header-menu-mobile  header-menu--layout- ">
+            <ul class="menu__nav ">
+                <li class="menu__item homeMenu menu__item--active " aria-haspopup="true">
+                    <a href="/home" class="menu__link "><span class="menu__link-text">Home</span></a></li>
+            </ul>
+        </div>
+    </div>
+
+
+    <div class="header__topbar">
+
+
+        <div class="header__topbar-item dropdown">
+            <div class="header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
+                <span class="header__topbar-icon header__topbar-icon--warning"><i class="fa fa-globe"></i></span>
+            </div>
+            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
+                <form>
+
+                    <div class="head head--skin-light">
+                        <h3 class="head__title">
+                            License Type
+                            <span class="space-15"></span>
+                            <span class="btn btn-success btn-sm btn-bold btn-font-md licenseType">XXXXX</span>
+                        </h3>
                     </div>
-                </div><!-- dropdown-menu-right -->
-            </div><!-- dropdown -->
-            <div class="dropdown dropdown-b">
-                <a href="" class="header-notification" data-toggle="dropdown">
-                    <i class="icon ion-ios-bell-outline"></i>
-                    <span class="indicator"></span>
-                </a>
-                <div class="dropdown-menu">
-                    <div class="dropdown-menu-header">
-                        <h6 class="dropdown-menu-title">Notifications</h6>
-                        <div>
-                            <a href="">Mark All as Read</a>
-                            <a href="">Settings</a>
+
+                    <div class="grid-nav grid-nav--skin-light">
+                        <div class="grid-nav__row">
+                            <a href="#" class="grid-nav__item">
+                                <span class="grid-nav__title">Domain Name</span>
+                                <span class="grid-nav__desc domainName">XXXXX</span>
+                            </a>
                         </div>
-                    </div><!-- dropdown-menu-header -->
-                    <div class="dropdown-list">
-                        <!-- loop starts here -->
-                        <a href="" class="dropdown-link">
-                            <div class="media">
-                                <img src="http://via.placeholder.com/500x500" alt="">
-                                <div class="media-body">
-                                    <p><strong>Suzzeth Bungaos</strong> tagged you and 18 others in a post.</p>
-                                    <span>October 03, 2017 8:45am</span>
-                                </div>
-                            </div><!-- media -->
-                        </a>
-                        <!-- loop ends here -->
-                        <a href="" class="dropdown-link">
-                            <div class="media">
-                                <img src="http://via.placeholder.com/500x500" alt="">
-                                <div class="media-body">
-                                    <p><strong>Mellisa Brown</strong> appreciated your work <strong>The Social Network</strong></p>
-                                    <span>October 02, 2017 12:44am</span>
-                                </div>
-                            </div><!-- media -->
-                        </a>
-                        <a href="" class="dropdown-link read">
-                            <div class="media">
-                                <img src="http://via.placeholder.com/500x500" alt="">
-                                <div class="media-body">
-                                    <p>20+ new items added are for sale in your <strong>Sale Group</strong></p>
-                                    <span>October 01, 2017 10:20pm</span>
-                                </div>
-                            </div><!-- media -->
-                        </a>
-                        <a href="" class="dropdown-link read">
-                            <div class="media">
-                                <img src="http://via.placeholder.com/500x500" alt="">
-                                <div class="media-body">
-                                    <p><strong>Julius Erving</strong> wants to connect with you on your conversation with <strong>Ronnie Mara</strong></p>
-                                    <span>October 01, 2017 6:08pm</span>
-                                </div>
-                            </div><!-- media -->
-                        </a>
-                        <div class="dropdown-list-footer">
-                            <a href="page-notifications.html"><i class="fa fa-angle-down"></i> Show All Notifications</a>
+                        <div class="grid-nav__row">
+                            <a href="#" class="grid-nav__item">
+                                <span class="grid-nav__title">Domain Key</span>
+                                <span class="grid-nav__desc domainKey">XXXXX</span>
+                            </a>
                         </div>
-                    </div><!-- dropdown-list -->
-                </div><!-- dropdown-menu-right -->
-            </div><!-- dropdown -->
-            <div class="dropdown dropdown-c">
-                <a href="#" class="logged-user" data-toggle="dropdown">
-                    <img src="http://via.placeholder.com/500x500" alt="">
-                    <span>Boodskap Admin</span>
-                    <i class="fa fa-angle-down"></i>
-                </a>
-                <div class="dropdown-menu dropdown-menu-right">
-                    <nav class="nav">
-                        <a href="#" class="nav-link"><i class="icon ion-person"></i> My Profile</a>
-                        <a href="#" class="nav-link"><i class="icon ion-ios-gear"></i> Account Settings</a>
-                        <a href="javascript:void(0)" class="nav-link" onclick="logout()"><i class="icon ion-forward"></i> Sign Out</a>
-                    </nav>
-                </div><!-- dropdown-menu -->
-            </div><!-- dropdown -->
-        </div><!-- header-right -->
-    </div><!-- container -->
+                        <div class="grid-nav__row">
+                            <a href="#" class="grid-nav__item">
+                                <span class="grid-nav__title">API Key</span>
+                                <span class="grid-nav__desc apiKey">XXXXX</span>
+                            </a>
+                        </div>
+                        <div class="grid-nav__row">
+                            <a href="#" class="grid-nav__item">
+                                <span class="grid-nav__title">Token</span>
+                                <span class="grid-nav__desc token">XXXXX</span>
+                            </a>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+
+        <div class="header__topbar-item header__topbar-item--user">
+            <div class="header__topbar-wrapper" data-toggle="dropdown" data-offset="10px,0px">
+                <span class="header__topbar-icon"><i class="fa fa-user"></i></span>
+            </div>
+            <div class="dropdown-menu dropdown-menu-fit dropdown-menu-right dropdown-menu-anim dropdown-menu-xl">
+
+                <!--begin: Head -->
+                <div class="user-card user-card--skin-light notification-item-padding-x">
+                    <div class="user-card__avatar">
+                        <img class="hidden-" alt="Pic" src="/assets/media/users/default.jpg" />
+
+                        <!--use below badge element instead the user avatar to display username's first letter(remove hidden class to display it) -->
+                        <span class="badge badge--username badge--unified-success badge--lg badge--rounded badge--bold hidden">S</span>
+                    </div>
+                    <div class="user-card__name">
+                        <span class="user_name">XXXXXX</span><br>
+                        <small class="user_email">XXXXXX</small>
+                    </div>
+
+
+                </div>
+
+                <!--end: Head -->
+
+                <!--begin: Navigation -->
+                <div class="notification">
+                    <a href="/profile" class="notification__item">
+                        <div class="notification__item-icon">
+                            <i class="flaticon2-calendar-3 font-success"></i>
+                        </div>
+                        <div class="notification__item-details">
+                            <div class="notification__item-title font-bold">
+                                My Profile
+                            </div>
+                            <div class="notification__item-time">
+                                Account settings and more
+                            </div>
+                        </div>
+                    </a>
+                    <a href="/activities" class="notification__item">
+                        <div class="notification__item-icon">
+                            <i class="flaticon2-rocket-1 font-danger"></i>
+                        </div>
+                        <div class="notification__item-details">
+                            <div class="notification__item-title font-bold">
+                                My Activities
+                            </div>
+                            <div class="notification__item-time">
+                                Logs and notifications
+                            </div>
+                        </div>
+                    </a>
+                    <div class="notification__custom">
+                        <a href="javascript:void(0)" onclick="logout()" class="btn btn-label-brand btn-sm btn-bold">Sign Out</a>
+                    </div>
+                </div>
+
+                <!--end: Navigation -->
+            </div>
+        </div>
+
+
+    </div>
+
 </div>

@@ -1,0 +1,610 @@
+/*
+$media-breakpoints: (
+    // Small screen / phone
+    sm: 576px,
+    
+    // Medium screen / tablet
+    md: 768px,
+    
+    // Large screen / desktop
+    lg: 1024px,
+    
+    // Extra large screen / wide desktop
+    xl: 1200px,
+
+    // Extra large screen / wide desktop
+    xxl: 1600px
+)!default;
+*/
+.aside {
+  background-color: #ffffff;
+  -webkit-box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.08);
+  box-shadow: 0px 0px 28px 0px rgba(82, 63, 105, 0.08); }
+  .aside .ps > .ps__rail-x {
+    background: transparent; }
+    .aside .ps > .ps__rail-x:hover, .aside .ps > .ps__rail-x:focus {
+      opacity: 1;
+      background: transparent; }
+      .aside .ps > .ps__rail-x:hover > .ps__thumb-x, .aside .ps > .ps__rail-x:focus > .ps__thumb-x {
+        opacity: 1; }
+    .aside .ps > .ps__rail-x > .ps__thumb-x {
+      background: #e0e2f0;
+      opacity: 1; }
+      .aside .ps > .ps__rail-x > .ps__thumb-x:hover, .aside .ps > .ps__rail-x > .ps__thumb-x:focus {
+        opacity: 1;
+        background: #e0e2f0; }
+  .aside .ps > .ps__rail-y {
+    background: transparent; }
+    .aside .ps > .ps__rail-y:hover, .aside .ps > .ps__rail-y:focus {
+      background: transparent;
+      opacity: 1; }
+      .aside .ps > .ps__rail-y:hover > .ps__thumb-y, .aside .ps > .ps__rail-y:focus > .ps__thumb-y {
+        opacity: 1; }
+    .aside .ps > .ps__rail-y > .ps__thumb-y {
+      background: #e0e2f0;
+      opacity: 1; }
+      .aside .ps > .ps__rail-y > .ps__thumb-y:hover, .aside .ps > .ps__rail-y > .ps__thumb-y:focus {
+        opacity: 1;
+        background: #e0e2f0; }
+  .aside .aside__footer {
+    background-color: #f6f7fd; }
+    .aside .aside__footer .btn {
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      background-color: transparent; }
+      .aside .aside__footer .btn i {
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        color: #99a7df; }
+    .aside .aside__footer .show .btn,
+    .aside .aside__footer .btn:hover {
+      -webkit-transition: all 0.3s;
+      transition: all 0.3s;
+      background-color: #dde1f7; }
+      .aside .aside__footer .show .btn i,
+      .aside .aside__footer .btn:hover i {
+        -webkit-transition: all 0.3s;
+        transition: all 0.3s;
+        color: #5d78ff; }
+
+.aside-menu {
+  background-color: #ffffff ; }
+  .aside-menu .menu__nav > .menu__item > .menu__heading .menu__link-text,
+  .aside-menu .menu__nav > .menu__item > .menu__link .menu__link-text {
+    color: #313752 ; }
+  .aside-menu .menu__nav > .menu__item > .menu__heading .menu__link-icon,
+  .aside-menu .menu__nav > .menu__item > .menu__link .menu__link-icon {
+    color: #c4cff9 ; }
+    .aside-menu .menu__nav > .menu__item > .menu__heading .menu__link-icon svg g [fill],
+    .aside-menu .menu__nav > .menu__item > .menu__link .menu__link-icon svg g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease;
+      fill: #c4cff9; }
+    .aside-menu .menu__nav > .menu__item > .menu__heading .menu__link-icon svg:hover g [fill],
+    .aside-menu .menu__nav > .menu__item > .menu__link .menu__link-icon svg:hover g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease; }
+  .aside-menu .menu__nav > .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+  .aside-menu .menu__nav > .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+    background-color: #c4cff9 ; }
+  .aside-menu .menu__nav > .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+  .aside-menu .menu__nav > .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+    background-color: #c4cff9 ; }
+  .aside-menu .menu__nav > .menu__item > .menu__heading .menu__ver-arrow,
+  .aside-menu .menu__nav > .menu__item > .menu__link .menu__ver-arrow {
+    color: #c4cff9 ; }
+  .aside-menu .menu__nav > .menu__item.menu__item--open {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading,
+    .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link {
+      background-color: #f6f7fd ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading .menu__link-text,
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link .menu__link-text {
+        color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading .menu__link-icon,
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link .menu__link-icon {
+        color: #5d78ff ; }
+        .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease;
+          fill: #5d78ff; }
+        .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__heading .menu__ver-arrow,
+      .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link .menu__ver-arrow {
+        color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item.menu__item--here {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading,
+    .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link {
+      background-color: #f6f7fd ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading .menu__link-text,
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link .menu__link-text {
+        color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading .menu__link-icon,
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link .menu__link-icon {
+        color: #5d78ff ; }
+        .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease;
+          fill: #5d78ff; }
+        .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__heading .menu__ver-arrow,
+      .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link .menu__ver-arrow {
+        color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item.menu__item--active {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading,
+    .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link {
+      background-color: #f6f7fd ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading .menu__link-text,
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link .menu__link-text {
+        color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading .menu__link-icon,
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link .menu__link-icon {
+        color: #5d78ff ; }
+        .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease;
+          fill: #5d78ff; }
+        .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__heading .menu__ver-arrow,
+      .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link .menu__ver-arrow {
+        color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading,
+    .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link {
+      background-color: #f6f7fd ; }
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-text,
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-text {
+        color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon,
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon {
+        color: #5d78ff ; }
+        .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease;
+          fill: #5d78ff; }
+        .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__ver-arrow,
+      .aside-menu .menu__nav > .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__ver-arrow {
+        color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item > .menu__arrow {
+    color: #ffffff; }
+  .aside-menu .menu__nav > .menu__section .menu__section-text {
+    color: #a1a8c3 ; }
+  .aside-menu .menu__nav > .menu__section .menu__section-icon {
+    color: #a1a8c3 ; }
+  .aside-menu .menu__nav > .menu__separator {
+    border-bottom: 1px solid #a1a8c3 ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__heading .menu__link-text,
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__link .menu__link-text {
+    color: #3d4465 ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__heading .menu__link-icon,
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__link .menu__link-icon {
+    color: #c4cff9 ; }
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__heading .menu__link-icon svg g [fill],
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__link .menu__link-icon svg g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease;
+      fill: #c4cff9; }
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__heading .menu__link-icon svg:hover g [fill],
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__link .menu__link-icon svg:hover g [fill] {
+      -webkit-transition: fill 0.3s ease;
+      transition: fill 0.3s ease; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+    background-color: #c4cff9 ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+    background-color: #c4cff9 ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__heading .menu__ver-arrow,
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item > .menu__link .menu__ver-arrow {
+    color: #c4cff9 ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading,
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link {
+      background-color: #f8f8fb ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading .menu__link-text,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link .menu__link-text {
+        color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading .menu__link-icon,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link .menu__link-icon {
+        color: #5d78ff ; }
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease;
+          fill: #5d78ff; }
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__heading .menu__ver-arrow,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--open > .menu__link .menu__ver-arrow {
+        color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__heading,
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__link {
+      background-color: #f8f8fb ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__heading .menu__link-icon svg g [fill],
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__link .menu__link-icon svg g [fill] {
+        -webkit-transition: fill 0.3s ease;
+        transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__heading .menu__link-icon svg:hover g [fill],
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__link .menu__link-icon svg:hover g [fill] {
+        -webkit-transition: fill 0.3s ease;
+        transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading,
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link {
+      background-color: #f8f8fb ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading .menu__link-text,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link .menu__link-text {
+        color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading .menu__link-icon,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link .menu__link-icon {
+        color: #5d78ff ; }
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease;
+          fill: #5d78ff; }
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__heading .menu__ver-arrow,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item.menu__item--active > .menu__link .menu__ver-arrow {
+        color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover {
+    -webkit-transition: background-color 0.3s;
+    transition: background-color 0.3s; }
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading,
+    .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link {
+      background-color: #f8f8fb ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-text,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-text {
+        color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon {
+        color: #5d78ff ; }
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease;
+          fill: #5d78ff; }
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+        background-color: #5d78ff ; }
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__ver-arrow,
+      .aside-menu .menu__nav > .menu__item .menu__submenu .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__ver-arrow {
+        color: #5d78ff ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__section .menu__section-text {
+    color: #a4a7bd ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__section .menu__section-icon {
+    color: #aaacc2 ; }
+  .aside-menu .menu__nav > .menu__item .menu__submenu .menu__separator {
+    border-bottom: 1px solid rgba(0, 0, 0, 0.07) ; }
+
+@media (min-width: 1025px) {
+  .aside--minimize .aside-menu .menu__nav > .menu__item {
+    background: transparent; }
+    .aside--minimize .aside-menu .menu__nav > .menu__item > .menu__link > .menu__link-icon {
+      color: #c4cff9; }
+    .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--hover, .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--open {
+      background: transparent !important; }
+      .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--hover > .menu__link > .menu__link-icon, .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--open > .menu__link > .menu__link-icon {
+        color: #5d78ff ; }
+    .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--here, .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--active {
+      background: transparent !important; }
+      .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--here > .menu__link > .menu__link-icon, .aside--minimize .aside-menu .menu__nav > .menu__item.menu__item--active > .menu__link > .menu__link-icon {
+        color: #5d78ff ; }
+    .aside--minimize .aside-menu .menu__nav > .menu__item:hover {
+      background: transparent; }
+      .aside--minimize .aside-menu .menu__nav > .menu__item:hover > .menu__link > .menu__link-icon {
+        color: #5d78ff !important; } }
+
+@media (min-width: 1025px) {
+  .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav,
+  .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav {
+    background-color: #fff;
+    -webkit-box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15);
+    box-shadow: 0px 0px 50px 0px rgba(82, 63, 105, 0.15); }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-text,
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-text,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-text,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-text {
+      color: #696e92 ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-icon,
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-icon,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-icon,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-icon {
+      color: #a8aabb ; }
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-icon svg g [fill],
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-icon svg g [fill],
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-icon svg g [fill],
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-icon svg g [fill] {
+        -webkit-transition: fill 0.3s ease;
+        transition: fill 0.3s ease;
+        fill: #a8aabb; }
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-icon svg:hover g [fill],
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-icon svg:hover g [fill],
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-icon svg:hover g [fill],
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-icon svg:hover g [fill] {
+        -webkit-transition: fill 0.3s ease;
+        transition: fill 0.3s ease; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--dot > span,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+      background-color: #a8aabb ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--line > span,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+      background-color: #a8aabb ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__ver-arrow,
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__ver-arrow,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__heading .menu__ver-arrow,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item > .menu__link .menu__ver-arrow {
+      color: #a8aabb ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open {
+      -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s; }
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading,
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link {
+        background-color: #f8f8fb ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-text,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-text,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-text,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-text {
+          color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-icon,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-icon,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-icon,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-icon {
+          color: #5d78ff ; }
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-icon svg g [fill],
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-icon svg g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-icon svg g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-icon svg g [fill] {
+            -webkit-transition: fill 0.3s ease;
+            transition: fill 0.3s ease;
+            fill: #5d78ff; }
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-icon svg:hover g [fill],
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-icon svg:hover g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-icon svg:hover g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-icon svg:hover g [fill] {
+            -webkit-transition: fill 0.3s ease;
+            transition: fill 0.3s ease; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+          background-color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+          background-color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__ver-arrow,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__ver-arrow,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__heading .menu__ver-arrow,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--open > .menu__link .menu__ver-arrow {
+          color: #5d78ff ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here {
+      -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s; }
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading,
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link {
+        background-color: #f8f8fb ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-icon svg g [fill],
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-icon svg g [fill],
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-icon svg g [fill],
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-icon svg g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-icon svg:hover g [fill],
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-icon svg:hover g [fill],
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-icon svg:hover g [fill] {
+          -webkit-transition: fill 0.3s ease;
+          transition: fill 0.3s ease; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+          background-color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--here > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+          background-color: #5d78ff ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active {
+      -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s; }
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading,
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link {
+        background-color: #f8f8fb ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-text,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-text,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-text,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-text {
+          color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-icon,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-icon,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-icon,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-icon {
+          color: #5d78ff ; }
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-icon svg g [fill],
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-icon svg g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-icon svg g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-icon svg g [fill] {
+            -webkit-transition: fill 0.3s ease;
+            transition: fill 0.3s ease;
+            fill: #5d78ff; }
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-icon svg:hover g [fill],
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-icon svg:hover g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-icon svg:hover g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-icon svg:hover g [fill] {
+            -webkit-transition: fill 0.3s ease;
+            transition: fill 0.3s ease; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+          background-color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+          background-color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__ver-arrow,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__ver-arrow,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__heading .menu__ver-arrow,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item.menu__item--active > .menu__link .menu__ver-arrow {
+          color: #5d78ff ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover {
+      -webkit-transition: background-color 0.3s;
+      transition: background-color 0.3s; }
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading,
+      .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading,
+      .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link {
+        background-color: #f8f8fb ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-text,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-text,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-text,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-text {
+          color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon {
+          color: #5d78ff ; }
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg g [fill],
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg g [fill] {
+            -webkit-transition: fill 0.3s ease;
+            transition: fill 0.3s ease;
+            fill: #5d78ff; }
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg:hover g [fill],
+          .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg:hover g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-icon svg:hover g [fill],
+          .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-icon svg:hover g [fill] {
+            -webkit-transition: fill 0.3s ease;
+            transition: fill 0.3s ease; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--dot > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--dot > span {
+          background-color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__link-bullet.menu__link-bullet--line > span,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__link-bullet.menu__link-bullet--line > span {
+          background-color: #5d78ff ; }
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__ver-arrow,
+        .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__ver-arrow,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__heading .menu__ver-arrow,
+        .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__item:not(.menu__item--parent):not(.menu__item--open):not(.menu__item--here):not(.menu__item--active):hover > .menu__link .menu__ver-arrow {
+          color: #5d78ff ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__section .menu__section-text,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__section .menu__section-text {
+      color: #a4a7bd ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__section .menu__section-icon,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__section .menu__section-icon {
+      color: #aaacc2 ; }
+    .aside--minimize .aside-menu .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__separator,
+    .aside-menu.aside-menu--dropdown .menu__nav .menu__item:not([data-ktmenu-submenu-mode=accordion]).menu__item--hover > .menu__submenu .menu__subnav .menu__separator {
+      border-bottom: 1px solid rgba(0, 0, 0, 0.07) ; } }
+
+.aside .aside-menu > .menu__navm .menu__item > .menu__link .menu__link-text {
+  font-weight: 500; }
