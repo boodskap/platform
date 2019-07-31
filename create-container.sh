@@ -38,7 +38,7 @@ DEVELOPMENT=true
 # For debugging platform server using Java remote debugging on port 9999
 #
 #
-JDEBUG=true
+JDEBUG=false
 
 ENV="-e DEVELOPMENT=${DEVELOPMENT} -e JDEBUG=${JDEBUG}"
 
@@ -66,19 +66,11 @@ if [ $DEVELOPMENT == true ]; then
     #ENV="$ENV -e BOODSKAP_HOME=${PLATFORM_MOUNT}"
     #VOLUMES="$VOLUMES -v ${BOODSKAP_HOME}:${PLATFORM_MOUNT}"
 
-    #
-    # Boodskap Admin Console ( git clone https://github.com/boodskap/admin-console.git )
-    # Enable ENV, VOLUMES and CONSOLE_HOME pointing to <git_path>
-    #
-    #CONSOLE_HOME=${HOME}/git/admin-console
+    #CONSOLE_HOME=${HOME}/git/platform/admin-console
     #ENV="$ENV -e CONSOLE_HOME=${CONSOLE_MOUNT}"
     #VOLUMES="$VOLUMES -v ${CONSOLE_HOME}:${CONSOLE_MOUNT}"
 
-    #
-    # Boodskap Dashboard ( git clone https://github.com/boodskap/dashboard.git )
-    # Enabled ENV, VOLUMES and DASHBOARD_HOME pointing to <git_path>
-    #
-    #DASHBOARD_HOME=${HOME}/git/dashboard
+    #DASHBOARD_HOME=${HOME}/git/platform/dashboard
     #ENV="$ENV -e DASHBOARD_HOME=${DASHBOARD_MOUNT}"
     #VOLUMES="$VOLUMES -v ${DASHBOARD_HOME}:${DASHBOARD_MOUNT}"
 fi

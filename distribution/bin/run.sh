@@ -55,15 +55,15 @@ pm2 start ${DASHBOARD_HOME}/bdskp-dashboard-node.js
 
 if [ -d "$SOLUTION_DIR" ] 
 then
+	sed -i 's/TARGET_CLUSTER/solution_cluster/g' /etc/nginx/sites-enabled/boodskap.xyz
     cd $SOLUTION_DIR
     echo "Installing custom solution dependencies, please wait..."
     npm -s install
     echo "Starting custom solution"
     ${START_SCRIPT}
 else
-    echo "No custom solution directory configured, starting examples"
-    cd ${EXAMPLES_HOME}
-    pm2 start ${EXAMPLES_HOME}/app.js
+    echo "No custom solution directory configured, using dashboard"
+	sed -i 's/TARGET_CLUSTER/dashboard_cluster/g' /etc/nginx/sites-enabled/boodskap.xyz
 fi
 
 service nginx start

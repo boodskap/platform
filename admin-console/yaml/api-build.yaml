@@ -1,5 +1,4 @@
 swagger: "2.0"
-host: platform.boodskap.xyz
 basePath: /api
 schemes: 
   - http
