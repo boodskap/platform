@@ -15,12 +15,12 @@ info:
   license: 
     name: "MIT"
 paths:
-  '/alexa/upsert':
+  '/mspec/create':
     post:
       tags:
-        - Upsert Alexa
-      summary: Create / Update Alexa
-      operationId: upsertAlexa
+        - Create Message Definition
+      summary: Create Message Definition
+      operationId: createMessageDefinition
       consumes:
         - "application/json"
       produces:
@@ -31,35 +31,35 @@ paths:
           description: Auth token of the logged in user
           required: true
           type: string
-        - name: dto
+        - name: entity
           in: body
-          description: Alexa JSON object
+          description: MessageSpecification JSON object
           required: true
           schema:
-            $ref: '#/definitions/Alexa'
+            $ref: '#/definitions/MessageSpecification'
       responses:
         '200':
           description: successful operation
           schema: 
-            $ref: "#/definitions/IDResult"
+            $ref: "#/definitions/Success"
         "417":
           description: "API Error"
           schema: 
             $ref: "#/definitions/ApiError"
-  '/alexa/get/{alexaId}':
+  '/mspec/get/{specId}':
     get:
       tags:
-        - Get Alexa
-      summary: Retrieve Alexa
-      operationId: getAlexa
+        - Get Message Definition
+      summary: Retreive Message Definition
+      operationId: getMessageDefinition
       consumes:
         - "application/json"
       produces:
         - "application/json"
       parameters:
-        - name: alexaId
+        - name: specId
           in: path
-          description: Alexa Id
+          description: Message Spec id
           required: true
           type: string
         - name: atoken
@@ -76,42 +76,17 @@ paths:
         '200':
           description: successful operation
           schema:
-            $ref: '#/definitions/Alexa'
+            $ref: '#/definitions/MessageSpecification'
         "417":
           description: "API Error"
           schema: 
             $ref: "#/definitions/ApiError"
-  '/alexa/countall':
-    get:
+  '/mspec/delete':
+    delete:
       tags:
-        - Count All Alexa
-      summary: Count All Alexa
-      operationId: countAllAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema: 
-            $ref: "#/definitions/Count"
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/count':
-    get:
-      tags:
-        - Count All Domain Alexa
-      summary: Count All Domain Alexa
-      operationId: countAllDomainAlexa
+        - Delete All Message Definitions
+      summary: Delete All Message Definitions
+      operationId: deleteAllMessageDefinitions
       consumes:
         - "application/json"
       produces:
@@ -131,17 +106,52 @@ paths:
         '200':
           description: successful operation
           schema: 
-            $ref: "#/definitions/Count"
+            $ref: "#/definitions/Success"
         "417":
           description: "API Error"
           schema: 
             $ref: "#/definitions/ApiError"
-  '/alexa/list':
+  '/mspec/delete/{specId}':
+    delete:
+      tags:
+        - Delete Message Definition
+      summary: Delete Message Definition
+      operationId: deleteMessageDefinition
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: specId
+          in: path
+          description: Message Spec id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/mspec/list':
     get:
       tags:
-        - List Alexa
-      summary: List Alexa
-      operationId: listAlexa
+        - List Message Definitions
+      summary: List Message Definition
+      operationId: listMessageDefinitions
       consumes:
         - "application/json"
       produces:
@@ -174,9 +184,9 @@ paths:
           description: If next is true, **eid** is required
           required: false
           type: boolean
-        - name: eid
+        - name: specId
           in: query
-          description: Last Alexa Id of the previous list operation, **required** if **next** is true
+          description: Last Message Definition Id of the previous list operation, **required** if **next** is true
           required: false
           type: string
       responses:
@@ -185,68 +195,167 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Alexa'
+              $ref: '#/definitions/MessageSpecification'
         "417":
           description: "API Error"
           schema: 
             $ref: "#/definitions/ApiError"
-  '/alexa/search':
+  '/mspec/countall':
+    get:
+      tags:
+        - Count All Message Definition
+      summary: Count All Message Definition
+      operationId: countAllMessageDefinitions
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in admin user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Count"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/mspec/count':
+    get:
+      tags:
+        - Count Domain Message Definitions
+      summary: Count Domain Message Definitions
+      operationId: countDomainMessageDefinitions
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Count"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/mspec/create/field/{specId}':
     post:
       tags:
-        - Search Alexa
-      summary: Search Alexa
-      operationId: searchAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - application/json
-      parameters:
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-        - name: pageSize
-          in: query
-          description: Maximum number of objects to be listed
-          required: false
-          type: integer
-          format: int32
-        - name: dkey
-          in: query
-          description: Domain Key, optional
-          required: false
-          type: string
-        - name: query
-          in: body
-          description: Search string
-          required: true
-          schema:
-            type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Alexa'
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/delete/{alexaId}':
-    delete:
-      tags:
-        - Delete Alexa
-      summary: Delete Alexa
-      operationId: deleteAlexa
+        - Create Message Field
+      summary: Create Message Field
+      operationId: createMessageField
       consumes:
         - "application/json"
       produces:
         - "application/json"
       parameters:
-        - name: alexaId
+        - name: specId
           in: path
+          description: Message Spec id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: entity
+          in: body
+          description: MessageField JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/MessageField'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/MessageSpecification"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/mspec/modify/field/{specId}':
+    post:
+      tags:
+        - Modify Message Field
+      summary: Modify Message Field
+      operationId: modifyMessageField
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: specId
+          in: path
+          description: Message Spec id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: entity
+          in: body
+          description: MessageField JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/MessageField'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/MessageSpecification"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/mspec/remove/field/{specId}/{name}':
+    delete:
+      tags:
+        - Delete Message Field
+      summary: Delete Message Field
+      operationId: deleteMessageField
+      consumes:
+        - "application/json"
+      produces:
+        - "application/json"
+      parameters:
+        - name: specId
+          in: path
+          description: Message Spec id
+          required: true
+          type: string
+        - name: name
+          in: path
+          description: Field Name
           required: true
           type: string
         - name: atoken
@@ -268,20 +377,25 @@ paths:
           description: "API Error"
           schema: 
             $ref: "#/definitions/ApiError"
-  '/alexa/deleteall':
-    delete:
+  '/mspec/count/fields/{specId}':
+    get:
       tags:
-        - Delete all Alexa
-      summary: Delete all Alexa
-      operationId: deleteAllAlexa
+        - Count Message Definition Fields
+      summary: Count Message Definition Fields
+      operationId: countMessgeDefinitionFields
       consumes:
         - "application/json"
       produces:
         - "application/json"
       parameters:
+        - name: specId
+          in: path
+          description: Message Spec id
+          required: true
+          type: string
         - name: atoken
           in: query
-          description: Auth token of the logged in user
+          description: Auth token of the logged in admin user
           required: true
           type: string
         - name: dkey
@@ -293,37 +407,12 @@ paths:
         '200':
           description: successful operation
           schema: 
-            $ref: "#/definitions/Success"
+            $ref: "#/definitions/Count"
         "417":
           description: "API Error"
           schema: 
             $ref: "#/definitions/ApiError"
 definitions:
-  Alexa:
-    type: object
-    required:
-      - alexaId
-    properties:
-      alexaId:
-        type: string
-      domainKey:
-        type: string
-      ruleType:
-        type: string
-      ruleName:
-        type: string
-      intentName:
-        type: string
-      errorResponse:
-        type: string
-      createdBy:
-        type: string
-      registeredStamp:
-        type: integer
-        format: int64
-      updatedStamp:
-        type: integer
-        format: int64
   ApiError: 
     type: "object"
     required: 
@@ -341,13 +430,64 @@ definitions:
       total:
         type: integer
         format: int64
-  IDResult:
+  MessageField:
     type: object
     required:
-      - id
+      - name
+      - dataType
     properties:
-      id:
+      domainKey:
         type: string
+      specId:
+        type: string
+      name:
+        type: string
+      dataType:
+        type: string
+        enum:
+         - BOOLEAN
+         - BYTE
+         - CHAR
+         - SHORT
+         - INT
+         - LONG
+         - FLOAT
+         - DOUBLE
+         - STRING
+         - UUID
+         - BLOB
+         - JSON
+      description:
+        type: string
+      indexed:
+        type: boolean
+      fulltextIndexed:
+        type: boolean
+  MessageSpecification:
+    type: object
+    required:
+      - specId
+      - name
+      - fields
+    properties:
+      domainKey:
+        type: string
+      specId:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      fields:
+        type: array
+        items:
+          $ref: '#/definitions/MessageField'
+      createdStamp:
+        type: integer
+        format: int64
+      updatedStamp:
+        type: integer
+        format: int64
   Success: 
     type: "object"
     required:

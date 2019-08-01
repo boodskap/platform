@@ -1,0 +1,801 @@
+swagger: "2.0"
+basePath: /api
+schemes: 
+  - http
+  - https
+produces: 
+  - "application/json"
+info: 
+  version: "3.0.0-alpha1"
+  title: "Boodskap API"
+  description: "Boodskap IoT Platform API"
+  termsOfService: "https://boodskap.io/terms-conditions"
+  contact: 
+    name: "Boodskap Team"
+  license: 
+    name: "MIT"
+paths:
+  '/asset/upsert':
+    post:
+      tags:
+        - Upsert Asset
+      summary: Create / Update Asset
+      operationId: upsertAsset
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: entity
+          in: body
+          description: Asset JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Asset'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/get/{aid}':
+    get:
+      tags:
+        - Get Asset
+      summary: Retreive Asset
+      operationId: getAsset
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Asset'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/countall':
+    post:
+      tags:
+        - Count All Assets
+      summary: Count All Assets
+      operationId: countAllAssets
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Count"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/count':
+    post:
+      tags:
+        - Count All Domain Assets
+      summary: Count All Domain Assets
+      operationId: countAllDomainAssets
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Count"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/list':
+    get:
+      tags:
+        - List Assets
+      summary: List Assets
+      operationId: listAssets
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: Page index, starts from 0
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          description: Maximum number of assets to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: next
+          in: query
+          description: If next is true, **eid** is required
+          required: false
+          type: boolean
+        - name: aid
+          in: query
+          description: Last Asset Id of the previous list operation, **required** if **next** is true
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Asset'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/search':
+    post:
+      tags:
+        - Search Assets
+      summary: Search Assets
+      operationId: searchAssets
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: pageSize
+          in: query
+          description: Maximum number of objects to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: query
+          in: body
+          description: Search string
+          required: true
+          schema:
+            type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Asset'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/delete/{aid}':
+    delete:
+      tags:
+        - Delete Asset
+      summary: Delete Asset
+      operationId: deleteAsset
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset Id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/deleteall':
+    delete:
+      tags:
+        - Delete All Assets
+      summary: Delete All Assets
+      operationId: deleteAllAssets
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/device/link/{aid}/{did}':
+    get:
+      tags:
+        - Link Asset
+      summary: Link an Asset with a Device
+      operationId: linkAsset
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset Id
+          required: true
+          type: string
+        - name: did
+          in: path
+          description: Device Id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/device/unlink/{aid}/{did}':
+    get:
+      tags:
+        - Unlink Asset
+      summary: Unlink an Asset from a Device
+      operationId: unlinkAsset
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset Id
+          required: true
+          type: string
+        - name: did
+          in: path
+          description: Device Id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/device/list/{aid}':
+    get:
+      tags:
+        - List Asset Devices
+      summary: List Asset Devices
+      operationId: listAssetDevices
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset Id
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: Page index, starts from 0
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          description: Maximum number of entities to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: next
+          in: query
+          description: If next is true, **did** is required
+          required: false
+          type: boolean
+        - name: did
+          in: query
+          description: Last Device ID of the previous list operation, **required** if **next** is true
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AssetDevice'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/property/upsert/{aid}':
+    post:
+      tags:
+        - Store Asset Property
+      summary: Create / Update Asset Property
+      operationId: storeAssetProperty
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: entity
+          in: body
+          description: Property JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/Property'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/property/get/{aid}/{name}':
+    get:
+      tags:
+        - Get Asset Property
+      summary: Retreive Asset Property
+      operationId: getAssetProperty
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset ID
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Property'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/property/list/{aid}':
+    get:
+      tags:
+        - List Asset Properties
+      summary: List Asset Properties
+      operationId: listAssetProperties
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: Page index, starts from 0
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          description: Maximum number of properties to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: next
+          in: query
+          description: If next is true, **eid** is required
+          required: false
+          type: boolean
+        - name: name
+          in: query
+          description: Last Porperty Name of the previous list operation, **required** if **next** is true
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/Property'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/property/delete/{aid}/{name}':
+    delete:
+      tags:
+        - Delete Asset Property
+      summary: Delete Stored Asset Property
+      operationId: deleteAssetProperty
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset ID
+          required: true
+          type: string
+        - name: name
+          in: path
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/property/deleteall/{aid}':
+    delete:
+      tags:
+        - Delete All Asset Properties
+      summary: Delete All Asset Properties
+      operationId: deleteAllAssetProperties
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: aid
+          in: path
+          description: Asset ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+definitions:
+  ApiError: 
+    type: "object"
+    required: 
+      - "code"
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"
+  Asset:
+    type: object
+    required:
+      - assetId
+    properties:
+      assetId:
+        type: string
+      domainKey:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      registeredStamp:
+        type: integer
+        format: int64
+      updatedStamp:
+        type: integer
+        format: int64
+  AssetDevice:
+    type: object
+    required:
+      - assetId
+      - deviceId
+    properties:
+      assetId:
+        type: string
+      deviceId:
+        type: string
+      domainKey:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      registeredStamp:
+        type: integer
+        format: int64
+      updatedStamp:
+        type: integer
+        format: int64
+  Count:
+    type: object
+    required:
+      - total
+    properties:
+      total:
+        type: integer
+        format: int64
+  Device:
+    type: object
+    required:
+      - deviceId
+    properties:
+      deviceId:
+        type: string
+      domainKey:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      modelId:
+        type: string
+      version:
+        type: string
+      password:
+        type: string
+      assetId:
+        type: string
+      reportedIp:
+        type: string
+      reportedPort:
+        type: integer
+        format: int32
+      nodeId:
+        type: string
+      nodeUid:
+        type: string
+      channel:
+        type: string
+      registeredStamp:
+        type: integer
+        format: int64
+      reportedStamp:
+        type: integer
+        format: int64
+  DomainObject:
+    type: object
+    discriminator: domainObjectType
+    properties:
+      domainKey:
+        type: string
+  Property:
+    allOf:
+    - $ref: '#/definitions/SystemProperty'
+    - $ref: '#/definitions/DomainObject'
+    - type: object
+      discriminator: propertyType
+  Storable:
+    type: object
+    discriminator: storableType
+    properties:
+      dataFormat:
+        type: string
+        description: Required if **dataType** is **blob**
+        enum:
+          - AS_IS
+          - JSON
+          - HEX
+          - BASE64
+      description:
+        type: string
+  Success: 
+    type: "object"
+    required:
+      - code
+    properties: 
+      code: 
+        type: "string"
+      message: 
+        type: "string"
+  SystemProperty:
+    allOf:
+    - $ref: '#/definitions/Storable'
+    - type: object
+      discriminator: systemPropertyType
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        createdStamp:
+          type: integer
+          format: int64
+        updatedStamp:
+          type: integer
+          format: int64

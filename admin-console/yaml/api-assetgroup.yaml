@@ -15,187 +15,12 @@ info:
   license: 
     name: "MIT"
 paths:
-  '/alexa/upsert':
+  '/asset/group/upsert':
     post:
       tags:
-        - Upsert Alexa
-      summary: Create / Update Alexa
-      operationId: upsertAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-        - name: dto
-          in: body
-          description: Alexa JSON object
-          required: true
-          schema:
-            $ref: '#/definitions/Alexa'
-      responses:
-        '200':
-          description: successful operation
-          schema: 
-            $ref: "#/definitions/IDResult"
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/get/{alexaId}':
-    get:
-      tags:
-        - Get Alexa
-      summary: Retrieve Alexa
-      operationId: getAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: alexaId
-          in: path
-          description: Alexa Id
-          required: true
-          type: string
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-        - name: dkey
-          in: query
-          description: Domain Key, optional
-          required: false
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            $ref: '#/definitions/Alexa'
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/countall':
-    get:
-      tags:
-        - Count All Alexa
-      summary: Count All Alexa
-      operationId: countAllAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema: 
-            $ref: "#/definitions/Count"
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/count':
-    get:
-      tags:
-        - Count All Domain Alexa
-      summary: Count All Domain Alexa
-      operationId: countAllDomainAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-        - name: dkey
-          in: query
-          description: Domain Key, optional
-          required: false
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema: 
-            $ref: "#/definitions/Count"
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/list':
-    get:
-      tags:
-        - List Alexa
-      summary: List Alexa
-      operationId: listAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-        - name: page
-          in: query
-          description: Page index, starts from 0
-          required: false
-          type: integer
-          format: int32
-        - name: pageSize
-          in: query
-          description: Maximum number of objects to be listed
-          required: false
-          type: integer
-          format: int32
-        - name: dkey
-          in: query
-          description: Domain Key, optional
-          required: false
-          type: string
-        - name: next
-          in: query
-          description: If next is true, **eid** is required
-          required: false
-          type: boolean
-        - name: eid
-          in: query
-          description: Last Alexa Id of the previous list operation, **required** if **next** is true
-          required: false
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema:
-            type: array
-            items:
-              $ref: '#/definitions/Alexa'
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/search':
-    post:
-      tags:
-        - Search Alexa
-      summary: Search Alexa
-      operationId: searchAlexa
+        - Create / Update Asset Group
+      summary: Create / Update Asset Group
+      operationId: upsertAssetGroup
       consumes:
         - "application/json"
       produces:
@@ -206,17 +31,282 @@ paths:
           description: Auth token of the logged in user
           required: true
           type: string
+        - name: entity
+          in: body
+          description: AssetGroup JSON object
+          required: true
+          schema:
+            $ref: '#/definitions/AssetGroup'
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Success"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/group/get/{oaid}/{gid}':
+    get:
+      tags:
+        - Retreive Asset Group
+      summary: Retreive Asset Group
+      operationId: getAssetGroup
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: oaid
+          in: path
+          description: Owner Asset ID
+          required: true
+          type: string
+        - name: gid
+          in: path
+          description: Group ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/AssetGroup'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/group/count':
+    post:
+      tags:
+        - Count All Asset Groups
+      summary: Count All Asset Groups
+      operationId: countAllAssetGroups
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema: 
+            $ref: "#/definitions/Count"
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/group/remove':
+    delete:
+      tags:
+        - Delete All Asset Groups
+      summary: Delete All Asset Groups
+      operationId: deleteAllAssetGroups
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in admin user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Success'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/group/remove/{oaid}':
+    delete:
+      tags:
+        - Delete Asset Groups
+      summary: Delete Asset Groups
+      operationId: deleteAssetGroups
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: oaid
+          in: path
+          description: Owner Asset ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Success'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/group/remove/{oaid}/{gid}':
+    delete:
+      tags:
+        - Delete Asset Group
+      summary: Delete Asset Group
+      operationId: deleteAssetGroup
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: oaid
+          in: path
+          description: Owner Asset ID
+          required: true
+          type: string
+        - name: gid
+          in: path
+          description: Group ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            $ref: '#/definitions/Success'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/group/list/{oaid}':
+    get:
+      tags:
+        - List Asset Groups
+      summary: List Asset Groups
+      operationId: listAssetGroups
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: oaid
+          in: path
+          description: Owner Asset ID
+          required: true
+          type: string
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
+        - name: page
+          in: query
+          description: Page index, starts from 0
+          required: false
+          type: integer
+          format: int32
+        - name: pageSize
+          in: query
+          description: Maximum number of assets to be listed
+          required: false
+          type: integer
+          format: int32
+        - name: next
+          in: query
+          description: If next is true, **eid** is required
+          required: false
+          type: boolean
+        - name: gid
+          in: query
+          description: Last Group Id of the previous list operation, **required** if **next** is true
+          required: false
+          type: string
+      responses:
+        '200':
+          description: successful operation
+          schema:
+            type: array
+            items:
+              $ref: '#/definitions/AssetGroup'
+        "417":
+          description: "API Error"
+          schema: 
+            $ref: "#/definitions/ApiError"
+  '/asset/group/search':
+    post:
+      tags:
+        - Search Asset Groups
+      summary: Search Asset Groups
+      operationId: searchAssetGroups
+      consumes:
+        - "application/json"
+      produces:
+        - application/json
+      parameters:
+        - name: atoken
+          in: query
+          description: Auth token of the logged in user
+          required: true
+          type: string
+        - name: dkey
+          in: query
+          description: Domain Key, optional
+          required: false
+          type: string
         - name: pageSize
           in: query
           description: Maximum number of objects to be listed
           required: false
           type: integer
           format: int32
-        - name: dkey
-          in: query
-          description: Domain Key, optional
-          required: false
-          type: string
         - name: query
           in: body
           description: Search string
@@ -229,101 +319,12 @@ paths:
           schema:
             type: array
             items:
-              $ref: '#/definitions/Alexa'
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/delete/{alexaId}':
-    delete:
-      tags:
-        - Delete Alexa
-      summary: Delete Alexa
-      operationId: deleteAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: alexaId
-          in: path
-          required: true
-          type: string
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-        - name: dkey
-          in: query
-          description: Domain Key, optional
-          required: false
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema: 
-            $ref: "#/definitions/Success"
-        "417":
-          description: "API Error"
-          schema: 
-            $ref: "#/definitions/ApiError"
-  '/alexa/deleteall':
-    delete:
-      tags:
-        - Delete all Alexa
-      summary: Delete all Alexa
-      operationId: deleteAllAlexa
-      consumes:
-        - "application/json"
-      produces:
-        - "application/json"
-      parameters:
-        - name: atoken
-          in: query
-          description: Auth token of the logged in user
-          required: true
-          type: string
-        - name: dkey
-          in: query
-          description: Domain Key, optional
-          required: false
-          type: string
-      responses:
-        '200':
-          description: successful operation
-          schema: 
-            $ref: "#/definitions/Success"
+              $ref: '#/definitions/AssetGroup'
         "417":
           description: "API Error"
           schema: 
             $ref: "#/definitions/ApiError"
 definitions:
-  Alexa:
-    type: object
-    required:
-      - alexaId
-    properties:
-      alexaId:
-        type: string
-      domainKey:
-        type: string
-      ruleType:
-        type: string
-      ruleName:
-        type: string
-      intentName:
-        type: string
-      errorResponse:
-        type: string
-      createdBy:
-        type: string
-      registeredStamp:
-        type: integer
-        format: int64
-      updatedStamp:
-        type: integer
-        format: int64
   ApiError: 
     type: "object"
     required: 
@@ -333,6 +334,34 @@ definitions:
         type: "string"
       message: 
         type: "string"
+  AssetGroup:
+    type: object
+    required:
+      - ownerAssetId
+      - groupId
+    properties:
+      ownerAssetId:
+        type: string
+      groupId:
+        type: string
+      domainKey:
+        type: string
+      name:
+        type: string
+      description:
+        type: string
+      groupEmail:
+        type: string
+      groupPhone:
+        type: string
+      createdStamp:
+        type: integer
+        format: int64
+      individualBroadcast:
+        type: boolean
+      updatedStamp:
+        type: integer
+        format: int64
   Count:
     type: object
     required:
@@ -341,12 +370,31 @@ definitions:
       total:
         type: integer
         format: int64
-  IDResult:
+  DomainObject:
     type: object
-    required:
-      - id
+    discriminator: domainObjectType
     properties:
-      id:
+      domainKey:
+        type: string
+  Property:
+    allOf:
+    - $ref: '#/definitions/SystemProperty'
+    - $ref: '#/definitions/DomainObject'
+    - type: object
+      discriminator: propertyType
+  Storable:
+    type: object
+    discriminator: storableType
+    properties:
+      dataFormat:
+        type: string
+        description: Required if **dataType** is **blob**
+        enum:
+          - AS_IS
+          - JSON
+          - HEX
+          - BASE64
+      description:
         type: string
   Success: 
     type: "object"
@@ -357,3 +405,19 @@ definitions:
         type: "string"
       message: 
         type: "string"
+  SystemProperty:
+    allOf:
+    - $ref: '#/definitions/Storable'
+    - type: object
+      discriminator: systemPropertyType
+      properties:
+        name:
+          type: string
+        value:
+          type: string
+        createdStamp:
+          type: integer
+          format: int64
+        updatedStamp:
+          type: integer
+          format: int64
