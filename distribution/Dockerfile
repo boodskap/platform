@@ -1,9 +1,6 @@
 FROM boodskapiot/ubuntu:18.04
 LABEL maintainer="platform@boodskap.io" description="Boodskap IoT Platform"
 
-FROM boodskapiot/admin-console:latest as consoleos
-FROM boodskapiot/dashboard:latest as dashos
-
 ARG INSTALL_DIR=/usr/local/software
 ARG SOLUTION_START_SCRIPT="pm2 start bin/www"
 
@@ -40,8 +37,8 @@ COPY ./target/release/deplibs ./platform/deplibs/
 COPY ./target/release/libs /platform/libs/
 COPY ./target/release/spi-libs /platform/spi-libs/
 
-COPY --from=consoleos /admin-console ./admin-console/
-COPY --from=dashos /dashboard ./dashboard/
+RUN git clone https://github.com/boodskap/admin-console.git
+RUN git clone https://github.com/boodskap/dashboard.git
 
 WORKDIR ${INSTALL_DIR}/admin-console
 RUN npm install
