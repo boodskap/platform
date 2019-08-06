@@ -1,123 +1,199 @@
 <project name="iot-platform-dist" default="build">
-	
+
 	<property environment="ENV" />
 	<property name="VERSION">3.0.0-aplha1</property>
+	<property name="BASE">${basedir}</property>
+	<property name="DIST">${basedir}/target/release</property>
 
 	<target name="copy">
-		
-		<delete dir="${basedir}/target/spi-libs" />
 
-		<copy todir="${basedir}/target/libs">
-			<fileset dir="${basedir}/server/target/libs" includes="**/*" />
+		<delete dir="${DIST}" />
+
+		<copy todir="${DIST}/deplibs">
+			<fileset dir="${BASE}/server/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/spi-cache-local/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/spi-grid-local/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/spi-cache-ignite/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/spi-grid-ignite/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/spi-storage-cassandra/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/spi-storage-elasticsearch/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/driver-hsqldb/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/driver-mysql/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/protocol-service-udp/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/service-nodejs-bridge/target/libs" excludes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/cache/local">
-			<fileset dir="${basedir}/spi-cache-local/target/libs" includes="**/*" />
+		<copy todir="${DIST}/libs">
+			<fileset dir="${BASE}/server/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/grid/local">
-			<fileset dir="${basedir}/spi-grid-local/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/cache/local">
+			<fileset dir="${BASE}/spi-cache-local/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/cache/ignite">
-			<fileset dir="${basedir}/spi-cache-ignite/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/grid/local">
+			<fileset dir="${BASE}/spi-grid-local/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/grid/ignite">
-			<fileset dir="${basedir}/spi-grid-ignite/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/cache/ignite">
+			<fileset dir="${BASE}/spi-cache-ignite/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/storage/cassandra">
-			<fileset dir="${basedir}/spi-storage-cassandra/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/grid/ignite">
+			<fileset dir="${BASE}/spi-grid-ignite/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/storage/elasticsearch">
-			<fileset dir="${basedir}/spi-storage-elasticsearch/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/storage/cassandra">
+			<fileset dir="${BASE}/spi-storage-cassandra/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/storage/hsqldb">
-			<fileset dir="${basedir}/driver-hsqldb/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/storage/elasticsearch">
+			<fileset dir="${BASE}/spi-storage-elasticsearch/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/storage/mysql">
-			<fileset dir="${basedir}/driver-mysql/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/storage/hsqldb">
+			<fileset dir="${BASE}/driver-hsqldb/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/protocols/udp">
-			<fileset dir="${basedir}/protocol-service-udp/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/storage/mysql">
+			<fileset dir="${BASE}/driver-mysql/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
-		<copy todir="${basedir}/target/spi-libs/services/nodejs">
-			<fileset dir="${basedir}/service-nodejs-bridge/target/libs" includes="**/*" />
+		<copy todir="${DIST}/spi-libs/protocols/udp">
+			<fileset dir="${BASE}/protocol-service-udp/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
+		<copy todir="${DIST}/spi-libs/services/nodejs">
+			<fileset dir="${BASE}/service-nodejs-bridge/target/libs" includes="boodskap-*.jar" />
+		</copy>
+
+		<copy todir="${DIST}/config">
+			<fileset dir="${BASE}/config" />
+		</copy>
+
+		<copy todir="${DIST}/bin">
+			<fileset dir="${BASE}/bin" />
+		</copy>
+
+		<chmod perm="+x">
+			<fileset dir="${DIST}/bin">
+			</fileset>
+		</chmod>
+
+		<antcall target="cleanup">
+			<param name="libdir" value="deplibs" />
+		</antcall>
+
+		<antcall target="cleanup">
+			<param name="libdir" value="libs" />
+		</antcall>
+
+		<antcall target="cleanup-conflicts" />
+
+	</target>
+
+	<target name="cleanup-conflicts">
+		<delete verbose="true">
+			<fileset dir="${DIST}/deplibs">
+
+				<include name="ant-1.7.0.jar" />
+				<include name="ant-launcher-1.7.0.jar" />
+				<include name="asm-4.2.jar" />
+				<include name="commons-cli-1.1.jar" />
+				<include name="commons-codec-1.11.jar" />
+				<include name="commons-codec-1.9.jar" />
+				<include name="commons-lang-2.4.jar" />
+				<include name="commons-lang3-3.1.jar" />
+				<include name="commons-lang3-3.2.1.jar" />
+				<include name="commons-logging-1.1.1.jar" />
+				<include name="commons-logging-1.1.3.jar" />
+				<include name="concurrentlinkedhashmap-lru-1.4.jar" />
+				<include name="error_prone_annotations-2.2.0.jar" />
+				<include name="guava-18.0.jar" />
+				<include name="httpclient-4.2.5.jar" />
+				<include name="httpclient-4.5.2.jar" />
+				<include name="httpclient-4.5.7.jar" />
+				<include name="httpcore-4.2.4.jar" />
+				<include name="httpcore-4.4.4.jar" />
+				<include name="httpcore-nio-4.4.10.jar" />
+				<include name="j2objc-annotations-1.1.jar" />
+				<include name="javassist-3.12.1.GA.jar" />
+				<include name="javassist-3.23.1-GA.jar" />
+				<include name="jboss-logging-3.1.0.CR2.jar" />
+				<include name="jna-4.4.0.jar" />
+				<include name="joda-time-2.4.jar" />
+				<include name="jsr305-2.0.1.jar" />
+				<include name="log4j-1.2.14.jar" />
+				<include name="log4j-over-slf4j-1.7.7.jar"/>
+				<include name="lucene-analyzers-common-5.5.0.jar" />
+				<include name="lucene-core-5.5.0.jar" />
+				<include name="lucene-queries-5.5.0.jar" />
+				<include name="lucene-queryparser-5.5.0.jar" />
+				<include name="lucene-sandbox-5.5.0.jar" />
+				<include name="netty-all-4.0.44.Final.jar" />
+				<include name="slf4j-api-1.7.25.jar" />
+				<include name="slf4j-api-1.7.5.jar" />
+				<include name="slf4j-log4j12-1.6.0.jar" />
+				<include name="snakeyaml-1.11.jar" />
+				<include name="validation-api-1.0.0.GA.jar" />
+			</fileset>
+		</delete>
+	</target>
+
+	<target name="cleanup">
+		<echo message="cleaning up LIBDIR=${libdir}" />
 		<delete verbose="false">
-			<fileset dir="${basedir}/target/spi-libs/cache/local" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/cache/local" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/grid/local" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/grid/local" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/cache/ignite" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/cache/ignite" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/grid/ignite" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/grid/ignite" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/storage/cassandra" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/storage/cassandra" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/storage/elasticsearch" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/storage/elasticsearch" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/storage/hsqldb" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/storage/hsqldb" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/storage/mysql" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/storage/mysql" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/protocols/udp" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/protocols/udp" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 
-			<fileset dir="${basedir}/target/spi-libs/services/nodejs" includes="**/*">
-				<present targetdir="${basedir}/target/libs" />
+			<fileset dir="${DIST}/spi-libs/services/nodejs" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
 		</delete>
 
 	</target>
 
-	<target name="assemble" depends="copy">
-		<copy todir="${basedir}/target/release/libs">
-			<fileset dir="${basedir}/target/libs" />
-		</copy>
-		<copy todir="${basedir}/target/release/spi-libs">
-			<fileset dir="${basedir}/target/spi-libs" />
-		</copy>
-		<copy todir="${basedir}/target/release/config">
-			<fileset dir="${basedir}/config" />
-		</copy>
-		<copy todir="${basedir}/target/release/bin">
-			<fileset dir="${basedir}/bin" />
-		</copy>
-	</target>
-	
-	<target name="release" depends="assemble">
-		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${basedir}/target/release"/>
-		<gzip destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
-		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar"/>
+	<target name="release" depends="copy">
+		<tar destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" basedir="${DIST}" />
+		<gzip destfile="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" src="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" />
+		<delete file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar" />
 		<copy file="${basedir}/releases/boodskap-iot-platform-${VERSION}.tar.gz" tofile="${basedir}/releases/boodskap-iot-platform.tar.gz" />
 	</target>
-	
-	<target name="build" depends="assemble">
+
+	<target name="build" depends="copy">
 	</target>
-	
+
 </project>
