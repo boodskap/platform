@@ -133,6 +133,7 @@ do
 done
 
 CPATH=$CPATH:$ROOT_FOLDER/libs/*
+CPATH=$CPATH:$ROOT_FOLDER/deplibs/*
 
 $JAVA -version
 
