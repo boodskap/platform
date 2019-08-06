@@ -1,5 +1,5 @@
 #!/bin/bash
 CURDIR=`pwd`
-mvn -o clean package
+mvn clean install package
 ant
 chmod +x ${CURDIR}/target/release/bin/*.sh
