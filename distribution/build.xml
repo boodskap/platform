@@ -21,6 +21,7 @@
 			<fileset dir="${BASE}/driver-mysql/target/libs" excludes="boodskap-*.jar" />
 			<fileset dir="${BASE}/protocol-service-udp/target/libs" excludes="boodskap-*.jar" />
 			<fileset dir="${BASE}/service-nodejs-bridge/target/libs" excludes="boodskap-*.jar" />
+			<fileset dir="${BASE}/protocol-service-mqtt/target/libs" excludes="boodskap-*.jar" />
 		</copy>
 
 		<copy todir="${DIST}/libs">
@@ -65,6 +66,10 @@
 
 		<copy todir="${DIST}/spi-libs/services/nodejs">
 			<fileset dir="${BASE}/service-nodejs-bridge/target/libs" includes="boodskap-*.jar" />
+		</copy>
+
+		<copy todir="${DIST}/spi-libs/protocols/mqtt">
+			<fileset dir="${BASE}/protocol-service-mqtt/target/libs" includes="boodskap-*.jar" />
 		</copy>
 
 		<copy todir="${DIST}/config">
@@ -182,6 +187,11 @@
 			<fileset dir="${DIST}/spi-libs/services/nodejs" includes="**/*">
 				<present targetdir="${DIST}/${libdir}" />
 			</fileset>
+			
+			<fileset dir="${DIST}/spi-libs/protocols/mqtt" includes="**/*">
+				<present targetdir="${DIST}/${libdir}" />
+			</fileset>
+
 		</delete>
 
 	</target>

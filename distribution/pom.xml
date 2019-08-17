@@ -72,6 +72,7 @@
 		<module>spi-storage-elasticsearch</module>
 		<module>spi-storage-pojo</module>
 		<module>service-nodejs-bridge</module>
+		<module>protocol-service-mqtt</module>
 	</modules>
 
 	<build>
