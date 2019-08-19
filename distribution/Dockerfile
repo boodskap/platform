@@ -54,12 +54,18 @@ RUN chmod +x ./platform/bin/run.sh
 #
 # default webserver listens on port 80 http://boodskap.xyz
 #
-# 1883 -> MQTT
-# 4201 -> Admin Console Web Application
-# 4202 -> Dashboard Web Application
+# 80			-> HTTP
+# 443			-> HTTPS
+# 1883 			-> MQTT
+# 8083 			-> MQTT WS
+# 18080 		-> API Service
+# 4201 			-> Admin Console Web Application
+# 4202 			-> Dashboard Web Application
+# 2021 			-> FTP Server
+# 40000-60000 	-> FTP Passive Ports
 # 9999 -> Java remote debug port (environment variable JDEBUG should be set to true)
 #
-EXPOSE 80 443 1883 5555/udp 18080 4201 4202 9999
+EXPOSE 80 443 1883 8083 5555/udp 18080 4201 4202 9999 40000-60000
 
 #CMD ["env"]
 ENTRYPOINT ${BOODSKAP_HOME}/bin/run.sh
