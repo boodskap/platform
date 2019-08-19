@@ -86,7 +86,7 @@ fi
 # These ports will be binding locally too
 # Make sure, these ports are free and bindable in your local machine
 #
-PORTS="80 443 1883 18080 4201 4202 10000 9999"
+PORTS="80 443 1883 18080 2021 4201 4202 10000 9999 40000-60000"
 UDP_PORTS="5555"
 
 #
@@ -134,12 +134,12 @@ printf "\t${EXEC}\n\n"
 
 echo "#### To start ${NAME} ####"
 START_EXEC="docker start ${NAME} && docker logs -f ${NAME}"
-RESTART_EXEC="docker restart ${NAME} && docker logs -f ${NAME}"
+RESTART_EXEC="docker kill --signal=SIGINT ${NAME} && docker start ${NAME} && docker logs -f ${NAME}"
 printf "\t${START_EXEC}\n"
 printf "\t${RESTART_EXEC}\n\n"
 
 echo "#### To stop ${NAME} ####"
-STOP_EXEC="docker stop ${NAME}"
+STOP_EXEC="docker kill --signal=SIGINT ${NAME}"
 printf "\t${STOP_EXEC}\n\n"
 
 echo "#### To delete ${NAME} container ####"
