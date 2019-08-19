@@ -73,6 +73,7 @@
 		<module>spi-storage-pojo</module>
 		<module>service-nodejs-bridge</module>
 		<module>protocol-service-mqtt</module>
+		<module>protocol-service-ftp</module>
 	</modules>
 
 	<build>
