@@ -32,7 +32,7 @@ START_SCRIPT="pm2 start server.js"
 # If you are extending/customizing the boodskap platform, set this flag to true
 # All three projects will be cloned and kept under your $HOME/docker/volumes/${NAME}
 #
-DEVELOPMENT=true
+DEVELOPMENT=false
 
 #
 # For debugging platform server using Java remote debugging on port 9999
@@ -54,25 +54,25 @@ VOLUMES="-v ${DATA_PATH}:${DATA_MOUNT}"
 ENV="$ENV -e DATA_PATH=${DATA_MOUNT}"
 
 if [ $DEVELOPMENT == true ]; then
-    
+
     #Empty echo to avoid bash error
     echo ""
-    
+
     #
     # Boodskap Platform ( git clone https://github.com/boodskap/platform.git )
     # Enable ENV, VOLUMES and BOODSKAP_HOME pointing to <git_path>/distribution/target/release
     #
-    #BOODSKAP_HOME=${HOME}/git/platform/distribution/target/release
-    #ENV="$ENV -e BOODSKAP_HOME=${PLATFORM_MOUNT}"
-    #VOLUMES="$VOLUMES -v ${BOODSKAP_HOME}:${PLATFORM_MOUNT}"
+    BOODSKAP_HOME=${HOME}/git/boodskap-iot-platform3/iot-platform/target
+    ENV="$ENV -e BOODSKAP_HOME=${PLATFORM_MOUNT}"
+    VOLUMES="$VOLUMES -v ${BOODSKAP_HOME}:${PLATFORM_MOUNT}"
 
-    #CONSOLE_HOME=${HOME}/git/platform/admin-console
-    #ENV="$ENV -e CONSOLE_HOME=${CONSOLE_MOUNT}"
-    #VOLUMES="$VOLUMES -v ${CONSOLE_HOME}:${CONSOLE_MOUNT}"
+    CONSOLE_HOME=${HOME}/git/admin-console
+    ENV="$ENV -e CONSOLE_HOME=${CONSOLE_MOUNT}"
+    VOLUMES="$VOLUMES -v ${CONSOLE_HOME}:${CONSOLE_MOUNT}"
 
-    #DASHBOARD_HOME=${HOME}/git/platform/dashboard
-    #ENV="$ENV -e DASHBOARD_HOME=${DASHBOARD_MOUNT}"
-    #VOLUMES="$VOLUMES -v ${DASHBOARD_HOME}:${DASHBOARD_MOUNT}"
+    DASHBOARD_HOME=${HOME}/git/dashboard
+    ENV="$ENV -e DASHBOARD_HOME=${DASHBOARD_MOUNT}"
+    VOLUMES="$VOLUMES -v ${DASHBOARD_HOME}:${DASHBOARD_MOUNT}"
 fi
 
 
@@ -86,14 +86,14 @@ fi
 # These ports will be binding locally too
 # Make sure, these ports are free and bindable in your local machine
 #
-PORTS="80 443 1883 18080 2021 4201 4202 10000 9999 40000-60000"
+PORTS="80 443 1883 18080 4201 4202 10000 9999"
 UDP_PORTS="5555"
 
 #
 # For running multiple platform containers, disable PORTS and UDP_PORTS and enable the below two
 # Format: Local_Port:Remote_Port
 #
-#MPORTS="8080:80 8443:443 2883:1883 28080:18080 24201:4201 24202:4202 20000:10000 29999:9999" 
+#MPORTS="8080:80 8443:443 2883:1883 28080:18080 24201:4201 24202:4202 20000:10000 29999:9999"
 #MUDP_PORTS="6666:5555"
 
 if [[ -z "$MPORTS" ]]; then
@@ -134,12 +134,12 @@ printf "\t${EXEC}\n\n"
 
 echo "#### To start ${NAME} ####"
 START_EXEC="docker start ${NAME} && docker logs -f ${NAME}"
-RESTART_EXEC="docker kill --signal=SIGINT ${NAME} && docker start ${NAME} && docker logs -f ${NAME}"
+RESTART_EXEC="docker restart ${NAME} && docker logs -f ${NAME}"
 printf "\t${START_EXEC}\n"
 printf "\t${RESTART_EXEC}\n\n"
 
 echo "#### To stop ${NAME} ####"
-STOP_EXEC="docker kill --signal=SIGINT ${NAME}"
+STOP_EXEC="docker stop ${NAME}"
 printf "\t${STOP_EXEC}\n\n"
 
 echo "#### To delete ${NAME} container ####"
