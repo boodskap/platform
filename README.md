@@ -1,6 +1,6 @@
 # Boodskap IoT Platform
 
-<img src="https://raw.githubusercontent.com/boodskap/platform/master/files/boodskap-model.png" alt="The Launch Pad for your IoT needs." width="100%"/>
+<img src="https://raw.githubusercontent.com/boodskap/platform/master/distribution/files/boodskap-model.png" alt="The Launch Pad for your IoT needs." width="100%"/>
 
 <span style="color:red">**Not a production version, Production release 3.1.0 will be released by mid July 2019**</span>
 
