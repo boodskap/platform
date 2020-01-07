@@ -1,4 +1,4 @@
-FROM boodskapiot/ubuntu-jdk13:18.04
+FROM boodskapiot/ubuntu:18.04.jdk13
 
 MAINTAINER platform@boodskap.io
 
