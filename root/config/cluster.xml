@@ -1,0 +1,99 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd">
+	<bean id="ignite.cfg"
+		class="org.apache.ignite.configuration.IgniteConfiguration">
+
+		<property name="clientMode" value="false"/>
+		<property name="metricsLogFrequency" value="0" />
+
+		<property name="discoverySpi">
+			<bean
+				class="org.apache.ignite.spi.discovery.tcp.TcpDiscoverySpi">
+
+				<property name="localPort" value="48500" />
+
+				<property name="localPortRange" value="20" />
+
+				<property name="ipFinder">
+					<bean
+						class="org.apache.ignite.spi.discovery.tcp.ipfinder.vm.TcpDiscoveryVmIpFinder">
+						<property name="addresses">
+							<list>
+								<value>10.1.1.2:48500</value>
+							</list>
+						</property>
+					</bean>
+				</property>
+			</bean>
+		</property>
+
+		<!-- Enabling Apache Ignite Persistent Store. -->
+		<property name="dataStorageConfiguration">
+			<bean
+				class="org.apache.ignite.configuration.DataStorageConfiguration">
+
+				<property name="pageSize" value="#{4L * 1024}" />
+				<property name="writeThrottlingEnabled" value="true" />
+
+				<property name="defaultDataRegionConfiguration">
+					<bean
+						class="org.apache.ignite.configuration.DataRegionConfiguration">
+						<property name="persistenceEnabled" value="true" />
+						<property name="maxSize" value="#{4L * 1024 * 1024 * 1024}" />
+						<property name="checkpointPageBufferSize" value="#{1024L * 1024 * 1024}" />
+					</bean>
+				</property>
+
+				<property name="storagePath"
+					value="/root/data/ignite/storage" />
+				<property name="walPath"
+					value="/root/data/ignite/wal" />
+				<property name="walArchivePath"
+					value="/root/data/ignite/wala" />
+			</bean>
+		</property>
+
+
+		<property name="communicationSpi">
+			<bean
+				class="org.apache.ignite.spi.communication.tcp.TcpCommunicationSpi">
+				<property name="localPort" value="48100" />
+			</bean>
+		</property>
+
+		<property name="failureHandler">
+			<bean class="org.apache.ignite.failure.NoOpFailureHandler" />
+			<!-- <bean class="org.apache.ignite.failure.StopNodeFailureHandler"/> -->
+		</property>
+
+		<property name="serviceConfiguration">
+			<list>
+				<bean class="org.apache.ignite.services.ServiceConfiguration">
+					<property name="name" value="BoostrapService" />
+					<property name="maxPerNodeCount" value="1" />
+					<property name="service">
+						<ref bean="BootstrapService" />
+					</property>
+				</bean>
+			</list>
+		</property>
+
+		<property name="gridName" value="boodskap.io" />
+		<property name="peerClassLoadingEnabled" value="false" />
+
+		<property name="userAttributes">
+			<map>
+				<entry key="cluster.domain_name" value="boodskap.io" />
+			</map>
+		</property>
+
+	</bean>
+
+
+	<bean id="BootstrapService" class="io.boodskap.iot.BootstrapService" />
+
+</beans>
