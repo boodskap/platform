@@ -1,7 +1,0 @@
-# Ignore everything
-*
-
-# But not these files...
-!target/release
-!files
-
