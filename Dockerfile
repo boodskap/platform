@@ -15,11 +15,9 @@ WORKDIR /root
 
 RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.0/boodskap-all-libs-3.0.0.tar.gz
 RUN tar -xzvf /root/boodskap-all-libs-3.0.0.tar.gz
-#ADD boodskap-all-libs-3.0.0.tar.gz /root/
 
-RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.0/boodskap-patch-3.0.0.tar.gz
-RUN tar -xzvf /root/boodskap-patch-3.0.0.tar.gz
-#ADD boodskap-patch-3.0.0.tar.gz /root/
+RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.0/boodskap-patch-3.0.1-10001.tar.gz
+RUN tar -xzvf /root/boodskap-patch-3.0.1-10001.tar.gz
 RUN rm -rf /root/boodskap-*
 
 WORKDIR /

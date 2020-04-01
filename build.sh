@@ -1,1 +1,1 @@
-docker build -t boodskapiot/platform:3.0.0 -t boodskapiot/platform:latest .
+docker build -t boodskapiot/platform:3.0.1-10001 -t boodskapiot/platform:latest .
