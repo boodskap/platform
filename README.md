@@ -1,8 +1,7 @@
 # Boodskap IoT Platform
 
-<img src="https://raw.githubusercontent.com/boodskap/platform/master/distribution/files/boodskap-model.png" alt="The Launch Pad for your IoT needs." width="100%"/>
-
-<span style="color:red">**Not a production version, Production release 3.1.0 will be released by mid May 2020**</span>
+<span style="color:red">**Production version 3.0.1**</span>
+<span style="color:green">**Upcoming version 3.0.2 - April end 2020 **</span>
 
 # Installing as Docker Containers
 ```bash
@@ -131,10 +130,7 @@ rm -rf $WORKDIR
 ```
 
 # Docker installation can be accessed using
-* Open a browser location to 
-  * Your solution can be accessed here **http://boodskap.xyz**
-  * Admin Console can be accessed here **http://platform.boodskap.xyz**
-  * Dashboard can be accessed here **http://dashboard.boodskap.xyz**
+* Open a browser location to  **http://boodskap.xyz**
 * The default login credentials are
   * User Name: **admin**
   * Password: **admin**
