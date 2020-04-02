@@ -131,6 +131,7 @@ rm -rf $WORKDIR
 
 # Docker installation can be accessed using
 * Open a browser location to  **http://boodskap.xyz**
+* If you have installed on a machine with public IP address **http://<your_public_ip>**
 * The default login credentials are
   * User Name: **admin**
   * Password: **admin**
