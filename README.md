@@ -135,6 +135,8 @@ rm -rf $WORKDIR
 * The default login credentials are
   * User Name: **admin**
   * Password: **admin**
+    * Generallay, first time installation needs a platform container reboot, you could do that by
+    * docker stop boodskap && docker start boodskap
   
 * API endpoint
   * Master API http://boodskap.xyz/api
