@@ -170,14 +170,6 @@ Upon successful initialization, you should see something like this
 2020-04-02 09:35:19.303 INFO  ClusterManagerService:59 - Validating cluster nodes...
 2020-04-02 09:35:19.305 WARN  BoodskapSystem:264 - Cluster node list rebalanced
 2020-04-02 09:35:19.307 INFO  BaseService:96 - ClusterManagerService[id:1] finished
-No MQTT Appenders activated, ignoring deactivationNo Elastic Log Appenders activated, ignoring deactivationWARNING: An illegal reflective access operation has occurred
-WARNING: Illegal reflective access by org.apache.ignite.internal.util.GridUnsafe$2 (file:/root/libs/ignite-core-2.7.6.jar) to field java.nio.Buffer.address
-WARNING: Please consider reporting this to the maintainers of org.apache.ignite.internal.util.GridUnsafe$2
-WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
-WARNING: All illegal access operations will be denied in a future release
-Control utility [ver. 2.7.6#20190911-sha1:21f7ca41]
-2019 Copyright(C) Apache Software Foundation
-User: root
 ```
 If the platform init is not progressing for a very long time (more than 5 minutes) or got stuck here (below), just reboot the platform one more time and you should be good (**docker stop boodskap && docker start boodskap && docker logs -f boodskap**)
 ```bash
