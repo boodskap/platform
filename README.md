@@ -35,8 +35,9 @@ docker container create --privileged --net platformnet -p 9042:9042 --ip 10.1.1.
 docker container create --privileged --net platformnet -p 9200:9200 --ip 10.1.1.4 --hostname elastic --name elastic -v $VOL_ELASTIC:/home/elastic/data boodskapiot/elastic:7.5.1
 docker container create --net platformnet -p 1883:1883 -p 8083:8083 --ip 10.1.1.5 --hostname emqx --name emqx -v $VOL_EMQX:/root/data/mnesia boodskapiot/emqx:3.2.7
 docker container create --net platformnet -p 5601:5601 --ip 10.1.1.6 --hostname kibana --name kibana -v $VOL_KIBANA:/home/kibana/data boodskapiot/kibana:7.5.1
-docker container create --net platformnet -p 18080:18080 -p 19090:19090 -p 2021:2021 --ip 10.1.1.2 --hostname boodskap --name boodskap -v $VOL_BOODSKAP:/root/data boodskapiot/platform:3.0.0
-docker container create --net platformnet -p 80:80 --ip 10.1.1.254 --hostname gateway --name gateway boodskapiot/gateway:2.0.5
+docker container create --net platformnet -p 5555:5555/udp -p 18080:18080 -p 19090:19090 -p 2021:2021 --ip 10.1.1.2 --hostname boodskap --name boodskap -v $VOL_BOODSKAP/data:/root/data -v $VOL_BOODSKAP/work:/root/work boodskapiot/platform:3.0.1-10001
+docker container create --net platformnet -p 80:80 --ip 10.1.1.254 --hostname gateway --name gateway boodskapiot/gateway:3.0.1
+
 ```
 
 # Docker container startup script
@@ -180,7 +181,7 @@ If the platform init is not progressing for a very long time (more than 5 minute
 
 # Docker installation can be accessed using
 * Open a browser location to  **http://boodskap.xyz**
-* If you have installed on a machine with public IP address **http://<your_public_ip>**
+* If you have installed on a machine with public IP address **http://your_public_ip**
 * The default login credentials are
   * User Name: **admin**
   * Password: **admin**
