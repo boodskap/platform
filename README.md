@@ -128,6 +128,63 @@ docker network rm platformnet
 echo "Removing volumes"
 rm -rf $WORKDIR
 ```
+# First time setup
+Start the containers using the startup.sh script
+```bash
+$docker logs -f cassandra
+```
+Wait for the datbase to initialize for the first time, this may take a while depends upon your configuration.
+Upon successful initialiation, you should see something like this
+```bash
+INFO  [main] 2020-04-02 09:33:04,179 Gossiper.java:1780 - Waiting for gossip to settle...
+INFO  [main] 2020-04-02 09:33:12,181 Gossiper.java:1811 - No gossip backlog; proceeding
+Initialinging database....
+Cassandra startup done.
+```
+Now restart the platform and look for the init messages
+```bash
+$docker stop boodskap && docker start boodskap && docker logs -f boodskap
+```
+Upon successful initialization, you should see something like this
+```bash
+2020-04-02 09:35:15.953 INFO  BootstrapService:193 - All done, node is up and running...
+2020-04-02 09:35:15.953 INFO  BootstrapService:195 -
+
+
+    )             (           )
+ ( /(             )\ )     ( /(     )
+ )\())  (    (   (()/( (   )\()) ( /(  `  )
+((_)\   )\   )\   ((_)))\ ((_)\  )(_)) /(/(
+| |(_) ((_) ((_)  _| |((_)| |(_)((_)_ ((_)_\
+| '_ \/ _ \/ _ \/ _` |(_-<| / / / _` || '_ \)
+|_.__/\___/\___/\__,_|/__/|_\_\ \__,_|| .__/
+                                      |_| IoT Platform
+
+
+>>> ver. 3.0.1 - build(10001)
+>>> 2018 Copyright(C) Boodskap Inc
+>>>
+>>> Boodskap documentation: http://readme.boodskap.io
+2020-04-02 09:35:18.659 INFO  ClusterManagerService:44 - Initializing...
+2020-04-02 09:35:19.161 INFO  ShellScriptExecutor:48 - Initializing rules engine subsystem...
+2020-04-02 09:35:19.303 INFO  ClusterManagerService:59 - Validating cluster nodes...
+2020-04-02 09:35:19.305 WARN  BoodskapSystem:264 - Cluster node list rebalanced
+2020-04-02 09:35:19.307 INFO  BaseService:96 - ClusterManagerService[id:1] finished
+No MQTT Appenders activated, ignoring deactivationNo Elastic Log Appenders activated, ignoring deactivationWARNING: An illegal reflective access operation has occurred
+WARNING: Illegal reflective access by org.apache.ignite.internal.util.GridUnsafe$2 (file:/root/libs/ignite-core-2.7.6.jar) to field java.nio.Buffer.address
+WARNING: Please consider reporting this to the maintainers of org.apache.ignite.internal.util.GridUnsafe$2
+WARNING: Use --illegal-access=warn to enable warnings of further illegal reflective access operations
+WARNING: All illegal access operations will be denied in a future release
+Control utility [ver. 2.7.6#20190911-sha1:21f7ca41]
+2019 Copyright(C) Apache Software Foundation
+User: root
+```
+If the platform init is not progressing for a very long time (more than 5 minutes) or got stuck here (below), just reboot the platform one more time and you should be good (**docker stop boodskap && docker start boodskap && docker logs -f boodskap**)
+```bash
+2020-04-02 09:33:48.887 INFO  CacheStore:102 - Initing MSG_SPEC_CACHE cache
+2020-04-02 09:35:06.729 ERROR BoodskapSystem:286 - Ignition not initialized, please wait for bootstrap service to start...
+```
+
 
 # Docker installation can be accessed using
 * Open a browser location to  **http://boodskap.xyz**
