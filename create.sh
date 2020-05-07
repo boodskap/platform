@@ -7,8 +7,8 @@
 # Removing: ./remove.sh (warning, will delete all data)
 #
 
-PLATFORM_VERSION=3.0.1-10003
-UI_VERSION=3.0.4
+PLATFORM_VERSION=latest
+UI_VERSION=latest
 CASSANDRA_VERSION=3.11.5
 ELASTIC_VERSION=7.5.1
 KIBANA_VERSION-7.5.1
