@@ -8,5 +8,6 @@
 - Patch 10005
     - Fixed MQTT Binary messages not processed
     - Fixed MQTT JSON message IDs are always set as 0
+    - Fixed MQTT binary type and non binary message id conflict
 - Patch 10004
     - Changed the default MQTT service to accept any QOS messages
