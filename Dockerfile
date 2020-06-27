@@ -16,8 +16,8 @@ WORKDIR /root
 RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.1/boodskap-all-libs-3.0.1.tar.gz
 RUN tar -xzvf /root/boodskap-all-libs-3.0.1.tar.gz
 
-RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.1/boodskap-patch-3.0.1-10015.tar.gz
-RUN tar -xzvf /root/boodskap-patch-3.0.1-10015.tar.gz
+RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.1/boodskap-patch-3.0.1-10016.tar.gz
+RUN tar -xzvf /root/boodskap-patch-3.0.1-10016.tar.gz
 RUN rm -rf /root/boodskap-*
 
 WORKDIR /
@@ -27,7 +27,7 @@ COPY start-boodskap.sh .
 
 RUN chmod +x start-boodskap.sh
 
-EXPOSE 18080 19090 2021 40000-60000
+EXPOSE 18080 19090 2021 40000-60000 5555/udp
 
 CMD ["/start-boodskap.sh"]
 
