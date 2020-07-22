@@ -15,8 +15,9 @@ RUN rm -rf /root/benchmarks && rm -rf /root/docs && rm -rf /root/examples && rm 
 WORKDIR /root
 
 RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/v3.0.2/boodskap-ignite-3.0.2.tar.gz
+RUN rm -rf /root/config/*
 RUN tar -xzvf /root/boodskap-ignite-3.0.2.tar.gz
-RUN rm -rf /root/libs/patches
+RUN rm -f /root/libs/boodskap/boodskap-*
 
 RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/v3.0.2/boodskap-patch-3.0.2-0003.tar.gz
 RUN tar -xzvf /root/boodskap-patch-3.0.2-0003.tar.gz
@@ -24,7 +25,7 @@ RUN rm -rf /root/boodskap-*
 
 WORKDIR /root/libs
 RUN rm -f patch
-RUN ln -s /root/libs/patches/0003 patch
+RUN ln -s /root/patches/0003 patch
 
 WORKDIR /
 
