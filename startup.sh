@@ -38,14 +38,7 @@ startAndWait elastic 9200 15
 startAndWait emqx 1883 10
 startAndWait boodskap 18080 10
 startAndWait gateway 80 10
-startAndWait kibana 5601 10
-
-#docker start gateway
-#docker start cassandra
-#docker start elastic
-#docker start emqx
-#docker start kibana
-#docker start boodskap
+#startAndWait kibana 5601 10
 
 echo "All containers started!"
 

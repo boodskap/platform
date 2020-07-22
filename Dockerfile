@@ -10,15 +10,21 @@ RUN wget --no-check-certificate https://archive.apache.org/dist/ignite/2.8.0/apa
 RUN unzip apache-ignite-2.8.0-bin.zip
 RUN mv apache-ignite-2.8.0-bin/* /root/
 RUN rm -rf apache-ignite-2.8.0-bin*
+RUN rm -rf /root/benchmarks && rm -rf /root/docs && rm -rf /root/examples && rm -rf /root/platforms
 
 WORKDIR /root
 
-RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.1/boodskap-all-libs-3.0.1.tar.gz
-RUN tar -xzvf /root/boodskap-all-libs-3.0.1.tar.gz
+RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/v3.0.2/boodskap-ignite-3.0.2.tar.gz
+RUN tar -xzvf /root/boodskap-ignite-3.0.2.tar.gz
+RUN rm -rf /root/libs/patches
 
-RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/3.0.1/boodskap-patch-3.0.1-10016.tar.gz
-RUN tar -xzvf /root/boodskap-patch-3.0.1-10016.tar.gz
+RUN wget --no-check-certificate https://github.com/BoodskapPlatform/boodskap-platform/releases/download/v3.0.2/boodskap-patch-3.0.2-0003.tar.gz
+RUN tar -xzvf /root/boodskap-patch-3.0.2-0003.tar.gz
 RUN rm -rf /root/boodskap-*
+
+WORKDIR /root/libs
+RUN rm -f patch
+RUN ln -s /root/libs/patches/0003 patch
 
 WORKDIR /
 
