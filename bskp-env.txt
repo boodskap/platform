@@ -1,0 +1,4 @@
+JVM_OPTS=-Xms512m -Xmx512m -server -XX:MaxMetaspaceSize=256m -XX:+UseParNewGC -XX:+UseConcMarkSweepGC -XX:+UseTLAB
+JVM_OPTS=$JVM_OPTS -XX:NewSize=128m -XX:MaxNewSize=128m -XX:MaxTenuringThreshold=0 -XX:SurvivorRatio=1024
+JVM_OPTS=$JVM_OPTS -XX:+UseCMSInitiatingOccupancyOnly -XX:CMSInitiatingOccupancyFraction=60 -XX:+DisableExplicitGC
+JVM_OPTS=$JVM_OPTS -Xdebug -Xnoagent -Djava.compiler=NONE -agentlib:jdwp=transport=dt_socket,server=y,suspend=n,address=5005
