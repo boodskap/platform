@@ -8,8 +8,7 @@ echo "Removing containers..."
 docker rm gateway
 docker rm cassandra
 docker rm elastic
-docker rm emqx
-docker rm kibana
+#docker rm kibana
 docker rm boodskap
 docker network rm platformnet
 

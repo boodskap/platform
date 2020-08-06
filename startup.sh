@@ -35,7 +35,6 @@ echo
 
 startAndWait cassandra 9042 15
 startAndWait elastic 9200 15
-startAndWait emqx 1883 10
 startAndWait boodskap 18080 10
 startAndWait gateway 80 10
 #startAndWait kibana 5601 10
