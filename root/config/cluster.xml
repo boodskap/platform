@@ -9,6 +9,13 @@
 
 		<property name="clientMode" value="false"/>
 		<property name="metricsLogFrequency" value="0" />
+        	<property name="metricsLogFrequency" value="0" />
+        	<property name="peerClassLoadingEnabled" value="false" />
+        	<property name="userAttributes">
+            		<map>
+                		<entry key="cluster.domain_name" value="boodskap.io" />
+            		</map>
+        	</property>
 
 		<property name="discoverySpi">
 			<bean
@@ -75,20 +82,12 @@
 				<bean class="org.apache.ignite.services.ServiceConfiguration">
 					<property name="name" value="BoostrapService" />
 					<property name="maxPerNodeCount" value="1" />
+					<property name="totalCount" value="1" />
 					<property name="service">
 						<ref bean="BootstrapService" />
 					</property>
 				</bean>
 			</list>
-		</property>
-
-		<property name="gridName" value="boodskap.io" />
-		<property name="peerClassLoadingEnabled" value="false" />
-
-		<property name="userAttributes">
-			<map>
-				<entry key="cluster.domain_name" value="boodskap.io" />
-			</map>
 		</property>
 
 	</bean>
