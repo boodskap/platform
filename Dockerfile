@@ -4,9 +4,11 @@ MAINTAINER platform@boodskap.io
 
 LABEL Remarks="Boodskap IoT Platform"
 
-RUN apt-get -y update && apt-get -y install software-properties-common && add-apt-repository -y ppa:openjdk-r/ppa && apt-get update -y && apt-get install -y openjdk-13-jdk
-RUN apt-get -y install wget curl
-RUN apt-get -y clean && rm -rf /var/cache/apt/lists
+#RUN apt-get -y update && apt-get -y install software-properties-common && add-apt-repository -y ppa:openjdk-r/ppa && apt-get update -y && apt-get install -y openjdk-13-jdk
+#RUN apt-get -y install wget curl
+#RUN apt-get -y clean && rm -rf /var/cache/apt/lists
+
+RUN apt-get update && apt-get install -y curl
 
 ARG PVERSION="3.0.2"
 
@@ -14,7 +16,7 @@ WORKDIR /root
 
 RUN curl -sL https://github.com/BoodskapPlatform/boodskap-platform/releases/download/v${PVERSION}/boodskap-${PVERSION}.tar.gz | tar xzf - -C /root/
 
-ARG PPATCH="0005"
+ARG PPATCH="0008"
 
 RUN curl -sL https://github.com/BoodskapPlatform/boodskap-platform/releases/download/v${PVERSION}/boodskap-patch-${PVERSION}-${PPATCH}.tar.gz | tar xzf - -C /root/
 
